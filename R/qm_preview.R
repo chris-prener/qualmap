@@ -23,7 +23,7 @@
 #' @export
 qm_preview <- function(.data, key, value){
 
-  COUNT = providers = NULL
+  COUNT = NULL
 
   keyQ <- rlang::quo_name(rlang::enquo(key))
 
@@ -40,9 +40,10 @@ qm_preview <- function(.data, key, value){
 
   bins <- c(0, 1)
   pal <- leaflet::colorBin(colorRamp(c("#808080", "#ff4e4e")), domain = result$COUNT)
+  tiles <- leaflet::providers$CartoDB.Positron
 
   leaflet::leaflet(result) %>%
-    leaflet::addProviderTiles(providers$CartoDB.Positron) %>%
+    leaflet::addProviderTiles(tiles) %>%
     leaflet::addPolygons(fillColor = ~pal(COUNT),
                             weight = 2,
                             opacity = 1,
