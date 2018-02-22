@@ -12,14 +12,18 @@
 #' @importFrom dplyr left_join
 #' @importFrom dplyr mutate
 #' @importFrom dplyr rename
+#' @importFrom grDevices colorRamp
 #' @importFrom leaflet addPolygons
 #' @importFrom leaflet addProviderTiles
 #' @importFrom leaflet colorBin
 #' @importFrom leaflet leaflet
+#' @importFrom rlang :=
 #' @importFrom sf st_transform
 #'
 #' @export
 qm_preview <- function(.data, key, value){
+
+  COUNT = providers = NULL
 
   keyQ <- rlang::quo_name(rlang::enquo(key))
 
