@@ -18,3 +18,5 @@ Imports: rlang,
     leaflet,
     dplyr,
     assertthat
+Suggests: tigris,
+    tidycensus
