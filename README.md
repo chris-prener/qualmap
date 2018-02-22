@@ -1,45 +1,35 @@
----
-output:
-  md_document:
-    variant: markdown_github
----
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+qualmap <img src="https://slu-dss.github.io/img/gisLogoSm.png" align="right" />
+===============================================================================
 
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
-)
-```
-
-# qualmap <img src="https://slu-dss.github.io/img/gisLogoSm.png" align="right" />
-
-[![lifecycle_badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/slu-openGIS/qualmap)
-[![CRAN_status_badge](http://www.r-pkg.org/badges/version/gateway)](https://cran.r-project.org/package=gateway)
+[![lifecycle\_badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/slu-openGIS/qualmap) [![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/gateway)](https://cran.r-project.org/package=gateway)
 
 The goal of qualmap is to make it easy to enter data from qualitative maps.
 
-## Motivation and Approach
+Motivation and Approach
+-----------------------
 
 Qualitative GIS outputs are notoriously difficult to work with because individuals' conceptions of space can vary greatly from each other and from the realities of physical geography themselves. This package implements a process for converting qualitative GIS data from an exercise where respondents are asked to identify salient locations on a map. The basemaps used in this approach have a series of polygons, such as neighborhood boundaries or census geography. A circle drawn on the map is compared during data entry to a key identifying each feature, and the feature ids are entered for each feature that the respondent's cricle touches.
 
-## Installation
+Installation
+------------
 
 You can install `qualmap` from GitHub with:
 
-```{r gh-installation, eval = FALSE}
+``` r
 devtools::install_github("slu-openGIS/qualmap")
 ```
 
-## Useage
+Useage
+------
+
 ### Data Preparation
-To begin, you will need a simple features object containing the polygons you will be matching respondents' data to. Census geography polygons can be downloaded via `tigris`, and other polygon shapefiles can be read into `R` using the `sf` package. 
+
+To begin, you will need a simple features object containing the polygons you will be matching respondents' data to. Census geography polygons can be downloaded via `tigris`, and other polygon shapefiles can be read into `R` using the `sf` package.
 
 Here is an example of preparing data downloaded via `tigris`:
 
-```{r example-data-prep, eval = FALSE}
+``` r
 library(dplyr)   # data wrangling
 library(sf)      # simple features objects
 library(tigris)  # access census tiger/line data
@@ -52,15 +42,16 @@ stLouis <- mutate(stLouis, TRACTCE = as.numeric(TRACTCE))
 We download the census tract data for St. Louis, which come in `sp` format, using the `tracts()` function from `tigris`. We then use the `sf` package's `st_as_sf()` function to convert these data to a simple features object and convert the `TRACTCE` variable to numeric format.
 
 ### Data Entry
+
 Once we have a reference data set constructed, we can begin entering the tract numbers that constitute a single circle on the map or "cluster". We use the `c()` function from base `R` to input these id numbers into a vector:
 
-```{r example-vector, eval = FALSE}
+``` r
 cluster1 <- c(118600, 119101, 119300)
 ```
 
 We can use the `qm_validate()` function to check each value in the vector and ensure that these values all match the `key` variable in the reference data:
 
-```r
+``` r
 > qm_validate(stLouis, "TRACTCE", cluster1)
 [1] TRUE
 ```
@@ -69,11 +60,13 @@ If `qm_validate()` returns a `TRUE` value, all data are matches. If it returns `
 
 Once the data are validated, we can preview them interactively using `qm_preview()`, which will show the features identified in the given vector in red on the map:
 
-```{r example-preview, eval = FALSE}
+``` r
 qm_preview(stLouis, "TRACTCE", cluster1)
 ```
 
 ![](/man/figures/previewMap.png)
 
-## Contributor Code of Conduct
+Contributor Code of Conduct
+---------------------------
+
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
