@@ -1,0 +1,42 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# qualmap <img src="https://slu-dss.github.io/img/gisLogoSm.png" align="right" />
+
+[![lifecycle_badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/slu-openGIS/qualmap)
+[![CRAN_status_badge](http://www.r-pkg.org/badges/version/gateway)](https://cran.r-project.org/package=gateway)
+
+The goal of qualmap is to make it easy to enter data from qualitative maps.
+
+## Motivation and Approach
+
+Qualitative GIS outputs are notoriously difficult to work with because individuals' conceptions of space can vary greatly from each other and from the realities of physical geography themselves. This package implements a process for converting qualitative GIS data from an exercise where respondents are asked to identify salient locations on a map. The basemaps used in this approach have a series of polygons, such as neighborhood boundaries or census geography. A circle drawn on the map is compared during data entry to a key identifying each feature, and the feature ids are entered for each feature that the respondent's cricle touches.
+
+## Installation
+
+You can install gateway from github with:
+
+```{r gh-installation, eval = FALSE}
+devtools::install_github("slu-openGIS/qualmap")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+## basic example code
+```
