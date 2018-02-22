@@ -35,9 +35,9 @@ qm_preview <- function(.data, key, value){
   result <- sf::st_transform(result, 4326)
 
   bins <- c(0, 1)
-  pal <- leaflet::colorBin(colorRamp(c("#808080", "#ff4e4e")), domain = x$COUNT)
+  pal <- leaflet::colorBin(colorRamp(c("#808080", "#ff4e4e")), domain = result$COUNT)
 
-  leaflet::leaflet(x) %>%
+  leaflet::leaflet(result) %>%
     leaflet::addProviderTiles(providers$CartoDB.Positron) %>%
     leaflet::addPolygons(fillColor = ~pal(COUNT),
                             weight = 2,
