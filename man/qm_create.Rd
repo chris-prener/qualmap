@@ -13,10 +13,10 @@ qm_create(ref, key, value, rid, cid, category, ...)
 
 \item{value}{A vector of input values}
 
-\item{rid}{Respondent identification number; a user defined value that uniquely identifies respondents
+\item{rid}{Respondent identification number; a user defined integer value that uniquely identifies respondents
 in the project}
 
-\item{cid}{Cluster identification number; a user defined value that unqiuely identifies clusters}
+\item{cid}{Cluster identification number; a user defined interger value that unqiuely identifies clusters}
 
 \item{category}{Category type; a user defined value that describes what the cluster represents}
 

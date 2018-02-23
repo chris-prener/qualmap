@@ -15,9 +15,9 @@
 #' @param ref An sf object that serves as a master list of features
 #' @param key Name of geographic id variable in the \code{ref} object to match input values to
 #' @param value A vector of input values
-#' @param rid Respondent identification number; a user defined value that uniquely identifies respondents
+#' @param rid Respondent identification number; a user defined integer value that uniquely identifies respondents
 #' in the project
-#' @param cid Cluster identification number; a user defined value that unqiuely identifies clusters
+#' @param cid Cluster identification number; a user defined interger value that unqiuely identifies clusters
 #' @param category Category type; a user defined value that describes what the cluster represents
 #' @param ... An unquoted list of variables from the sf object to include in the out
 #'
@@ -54,8 +54,8 @@ qm_create <- function(ref, key, value, rid, cid, category, ...) {
   # subset joined data down to only valid observations & requested variables, add metadata variables
   result %>%
     dplyr::filter(COUNT == 1) %>%
-    dplyr::mutate(RID = rid) %>%
-    dplyr::mutate(CID = cid) %>%
+    dplyr::mutate(RID = as.integer(rid)) %>%
+    dplyr::mutate(CID = as.integer(cid)) %>%
     dplyr::mutate(CAT = category) %>%
     dplyr::select(RID, CID, CAT, !!keyVarQ, COUNT, ...) -> result
 
