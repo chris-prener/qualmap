@@ -10,6 +10,7 @@
 #' @export
 qm_define <- function(...){
 
+  # concatenate listed values
   c(...)
 
 }
