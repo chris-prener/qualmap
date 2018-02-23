@@ -8,9 +8,15 @@ stLouis <- tracts(state = "MO", county = 510)
 stLouis <- st_as_sf(stLouis)
 stLouis <- mutate(stLouis, TRACTCE = as.numeric(TRACTCE))
 
+
+clusterE <- qm_define(118600, 119101, 800000)
+
+qm_validate(ref = stLouis, key = "TRACTCE", value = clusterE)
+
 cluster1 <- qm_define(118600, 119101, 119300)
 
-qm_validate(stLouis, "TRACTCE", cluster1)
+qm_validate(ref = stLouis, key = "TRACTCE", value = cluster1)
+qm_validate(ref = stLouis, key = TRACTCE, value = cluster1)
 
 qm_preview(stLouis, "TRACTCE", cluster1)
 
