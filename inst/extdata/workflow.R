@@ -48,6 +48,13 @@ cluster3_obj <- qm_create(stLouis, "TRACTCE", cluster3, rid = 1, cid = 3, catego
 clusters <- qm_combine(cluster1_obj, cluster2_obj, cluster3_obj)
 
 
-ham <- qm_summarize(clusters, key = TRACTCE, category = "positive")
+pos <- qm_summarize(clusters = clusters, key = TRACTCE, category = "positive")
 
-hamsf <- qm_summarize(clusters, key = "TRACTCE", category = "ham", ref = stLouis)
+possf <- qm_summarize(clusters = clusters, key = TRACTCE, category = "positive", ref = stLouis)
+
+library(ggplot2)
+library(viridis)
+
+ggplot() + geom_sf(data = possf, mapping = aes(fill = positive)) + scale_fill_viridis()
+
+ggsave("man/figures/exampleMap.png")
