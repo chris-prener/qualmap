@@ -15,6 +15,10 @@
 #' @param ref An sf object that serves as a master list of features
 #' @param key Quoted name of id variable in the \code{ref} object to match input values to
 #' @param value A vector of input values
+#' @param rid Respondent identification number; a user defined value that uniquely identifies respondents
+#' in the project
+#' @param cid Cluster identification number; a user defined value that unqiuely identifies clusters
+#' @param category Category type; a user defined value that describes what the cluster represents
 #' @param ... An unquoted list of variables from the sf object to include in the out
 #'
 #' @return A tibble with the cluster values merged with elements of the reference data.
@@ -30,7 +34,7 @@
 #' @export
 qm_create <- function(ref, key, value, rid, cid, category, ...) {
 
-  COUNT = NULL
+  RID = CID = CAT = COUNT = NULL
 
   keyQ <- rlang::quo_name(rlang::enquo(key))
 

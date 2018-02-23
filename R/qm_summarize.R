@@ -27,6 +27,8 @@
 #' @export
 qm_summarize <- function(clusters, key, category, ref){
 
+  CAT = COUNT = NULL
+
   # save parameters to list
   paramList <- as.list(match.call())
 
