@@ -14,6 +14,8 @@ qm_validate(stLouis, "TRACTCE", cluster1)
 
 qm_preview(stLouis, "TRACTCE", cluster1)
 
+qm_preview(stLouis, TRACTCE, cluster1)
+
 cluster1_obj <- qm_create(stLouis, "TRACTCE", cluster1, rid = 1, cid = 1, category = "ham", GEOID)
 
 

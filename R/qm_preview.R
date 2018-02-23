@@ -3,7 +3,7 @@
 #' @description This function renders the input vector as a polygon shapefile using the leaflet package.
 #'
 #' @param ref An sf object that serves as a master list of features
-#' @param key Quoted name of id variable in the \code{ref} object to match input values to
+#' @param key Name of geographic id variable in the \code{ref} object to match input values to
 #' @param value A vector of input values
 #'
 #' @return An interactive leaflet map with the values from the input vector highlighted in red.
@@ -24,25 +24,35 @@
 #' @export
 qm_preview <- function(ref, key, value){
 
+  # define undefined global variables as NULL
   COUNT = NULL
 
-  keyQ <- rlang::quo_name(rlang::enquo(key))
+  # quote input variables - key
+  keyVarQ <- rlang::quo_name(rlang::enquo(key))
 
+  # convert vector to temporary data frame
   value_df <- as.data.frame(value)
 
+  # prepare temporary data frame for mapping
   value_df %>%
-    dplyr::rename(!!keyQ := value) %>%
+    dplyr::rename(!!keyVarQ := value) %>%
     dplyr::mutate(COUNT = 1) -> value_df
 
-  result <- dplyr::left_join(ref, value_df, by = key)
+  # join temp data frame to reference data
+  result <- dplyr::left_join(ref, value_df, by = keyVarQ)
 
+  # add 0 values to COUNT if NA
   result <- dplyr::mutate(result, COUNT = ifelse(is.na(COUNT) == TRUE, 0, COUNT))
+
+  # transform data to WGS 84
   result <- sf::st_transform(result, 4326)
 
+  # set leaflet variables
   bins <- c(0, 1)
   pal <- leaflet::colorBin(colorRamp(c("#808080", "#ff4e4e")), domain = result$COUNT)
   tiles <- leaflet::providers$CartoDB.Positron
 
+  # create map
   leaflet::leaflet(result) %>%
     leaflet::addProviderTiles(tiles) %>%
     leaflet::addPolygons(fillColor = ~pal(COUNT),
