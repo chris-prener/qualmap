@@ -6,7 +6,7 @@
 #'
 #' @return A single tibble with all observations from the listed cluster objects.
 #'
-#' @importFrom dplr bind_rows
+#' @importFrom dplyr bind_rows
 #'
 #' @export
 qm_combine <- function(...){
