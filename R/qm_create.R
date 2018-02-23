@@ -37,6 +37,59 @@ qm_create <- function(ref, key, value, rid, cid, category, ...) {
   # define undefined global variables as NULL
   RID = CID = CAT = COUNT = NULL
 
+  # check for missing parameters - ref
+  if (missing(ref)) {
+    stop('A reference, consisting of a simple features object, must be specified.')
+  }
+
+  # check class of reference object
+  classList <- class(ref)
+  classListElement1 <- classList[1]
+
+  if (classListElement1 != "sf"){
+    stop("The reference object must be a simple features object.")
+  }
+
+  # check for missing parameters - key
+  if (missing(key)) {
+    stop('A key identification variable must be specified.')
+  }
+
+  # check for missing parameters - value
+  if (missing(value)) {
+    stop('A vector containing feature ids must be specified.')
+  }
+
+  # check for missing parameters - rid
+  if (missing(rid)) {
+    stop('A respondent identification number (rid) must be specified.')
+  }
+
+  # check input type - rid
+  if (is.numeric(rid) != TRUE) {
+    stop('The respondent identification number (rid) must a numeric value')
+  }
+
+  # check for missing parameters - cid
+  if (missing(cid)) {
+    stop('A cluster identification number (cid) must be specified.')
+  }
+
+  # check input type - cid
+  if (is.numeric(cid) != TRUE) {
+    stop('The cluster identification number (cid) must a numeric value.')
+  }
+
+  # check for missing parameters - category
+  if (missing(category)) {
+    stop('A category for this cluster must be specified.')
+  }
+
+  # check input type - category
+  if (is.character(category) != TRUE) {
+    stop('The category must a string.')
+  }
+
   # quote input variables - key
   keyVarQ <- rlang::quo_name(rlang::enquo(key))
 

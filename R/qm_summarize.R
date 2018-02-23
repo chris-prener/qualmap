@@ -48,6 +48,17 @@ qm_summarize <- function(clusters, key, category, ref){
     stop('A single category value must be specified.')
   }
 
+  # check for missing parameters - ref
+  if (!missing(ref)) {
+    # check class of reference object
+    classList <- class(ref)
+    classListElement1 <- classList[1]
+
+    if (classListElement1 != "sf"){
+      stop("The reference object must be a simple features object.")
+    }
+  }
+
   # quote input variables - key
   if (!is.character(paramList$key)) {
     keyVar <- rlang::enquo(key)

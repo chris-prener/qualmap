@@ -11,6 +11,29 @@
 #' @export
 qm_validate <- function(ref, key, value){
 
+  # check for missing parameters - ref
+  if (missing(ref)) {
+    stop('A reference, consisting of a simple features object, must be specified.')
+  }
+
+  # check class of reference object
+  classList <- class(ref)
+  classListElement1 <- classList[1]
+
+  if (classListElement1 != "sf"){
+    stop("The reference object must be a simple features object.")
+  }
+
+  # check for missing parameters - key
+  if (missing(key)) {
+    stop('A key identification variable must be specified.')
+  }
+
+  # check for missing parameters - value
+  if (missing(value)) {
+    stop('A vector containing feature ids must be specified.')
+  }
+
   # save parameters to list
   paramList <- as.list(match.call())
 
