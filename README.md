@@ -25,7 +25,7 @@ Useage
 
 ### Verbs
 
-`qualmap` implements a six verbs for working with mental map data:
+`qualmap` implements six verbs for working with mental map data:
 
 -   `qm_define()` - create a vector of feature id numbers that constitute a single "cluster"
 -   `qm_validate()` - check feature id numbers against a reference data set to ensure that the values are valid
