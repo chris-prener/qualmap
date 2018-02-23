@@ -27,6 +27,7 @@
 #' @export
 qm_summarize <- function(clusters, key, category, ref){
 
+  # define undefined global variables as NULL
   CAT = COUNT = NULL
 
   # save parameters to list
