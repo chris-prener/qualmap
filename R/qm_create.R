@@ -13,7 +13,7 @@
 #' @usage qm_create(ref, key, value, rid, cid, category, ...)
 #'
 #' @param ref An sf object that serves as a master list of features
-#' @param key Quoted name of id variable in the \code{ref} object to match input values to
+#' @param key Name of geographic id variable in the \code{ref} object to match input values to
 #' @param value A vector of input values
 #' @param rid Respondent identification number; a user defined value that uniquely identifies respondents
 #' in the project
