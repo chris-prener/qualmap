@@ -43,13 +43,13 @@ We download the census tract data for St. Louis, which come in `sp` format, usin
 
 ### Data Entry
 
-Once we have a reference data set constructed, we can begin entering the tract numbers that constitute a single circle on the map or "cluster". We use the `c()` function from base `R` to input these id numbers into a vector:
+Once we have a reference data set constructed, we can begin entering the tract numbers that constitute a single circle on the map or "cluster". We use the `qm_define()` function to input these id numbers into a vector:
 
 ``` r
-cluster1 <- c(118600, 119101, 119300)
+cluster1 <- qm_define(118600, 119101, 119300)
 ```
 
-We can use the `qm_validate()` function to check each value in the vector and ensure that these values all match the `key` variable in the reference data:
+We can then use the `qm_validate()` function to check each value in the vector and ensure that these values all match the `key` variable in the reference data:
 
 ``` r
 > qm_validate(stLouis, "TRACTCE", cluster1)
