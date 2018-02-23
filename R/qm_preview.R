@@ -2,8 +2,8 @@
 #'
 #' @description This function renders the input vector as a polygon shapefile using the leaflet package.
 #'
-#' @param .data An sf object
-#' @param key Quoted name of id variable to match input values to
+#' @param ref An sf object that serves as a master list of features
+#' @param key Quoted name of id variable in the \code{ref} object to match input values to
 #' @param value A vector of input values
 #'
 #' @return An interactive leaflet map with the values from the input vector highlighted in red.
@@ -21,7 +21,7 @@
 #' @importFrom sf st_transform
 #'
 #' @export
-qm_preview <- function(.data, key, value){
+qm_preview <- function(ref, key, value){
 
   COUNT = NULL
 
@@ -33,7 +33,7 @@ qm_preview <- function(.data, key, value){
     dplyr::rename(!!keyQ := value) %>%
     dplyr::mutate(COUNT = 1) -> value_df
 
-  result <- dplyr::left_join(.data, value_df, by = key)
+  result <- dplyr::left_join(ref, value_df, by = key)
 
   result <- dplyr::mutate(result, COUNT = ifelse(is.na(COUNT) == TRUE, 0, COUNT))
   result <- sf::st_transform(result, 4326)
