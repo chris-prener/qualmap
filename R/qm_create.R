@@ -34,29 +34,38 @@
 #' @export
 qm_create <- function(ref, key, value, rid, cid, category, ...) {
 
+  # define undefined global variables as NULL
   RID = CID = CAT = COUNT = NULL
 
-  keyQ <- rlang::quo_name(rlang::enquo(key))
+  # quote input variables - key
+  keyVarQ <- rlang::quo_name(rlang::enquo(key))
 
+  # convert vector to temporary data frame
   value_df <- as.data.frame(value)
 
+  # prepare temporary data frame for join
   value_df %>%
-    dplyr::rename(!!keyQ := value) %>%
+    dplyr::rename(!!keyVarQ := value) %>%
     dplyr::mutate(COUNT = 1) -> value_df
 
-  result <- dplyr::left_join(ref, value_df, by = key)
+  # join temp data frame to reference data
+  result <- dplyr::left_join(ref, value_df, by = keyVarQ)
 
+  # subset joined data down to only valid observations & requested variables, add metadata variables
   result %>%
     dplyr::filter(COUNT == 1) %>%
     dplyr::mutate(RID = rid) %>%
     dplyr::mutate(CID = cid) %>%
     dplyr::mutate(CAT = category) %>%
-    dplyr::select(RID, CID, CAT, !!keyQ, COUNT, ...) -> result
+    dplyr::select(RID, CID, CAT, !!keyVarQ, COUNT, ...) -> result
 
+  # remove geometry
   sf::st_geometry(result) <- NULL
 
+  # convert result to a tibble
   result <- as_tibble(result)
 
+  # return result
   return(result)
 
 }
