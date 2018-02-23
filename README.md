@@ -131,7 +131,13 @@ Since the same census tract appaers in multiple rows as part of different cluste
 If these data are to be mapped, the `qm_summarize()` function has an option `ref` argument that can be used to specify an `sf` object for the summarized data to be joined to:
 
 ``` r
-possf <- qm_summarize(clusters = clusters, key = TRACTCE, category = "positive", ref = stLouis)
+posSf <- qm_summarize(clusters = clusters, key = TRACTCE, category = "positive", ref = stLouis)
+```
+
+The same process can be used to add additional vectors to our `sf` object if we want to make multiple maps:
+
+``` r
+qualData <- qm_summarize(clusters = clusters, key = TRACTCE, category = "negative", ref = posSf)
 ```
 
 ### Mapping Summarized Data
@@ -142,9 +148,8 @@ Finally, we can use the `geom_sf()` geom from the [development version of `ggplo
 library(ggplot2)
 library(viridis)
 
-possf <- qm_summarize(clusters = clusters, key = TRACTCE, category = "positive", ref = stLouis)
 ggplot() + 
-  geom_sf(data = possf, mapping = aes(fill = positive)) + 
+  geom_sf(data = qualData, mapping = aes(fill = positive)) + 
   scale_fill_viridis()
 ```
 
