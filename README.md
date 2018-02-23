@@ -120,6 +120,14 @@ Since the same census tract appaers in multiple rows as part of different cluste
 If these data are to be mapped, the `qm_summarize()` function has an option `ref` argument that can be used to specify an `sf` object for the summarized data to be joined to:
 
 ``` r
+possf <- qm_summarize(clusters = clusters, key = TRACTCE, category = "positive", ref = stLouis)
+```
+
+### Mapping Summarized Data
+
+Finally, we can use the `geom_sf()` geom from the [development version of `ggplot2`](https://github.com/tidyverse/ggplot2) to map our summarized data, highlighting areas most discussed as being "positive" parts of St. Louis in our hypothetical study:
+
+``` r
 library(ggplot2)
 library(viridis)
 
