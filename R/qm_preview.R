@@ -8,6 +8,7 @@
 #'
 #' @return An interactive leaflet map with the values from the input vector highlighted in red.
 #'
+#' @import sf
 #' @importFrom dplyr %>%
 #' @importFrom dplyr left_join
 #' @importFrom dplyr mutate
