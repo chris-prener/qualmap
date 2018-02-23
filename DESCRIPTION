@@ -16,7 +16,7 @@ RoxygenNote: 6.0.1
 Imports: rlang,
     sf,
     leaflet,
-    dplyr,
-    assertthat
+    dplyr
 Suggests: tigris,
-    tidycensus
+    tidycensus,
+    ggplot2

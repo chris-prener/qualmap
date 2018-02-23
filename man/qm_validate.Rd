@@ -9,7 +9,7 @@ qm_validate(ref, key, value)
 \arguments{
 \item{ref}{An sf object that serves as a master list of features}
 
-\item{key}{Quoted name of id variable in the \code{ref} object to match input values to}
+\item{key}{Name of geographic id variable in the \code{ref} object to match input values to}
 
 \item{value}{A vector of input values}
 }
