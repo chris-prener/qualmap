@@ -4,12 +4,12 @@
 \alias{qm_preview}
 \title{Preview Input}
 \usage{
-qm_preview(.data, key, value)
+qm_preview(ref, key, value)
 }
 \arguments{
-\item{.data}{An sf object}
+\item{ref}{An sf object that serves as a master list of features}
 
-\item{key}{Quoted name of id variable to match input values to}
+\item{key}{Quoted name of id variable in the \code{ref} object to match input values to}
 
 \item{value}{A vector of input values}
 }
