@@ -70,7 +70,7 @@ qm_summarize <- function(clusters, key, category, ref){
   clusters %>%
     dplyr::filter(CAT == category) %>%
     dplyr::group_by(!!keyVar) %>%
-    dplyr::summarize(COUNT := dplyr::n()) -> result
+    dplyr::summarize(COUNT := n()) -> result
 
   result <- dplyr::rename(result, !!categoryVarQ := COUNT)
 
