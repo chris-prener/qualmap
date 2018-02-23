@@ -37,3 +37,8 @@ cluster3_obj <- qm_create(stLouis, "TRACTCE", cluster3, rid = 1, cid = 3, catego
 
 
 clusters <- qm_combine(cluster1_obj, cluster2_obj, cluster3_obj)
+
+
+ham <- qm_summarize(clusters, key = "TRACTCE", category = "ham")
+
+hamsf <- qm_summarize(clusters, key = "TRACTCE", category = "ham", ref = stLouis)
