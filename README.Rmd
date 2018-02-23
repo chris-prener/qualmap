@@ -23,7 +23,7 @@ The goal of qualmap is to make it easy to enter data from qualitative maps.
 
 ## Motivation and Approach
 
-Qualitative GIS outputs are notoriously difficult to work with because individuals' conceptions of space can vary greatly from each other and from the realities of physical geography themselves. This package implements a process for converting qualitative GIS data from an exercise where respondents are asked to identify salient locations on a map. The basemaps used in this approach have a series of polygons, such as neighborhood boundaries or census geography. A circle drawn on the map is compared during data entry to a key identifying each feature, and the feature ids are entered for each feature that the respondent's cricle touches.
+Qualitative GIS outputs are notoriously difficult to work with because individuals' conceptions of space can vary greatly from each other and from the realities of physical geography themselves. This package implements a process for converting qualitative GIS data from an exercise where respondents are asked to identify salient locations on a map. The basemaps used in this approach have a series of polygons, such as neighborhood boundaries or census geography. A circle drawn on the map is compared during data entry to a key identifying each feature, and the feature ids are entered for each feature that the respondent's cricle touches. These circles are referred to as "clusters".
 
 ## Installation
 
@@ -34,6 +34,16 @@ devtools::install_github("slu-openGIS/qualmap")
 ```
 
 ## Useage
+### Verbs
+`qualmap` implements a six verbs for working with mental map data:
+
+* `qm_define()` - create a vector of feature id numbers that constitute a single "cluster"
+* `qm_validate()` - check feature id numbers against a reference data set to ensure that the values are valid
+* `qm_preview()` - plot cluster on an interactive map to ensure the feature ids have been entered correctly (the preview should match the map used as a data collection instrument)
+* `qm_create()` - create a single cluster object once the data have been validated and visually inspected
+* `qm_combine()` - combine multiple cluster objects together into a single tibble data object
+* `qm_summarize()` - summarize the combined data object based on a single qualitative construct to prepare for mapping
+
 ### Data Preparation
 To begin, you will need a simple features object containing the polygons you will be matching respondents' data to. Census geography polygons can be downloaded via `tigris`, and other polygon shapefiles can be read into `R` using the `sf` package. 
 
