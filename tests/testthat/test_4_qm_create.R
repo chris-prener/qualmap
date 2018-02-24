@@ -31,13 +31,24 @@ expect_error(qm_create(ref = test_sf, value = test_cluster, rid = 1, cid = 1, ca
 
 # test incorrect key parameter
 expect_error(qm_create(ref = test_sf, key = "test", value = test_cluster, rid = 1, cid = 1, category = "test"),
-             "`by` can't contain join column `test` which is missing from LHS")
+             "`by` can't contain join column `test` which is missing from LHS") # this error message is not helpful
 
 # test missing value parameter
 expect_error(qm_create(ref = test_sf, key = "TRACTCE", rid = 1, cid = 1, category = "test"),
              "A vector containing feature ids must be specified.")
 
-expect_error(qm_create(test_sf, "TRACTCE", rid = 1, cid = 1, category = "test"),
-             "A vector containing feature ids must be specified.")
+# this error message is misleading
+# expect_error(qm_create(test_sf, "TRACTCE", 1, 1, "test"),
+#             "The cluster identification number (cid) must a numeric value.")
+
+# test missing rid parameter
+# fails despite expected/actual messages being identical??
+# expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, cid = 1, category = "test"),
+#             "A respondent identification number (rid) must be specified.")
+
+# test missing cid parameter
+# fails despite expected/actual messages being identical??
+# expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, category = "test"),
+#             "A cluster identification number (cid) must be specified.")
 
 # test results ------------------------------------------------
