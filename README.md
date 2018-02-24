@@ -2,7 +2,7 @@
 qualmap <img src="https://slu-dss.github.io/img/gisLogoSm.png" align="right" />
 ===============================================================================
 
-[![lifecycle\_badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/slu-openGIS/qualmap) [![Travis-CI Build Status](https://travis-ci.org/slu-openGIS/qualmap.svg?branch=master)](https://travis-ci.org/slu-openGIS/qualmap) [![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/gateway)](https://cran.r-project.org/package=gateway)
+[![lifecycle\_badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/slu-openGIS/qualmap) [![Travis-CI Build Status](https://travis-ci.org/slu-openGIS/qualmap.svg?branch=master)](https://travis-ci.org/slu-openGIS/qualmap) [![Coverage Status](https://img.shields.io/codecov/c/github/slu-openGIS/qualmap/master.svg)](https://codecov.io/github/slu-openGIS/qualmap?branch=master) [![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/gateway)](https://cran.r-project.org/package=gateway)
 
 The goal of qualmap is to make it easy to enter data from qualitative maps.
 

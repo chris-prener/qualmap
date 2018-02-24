@@ -20,4 +20,5 @@ Imports: rlang,
 Suggests: tigris,
     tidycensus,
     ggplot2,
-    testthat
+    testthat,
+    covr
