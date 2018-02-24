@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 # qualmap <img src="https://slu-dss.github.io/img/gisLogoSm.png" align="right" />
 
 [![lifecycle_badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/slu-openGIS/qualmap)
+[![Travis-CI Build Status](https://travis-ci.org/slu-openGIS/qualmap.svg?branch=master)](https://travis-ci.org/slu-openGIS/qualmap)
 [![CRAN_status_badge](http://www.r-pkg.org/badges/version/gateway)](https://cran.r-project.org/package=gateway)
 
 The goal of qualmap is to make it easy to enter data from qualitative maps.
