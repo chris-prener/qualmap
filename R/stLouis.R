@@ -1,11 +1,11 @@
-#' Census Tracts, 2016
+#' St. Louis Census Tracts, 2016
 #'
 #' A simple features data set containing the geometry and associated attributes for the 2016 City of St. Louis
 #' census tracts.
 #'
 #' @docType data
 #'
-#' @usage data(stl_sf_tracts)
+#' @usage data(stLouis)
 #'
 #' @format A data frame with 106 rows and 7 variables:
 #' \describe{
