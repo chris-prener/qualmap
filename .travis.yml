@@ -29,6 +29,7 @@ matrix:
       os: linux
 
 before_install:
+    - chmod +x ./.travis/install.sh
     - ./.travis/install.sh
 
 after_success:
