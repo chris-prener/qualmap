@@ -28,5 +28,8 @@ matrix:
     - r: devel
       os: linux
 
+before_install:
+    - ./.travis/install.sh
+
 after_success:
   - Rscript -e 'covr::codecov()'
