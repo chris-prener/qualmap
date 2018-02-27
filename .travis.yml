@@ -28,6 +28,9 @@ matrix:
     - r: devel
       os: linux
 
+addons:
+  postgresql: "9.6"
+
 before_install:
     - chmod +x ./.travis/install.sh
     - ./.travis/install.sh
