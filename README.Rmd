@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# qualmap <img src="man/figures/qualmaplogo.png" align="right" />
+# qualmap <img src="man/figures/qualmapLogo.png" align="right" />
 
 [![lifecycle_badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/slu-openGIS/qualmap)
 [![Travis-CI Build Status](https://travis-ci.org/slu-openGIS/qualmap.svg?branch=master)](https://travis-ci.org/slu-openGIS/qualmap)
