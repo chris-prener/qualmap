@@ -4,7 +4,7 @@ qualmap <img src="man/figures/qualmapLogo.png" align="right" />
 
 [![lifecycle\_badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/slu-openGIS/qualmap) [![Travis-CI Build Status](https://travis-ci.org/slu-openGIS/qualmap.svg?branch=master)](https://travis-ci.org/slu-openGIS/qualmap) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/qualmap?branch=master&svg=true)](https://ci.appveyor.com/project/slu-openGIS/qualmap) [![Coverage Status](https://img.shields.io/codecov/c/github/slu-openGIS/qualmap/master.svg)](https://codecov.io/github/slu-openGIS/qualmap?branch=master) [![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/gateway)](https://cran.r-project.org/package=gateway)
 
-The goal of qualmap is to make it easy to enter data from qualitative maps.
+The goal of `qualmap` is to make it easy to enter data from qualitative maps.
 
 Motivation and Approach
 -----------------------
@@ -13,6 +13,12 @@ Qualitative GIS outputs are notoriously difficult to work with because individua
 
 Installation
 ------------
+
+### Installing Dependencies
+
+You should check the [`sf` repository on GitHub](https://github.com/r-spatial/sf) for the latest details on installing dependenices for that packge. Instructions vary significantly by operating system.
+
+### Installing `qualmap`
 
 You can install `qualmap` from GitHub with:
 
@@ -33,6 +39,17 @@ Useage
 -   `qm_create()` - create a single cluster object once the data have been validated and visually inspected
 -   `qm_combine()` - combine multiple cluster objects together into a single tibble data object
 -   `qm_summarize()` - summarize the combined data object based on a single qualitative construct to prepare for mapping
+
+### Main Arguments
+
+All of the main functions except `qm_define()` and `qm_combine()` rely on two key arguments:
+
+-   `ref` - a reference object. This should be an `sf` object that contains a master list of features that appear in your study. This could a `sf` object representing all census tracts in a city or county, for example, or a tesselated grid covering the extent of a city.
+-   `key` - the name of geographic id variable in the `ref` object to match input values to. This could be a FIPS code, the `GEOID` variable in most census data, or the `OBJECTID` of a tesselated grid. Values entered into `qm_define()` should `key` values.
+
+Additionally, a number of the initial functions have a third essential argument:
+
+-   `value` - the name of the cluster created using `qm_define()`
 
 ### Data Preparation
 

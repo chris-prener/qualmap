@@ -22,13 +22,18 @@ knitr::opts_chunk$set(
 [![Coverage Status](https://img.shields.io/codecov/c/github/slu-openGIS/qualmap/master.svg)](https://codecov.io/github/slu-openGIS/qualmap?branch=master)
 [![CRAN_status_badge](http://www.r-pkg.org/badges/version/gateway)](https://cran.r-project.org/package=gateway)
 
-The goal of qualmap is to make it easy to enter data from qualitative maps.
+The goal of `qualmap` is to make it easy to enter data from qualitative maps.
 
 ## Motivation and Approach
 
 Qualitative GIS outputs are notoriously difficult to work with because individuals' conceptions of space can vary greatly from each other and from the realities of physical geography themselves. This package implements a process for converting qualitative GIS data from an exercise where respondents are asked to identify salient locations on a map. The basemaps used in this approach have a series of polygons, such as neighborhood boundaries or census geography. A circle drawn on the map is compared during data entry to a key identifying each feature, and the feature ids are entered for each feature that the respondent's cricle touches. These circles are referred to as "clusters".
 
 ## Installation
+### Installing Dependencies
+
+You should check the [`sf` repository on GitHub](https://github.com/r-spatial/sf) for the latest details on installing dependenices for that packge. Instructions vary significantly by operating system.
+
+### Installing `qualmap` 
 
 You can install `qualmap` from GitHub with:
 
@@ -46,6 +51,16 @@ devtools::install_github("slu-openGIS/qualmap")
 * `qm_create()` - create a single cluster object once the data have been validated and visually inspected
 * `qm_combine()` - combine multiple cluster objects together into a single tibble data object
 * `qm_summarize()` - summarize the combined data object based on a single qualitative construct to prepare for mapping
+
+### Main Arguments
+All of the main functions except `qm_define()` and `qm_combine()` rely on two key arguments:
+
+* `ref` - a reference object. This should be an `sf` object that contains a master list of features that appear in your study. This could a `sf` object representing all census tracts in a city or county, for example, or a tesselated grid covering the extent of a city.
+* `key` - the name of geographic id variable in the `ref` object to match input values to. This could be a FIPS code, the `GEOID` variable in most census data, or the `OBJECTID` of a tesselated grid. Values entered into `qm_define()` should `key` values.
+
+Additionally, a number of the initial functions have a third essential argument:
+
+* `value` - the name of the cluster created using `qm_define()`
 
 ### Data Preparation
 To begin, you will need a simple features object containing the polygons you will be matching respondents' data to. Census geography polygons can be downloaded via `tigris`, and other polygon shapefiles can be read into `R` using the `sf` package. 
