@@ -37,18 +37,28 @@ expect_error(qm_create(ref = test_sf, key = "test", value = test_cluster, rid = 
 expect_error(qm_create(ref = test_sf, key = "TRACTCE", rid = 1, cid = 1, category = "test"),
              "A vector containing feature ids must be specified.")
 
-# this error message is misleading
-# expect_error(qm_create(test_sf, "TRACTCE", 1, 1, "test"),
-#             "The cluster identification number (cid) must a numeric value.")
-
 # test missing rid parameter
-# fails despite expected/actual messages being identical??
-# expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, cid = 1, category = "test"),
-#             "A respondent identification number (rid) must be specified.")
+expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, cid = 1, category = "test"),
+             "A respondent identification number (rid) must be specified.", fixed = TRUE)
+
+# test misspecified rid parameter
+expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = "ham", cid = 1, category = "test"),
+             "The respondent identification number (rid) must a numeric value.", fixed = TRUE)
+expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = TRUE, cid = 1, category = "test"),
+             "The respondent identification number (rid) must a numeric value.", fixed = TRUE)
 
 # test missing cid parameter
-# fails despite expected/actual messages being identical??
-# expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, category = "test"),
-#             "A cluster identification number (cid) must be specified.")
+expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, category = "test"),
+             "A cluster identification number (cid) must be specified.", fixed = TRUE)
+
+# test misspecified cid parameter
+expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, cid = "ham", category = "test"),
+             "The cluster identification number (cid) must a numeric value.", fixed = TRUE)
+expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, cid = TRUE, category = "test"),
+             "The cluster identification number (cid) must a numeric value.", fixed = TRUE)
+
+# test missing category parameter
+expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, cid = 1),
+             "A category for this cluster must be specified.")
 
 # test results ------------------------------------------------

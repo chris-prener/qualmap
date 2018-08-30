@@ -67,7 +67,7 @@ qm_create <- function(ref, key, value, rid, cid, category, ...) {
 
   # check input type - rid
   if (is.numeric(rid) != TRUE) {
-    stop('The respondent identification number (rid) must a numeric value')
+    stop('The respondent identification number (rid) must a numeric value.')
   }
 
   # check for missing parameters - cid
