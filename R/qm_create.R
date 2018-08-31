@@ -37,6 +37,9 @@ qm_create <- function(ref, key, value, rid, cid, category, ...) {
   # define undefined global variables as NULL
   RID = CID = CAT = COUNT = NULL
 
+  # save parameters to list
+  paramList <- as.list(match.call())
+
   # check for missing parameters - ref
   if (missing(ref)) {
     stop('A reference, consisting of a simple features object, must be specified.')
@@ -91,20 +94,30 @@ qm_create <- function(ref, key, value, rid, cid, category, ...) {
   }
 
   # quote input variables - key
+  if (!is.character(paramList$key)) {
+    keyVar <- rlang::enquo(key)
+  } else if (is.character(paramList$key)) {
+    keyVar <- rlang::quo(!! rlang::sym(key))
+  }
+
   keyVarQ <- rlang::quo_name(rlang::enquo(key))
 
-  # validate data
-  tryCatch(
-    {
-      qm_validate(ref = x, key = TRACTCE, value = cluster1)
-    },
-    error=function(cond){
-      stop("Error in qm_validate(): Use that function on its own to diagnose the problem.")
-    }
-  )
+  # quote input variables - category
+  if (!is.character(paramList$value)) {
+    valueVar <- rlang::enquo(value)
+  } else if (is.character(paramList$value)) {
+    valueVar <- rlang::quo(!! rlang::sym(value))
+  }
 
-  if(qm_validate(ref = x, key = TRACTCE, value = cluster1) == FALSE){
-    stop("Error in qm_validate(): Use that function on its own to diagnose the Problem.")
+  valueVarQ <- rlang::quo_name(rlang::enquo(category))
+
+  # validate data
+  valid <- tryCatch(qm_validate(ref = ref, key = (!!keyVar), value = value), error = function(e) e, warning = function(w) w)
+
+  if(is(valid, "error") == TRUE) {
+    stop("Error in data validation: Use qualmap::qm_validate() to diagnose the problem.")
+  } else if (valid == FALSE) {
+    stop("Error in data validation: Use qualmap::qm_validate() to diagnose the problem.")
   }
 
   # convert vector to temporary data frame
