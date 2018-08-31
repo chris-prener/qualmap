@@ -6,8 +6,9 @@ test_clusterE <- qm_define(118600, 119101, 800000)
 test_clusterV <- qm_define(118600, 119101, 119300)
 
 test_sf <- stLouis
+test_sf <- dplyr::mutate(test_sf, TRACTCE = as.numeric(TRACTCE))
 
-test_tbl <- as_tibble(data.frame(
+test_tbl <- dplyr::as_tibble(data.frame(
   x = c(1,2,3),
   y = c("a", "b", "a")
 ))
@@ -31,11 +32,10 @@ expect_error(qm_validate(ref = test_sf, value = test_clusterV),
              "A key identification variable must be specified.")
 
 # test incorrect key parameter
-resultE1 <- qm_validate(ref = test_sf, key = "test", value = test_clusterV)
-
-test_that("returns FALSE - value not in key", {
-  expect_equal(resultE1, FALSE)
-})
+expect_error(qm_validate(ref = test_sf, key = "test", value = test_clusterV),
+             "The specified key cannot be found in the reference data.")
+expect_error(qm_validate(ref = test_sf, key = test, value = test_clusterV),
+             "The specified key cannot be found in the reference data.")
 
 # test missing value parameter
 expect_error(qm_validate(ref = test_sf, key = "TRACTCE"),

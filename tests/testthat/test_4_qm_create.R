@@ -34,7 +34,7 @@ expect_error(qm_create(ref = test_sf, value = test_cluster, rid = 1, cid = 1, ca
 
 # test incorrect key parameter
 expect_error(qm_create(ref = test_sf, key = "test", value = test_cluster, rid = 1, cid = 1, category = "test"),
-             "`by` can't contain join column `test` which is missing from LHS") # this error message is not helpful
+             "Error in data validation: Use qualmap::qm_validate() to diagnose the problem.", fixed = TRUE)
 
 # test missing value parameter
 expect_error(qm_create(ref = test_sf, key = "TRACTCE", rid = 1, cid = 1, category = "test"),

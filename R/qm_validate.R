@@ -8,8 +8,13 @@
 #'
 #' @return A logical scalar that is \code{TRUE} is all input values match values in the key variable.
 #'
+#' @importFrom glue glue
+#'
 #' @export
 qm_validate <- function(ref, key, value){
+
+  # save parameters to list
+  paramList <- as.list(match.call())
 
   # check for missing parameters - ref
   if (missing(ref)) {
@@ -34,14 +39,23 @@ qm_validate <- function(ref, key, value){
     stop('A vector containing feature ids must be specified.')
   }
 
-  # save parameters to list
-  paramList <- as.list(match.call())
-
-  # quote input variables - value
-  valueQ <- rlang::quo_name(rlang::enquo(value))
-
   # quote input variables - key
+  if (!is.character(paramList$key)) {
+    keyVar <- rlang::enquo(key)
+  } else if (is.character(paramList$key)) {
+    keyVar <- rlang::quo(!! rlang::sym(key))
+  }
+
   keyVarQ <- rlang::quo_name(rlang::enquo(key))
+
+  # check to see if key exists in ref data
+  refCols <- colnames(ref)
+
+  keyVarQ %in% refCols -> keyExists
+
+  if (keyExists == FALSE){
+    stop('The specified key cannot be found in the reference data.')
+  }
 
   # check class of key value and compare to class of values vector
   keyRefList <- class(ref[[keyVarQ]])

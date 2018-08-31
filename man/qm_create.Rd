@@ -36,4 +36,6 @@ used for summarization later in the data analysis process. Finally, three pieces
 as arguments to provide data for subsetting later: a respondent identification number (\code{rid}), a
 cluster identification number (\code{cid}), and a category for the cluster type (\code{category}). These
 arguments are converted into values for the output variables \code{RID}, \code{CID}, and \code{CAT} respectively.
+Input data for \code{qm_create()} are validated using \code{qm_validate()} as part of the cluster object
+creation process.
 }
