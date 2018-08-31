@@ -3,6 +3,7 @@ context("test cluster validate")
 # test data ------------------------------------------------
 
 test_clusterE <- qm_define(118600, 119101, 800000)
+test_clusterE2 <- qm_define("118600", "119101", "800000")
 test_clusterV <- qm_define(118600, 119101, 119300)
 
 test_sf <- stLouis
@@ -43,6 +44,10 @@ expect_error(qm_validate(ref = test_sf, key = "TRACTCE"),
 
 expect_error(qm_validate(test_sf, "TRACTCE"),
              "A vector containing feature ids must be specified.")
+
+# test mismatch between key and value
+expect_error(qm_validate(ref = test_sf, key = "TRACTCE", value = test_clusterE2),
+             "Mismatch in class between TRACTCE (numeric) and test_clusterE2 (character). These must be the same class to create cluster object.", fixed = TRUE)
 
 # test results ------------------------------------------------
 

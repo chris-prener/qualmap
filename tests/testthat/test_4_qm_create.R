@@ -3,16 +3,43 @@ context("test cluster create")
 # test data ------------------------------------------------
 
 test_cluster <- qm_define(118600, 119101, 119300)
+test_clusterE <- qm_define(222222, 119101, 119300)
+test_clusterE2 <- qm_define("118600", "119101", "119300")
 
 test_sf <- stLouis
+test_sf <- dplyr::mutate(test_sf, TRACTCE = as.numeric(TRACTCE))
 
 test_tbl <- as_tibble(data.frame(
   x = c(1,2,3),
   y = c("a", "b", "a")
 ))
 
-#created_cluster <- qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster,
-#                             rid = 1, cid = 1, category = "test")
+test_tbl2 <- as_tibble(data.frame(
+  RID = c(1,1,1),
+  CID = c(1,1,1),
+  CAT = c("positive", "positive", "positive"),
+  TRACTCE = c(119300, 118600, 119101),
+  COUNT = c(1,1,1),
+  stringsAsFactors = FALSE
+))
+
+test_tbl2 %>%
+  dplyr::mutate(RID = as.integer(RID)) %>%
+  dplyr::mutate(CID = as.integer(CID)) -> test_tbl2
+
+test_tbl3 <- as_tibble(data.frame(
+  RID = c(1,1,1),
+  CID = c(1,1,1),
+  CAT = c("positive", "positive", "positive"),
+  TRACTCE = c(119300, 118600, 119101),
+  COUNT = c(1,1,1),
+  NAME = c("1193", "1186", "1191.01"),
+  stringsAsFactors = FALSE
+))
+
+test_tbl3 %>%
+  dplyr::mutate(RID = as.integer(RID)) %>%
+  dplyr::mutate(CID = as.integer(CID)) -> test_tbl3
 
 # test inputs ------------------------------------------------
 
@@ -35,10 +62,18 @@ expect_error(qm_create(ref = test_sf, value = test_cluster, rid = 1, cid = 1, ca
 # test incorrect key parameter
 expect_error(qm_create(ref = test_sf, key = "test", value = test_cluster, rid = 1, cid = 1, category = "test"),
              "Error in data validation: Use qualmap::qm_validate() to diagnose the problem.", fixed = TRUE)
+expect_error(qm_create(ref = test_sf, key = test, value = test_cluster, rid = 1, cid = 1, category = "test"),
+             "Error in data validation: Use qualmap::qm_validate() to diagnose the problem.", fixed = TRUE)
 
 # test missing value parameter
 expect_error(qm_create(ref = test_sf, key = "TRACTCE", rid = 1, cid = 1, category = "test"),
              "A vector containing feature ids must be specified.")
+
+# test incorrect value parameter
+expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_clusterE, rid = 1, cid = 1, category = "test"),
+             "Error in data validation: Use qualmap::qm_validate() to diagnose the problem.", fixed = TRUE)
+expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_clusterE2, rid = 1, cid = 1, category = "test"),
+             "Error in data validation: Use qualmap::qm_validate() to diagnose the problem.", fixed = TRUE)
 
 # test missing rid parameter
 expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, cid = 1, category = "test"),
@@ -72,3 +107,19 @@ expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid
 
 # test results ------------------------------------------------
 
+resultV1 <- qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, cid = 1, category = "positive")
+resultV2 <- qm_create(ref = test_sf, key = TRACTCE, value = test_cluster, rid = 1, cid = 1, category = "positive")
+
+test_that("returns TRUE - test result 1 matches test_tbl2", {
+  expect_equal(resultV1, test_tbl2)
+})
+
+test_that("returns TRUE - test result 2 matches test_tbl2", {
+  expect_equal(resultV2, test_tbl2)
+})
+
+resultV3 <- qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, cid = 1, category = "positive", NAME)
+
+test_that("returns TRUE - test result 3 matches test_tbl3", {
+  expect_equal(resultV3, test_tbl3)
+})

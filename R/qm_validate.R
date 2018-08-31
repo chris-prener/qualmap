@@ -39,6 +39,9 @@ qm_validate <- function(ref, key, value){
     stop('A vector containing feature ids must be specified.')
   }
 
+  # quote input variables - value
+  valueVarQ <- rlang::quo_name(rlang::enquo(value))
+
   # quote input variables - key
   if (!is.character(paramList$key)) {
     keyVar <- rlang::enquo(key)
@@ -65,7 +68,7 @@ qm_validate <- function(ref, key, value){
   valueListElement1 <- valueList[1]
 
   if (keyRefListElement1 != valueListElement1){
-    stop(glue('Mismatch in class between {keyVarQ} ({keyRefListElement1}) and {valueQ} ({valueListElement1}). These must be the same class to create cluster object.'))
+    stop(glue('Mismatch in class between {keyVarQ} ({keyRefListElement1}) and {valueVarQ} ({valueListElement1}). These must be the same class to create cluster object.'))
   }
 
   # compare values from value variable with values in key variable
