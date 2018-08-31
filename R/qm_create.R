@@ -106,15 +106,6 @@ qm_create <- function(ref, key, value, rid, cid, category, ...) {
 
   keyVarQ <- rlang::quo_name(rlang::enquo(key))
 
-  # quote input variables - category
-  if (!is.character(paramList$value)) {
-    valueVar <- rlang::enquo(value)
-  } else if (is.character(paramList$value)) {
-    valueVar <- rlang::quo(!! rlang::sym(value))
-  }
-
-  valueVarQ <- rlang::quo_name(rlang::enquo(category))
-
   # validate data
   valid <- tryCatch(qm_validate(ref = ref, key = (!!keyVar), value = value), error = function(e) e, warning = function(w) w)
 
