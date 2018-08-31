@@ -17,6 +17,7 @@ Imports:
     dplyr,
     glue,
     leaflet,
+    purrr,
     rlang,
     sf
 Suggests: tigris,
