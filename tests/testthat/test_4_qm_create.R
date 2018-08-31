@@ -11,6 +11,9 @@ test_tbl <- as_tibble(data.frame(
   y = c("a", "b", "a")
 ))
 
+#created_cluster <- qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster,
+#                             rid = 1, cid = 1, category = "test")
+
 # test inputs ------------------------------------------------
 
 # test missing ref parameter
@@ -61,4 +64,11 @@ expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid
 expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, cid = 1),
              "A category for this cluster must be specified.")
 
+# test misspecified cid parameter
+expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, cid = 1, category = 1),
+             "The category must a string.")
+expect_error(qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, cid = 1, category = TRUE),
+             "The category must a string.")
+
 # test results ------------------------------------------------
+

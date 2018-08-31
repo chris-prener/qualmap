@@ -20,7 +20,7 @@ in the project}
 
 \item{category}{Category type; a user defined value that describes what the cluster represents}
 
-\item{...}{An unquoted list of variables from the sf object to include in the out}
+\item{...}{An unquoted list of variables from the sf object to include in the output}
 }
 \value{
 A tibble with the cluster values merged with elements of the reference data.

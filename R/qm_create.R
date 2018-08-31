@@ -19,7 +19,7 @@
 #' in the project
 #' @param cid Cluster identification number; a user defined interger value that unqiuely identifies clusters
 #' @param category Category type; a user defined value that describes what the cluster represents
-#' @param ... An unquoted list of variables from the sf object to include in the out
+#' @param ... An unquoted list of variables from the sf object to include in the output
 #'
 #' @return A tibble with the cluster values merged with elements of the reference data.
 #'
@@ -92,6 +92,20 @@ qm_create <- function(ref, key, value, rid, cid, category, ...) {
 
   # quote input variables - key
   keyVarQ <- rlang::quo_name(rlang::enquo(key))
+
+  # validate data
+  tryCatch(
+    {
+      qm_validate(ref = x, key = TRACTCE, value = cluster1)
+    },
+    error=function(cond){
+      stop("Error in qm_validate(): Use that function on its own to diagnose the problem.")
+    }
+  )
+
+  if(qm_validate(ref = x, key = TRACTCE, value = cluster1) == FALSE){
+    stop("Error in qm_validate(): Use that function on its own to diagnose the Problem.")
+  }
 
   # convert vector to temporary data frame
   value_df <- as.data.frame(value)

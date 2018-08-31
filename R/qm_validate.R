@@ -37,8 +37,22 @@ qm_validate <- function(ref, key, value){
   # save parameters to list
   paramList <- as.list(match.call())
 
+  # quote input variables - value
+  valueQ <- rlang::quo_name(rlang::enquo(value))
+
   # quote input variables - key
   keyVarQ <- rlang::quo_name(rlang::enquo(key))
+
+  # check class of key value and compare to class of values vector
+  keyRefList <- class(ref[[keyVarQ]])
+  keyRefListElement1 <- keyRefList[1]
+
+  valueList <- class(value)
+  valueListElement1 <- valueList[1]
+
+  if (keyRefListElement1 != valueListElement1){
+    stop(glue('Mismatch in class between {keyVarQ} ({keyRefListElement1}) and {valueQ} ({valueListElement1}). These must be the same class to create cluster object.'))
+  }
 
   # compare values from value variable with values in key variable
   value %in% ref[[noquote(keyVarQ)]] -> result
