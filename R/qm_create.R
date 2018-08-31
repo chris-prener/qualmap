@@ -23,7 +23,8 @@
 #' @param category Category type; a user defined value that describes what the cluster represents
 #' @param ... An unquoted list of variables from the sf object to include in the output
 #'
-#' @return A tibble with the cluster values merged with elements of the reference data.
+#' @return A tibble with the cluster values merged with elements of the reference data. This tibble is stored with
+#' a custom class of \code{qm_cluster}.
 #'
 #' @importFrom dplyr %>%
 #' @importFrom dplyr as_tibble
@@ -147,6 +148,9 @@ qm_create <- function(ref, key, value, rid, cid, category, ...) {
 
   # convert result to a tibble
   result <- as_tibble(result)
+
+  # add new class
+  class(result) <- append(class(result), "qm_cluster")
 
   # return result
   return(result)

@@ -23,7 +23,8 @@ in the project}
 \item{...}{An unquoted list of variables from the sf object to include in the output}
 }
 \value{
-A tibble with the cluster values merged with elements of the reference data.
+A tibble with the cluster values merged with elements of the reference data. This tibble is stored with
+a custom class of \code{qm_cluster}.
 }
 \description{
 Each vector of input values is converted to a tibble organized in a "tidy" fashion.
