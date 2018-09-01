@@ -123,3 +123,13 @@ resultV3 <- qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid 
 test_that("returns TRUE - test result 3 matches test_tbl3", {
   expect_equal(resultV3, test_tbl3)
 })
+
+objV1 <- qm_validate_obj(resultV1)
+objV2 <- qm_validate_obj(resultV2)
+objV3 <- qm_validate_obj(resultV3)
+
+test_that("result objects have class qm_culster", {
+  expect_equal(objV1, TRUE)
+  expect_equal(objV2, TRUE)
+  expect_equal(objV3, TRUE)
+})

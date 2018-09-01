@@ -1,3 +1,5 @@
+library(devtools)
+library(dplyr)
 load_all()
 x <- mutate(stLouis, TRACTCE = as.numeric(TRACTCE))
 
