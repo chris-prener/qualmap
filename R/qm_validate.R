@@ -57,7 +57,7 @@ qm_validate <- function(ref, key, value){
   keyVarQ %in% refCols -> keyExists
 
   if (keyExists == FALSE){
-    stop('The specified key cannot be found in the reference data.')
+    stop(glue('The specified key {keyVarQ} cannot be found in the reference data.'))
   }
 
   # check class of key value and compare to class of values vector

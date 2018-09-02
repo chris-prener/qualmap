@@ -19,7 +19,7 @@ qm_combine <- function(...){
   classList <- purrr::map(dots, qm_is_cluster)
   classList <- unlist(classList, use.names = FALSE)
 
-  # test class values to ensure that
+  # test class values to ensure that they are class qm_cluster
   if (all(classList) == FALSE){
     stop('One or more of the given objects is not of class qm_cluster. Use qm_is_cluster() to evaluate each object.')
   }

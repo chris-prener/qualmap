@@ -25,7 +25,7 @@
 #' @importFrom rlang :=
 #'
 #' @export
-qm_summarize <- function(clusters, key, category, ref){
+qm_summarize <- function(ref, key, clusters, category){
 
   # define undefined global variables as NULL
   CAT = COUNT = NULL
@@ -33,9 +33,17 @@ qm_summarize <- function(clusters, key, category, ref){
   # save parameters to list
   paramList <- as.list(match.call())
 
-  # check for missing parameters - clusters
-  if (missing(clusters)) {
-    stop('A data set containing map clusters must be specified.')
+  # check for missing parameters - ref
+  if (missing(ref)) {
+    stop('A reference, consisting of a simple features object, must be specified.')
+  }
+
+  # check class of reference object
+  classList <- class(ref)
+  classListElement1 <- classList[1]
+
+  if (classListElement1 != "sf"){
+    stop("The reference object must be a simple features object.")
   }
 
   # check for missing parameters - key
@@ -43,20 +51,21 @@ qm_summarize <- function(clusters, key, category, ref){
     stop('A key identification variable must be specified.')
   }
 
-  # check for missing parameters - key
-  if (missing(category)) {
-    stop('A single category value must be specified.')
+  # check for missing parameters - clusters
+  if (missing(clusters)) {
+    stop('A data set containing map clusters must be specified.')
   }
 
-  # check for missing parameters - ref
-  if (!missing(ref)) {
-    # check class of reference object
-    classList <- class(ref)
-    classListElement1 <- classList[1]
+  clustersQ <- rlang::quo_name(rlang::enquo(clusters))
 
-    if (classListElement1 != "sf"){
-      stop("The reference object must be a simple features object.")
-    }
+  # test class value to ensure that they are class qm_cluster
+  if (qm_is_cluster(clusters) == FALSE) {
+    stop(glue('The object {clustersQ} is not class qm_cluster. The cluster object should be created with qm_combine().'))
+  }
+
+  # check for missing parameters - category
+  if (missing(category)) {
+    stop('A category from the cluster object must be specified.')
   }
 
   # quote input variables - key
@@ -68,6 +77,24 @@ qm_summarize <- function(clusters, key, category, ref){
 
   keyVarQ <- rlang::quo_name(rlang::enquo(key))
 
+  # check to see if key exists in ref data
+  refCols <- colnames(ref)
+
+  keyVarQ %in% refCols -> keyExists
+
+  if (keyExists == FALSE){
+    stop(glue('The specified key {keyVarQ} cannot be found in the reference data.'))
+  }
+
+  # check to see if key exists in clusters data
+  clusterCols <- colnames(clusters)
+
+  keyVarQ %in% clusterCols -> keyExistsC
+
+  if (keyExistsC == FALSE){
+    stop(glue('The specified key {keyVarQ} cannot be found in the clusters data.'))
+  }
+
   # quote input variables - category
   if (!is.character(paramList$category)) {
     categoryVar <- rlang::enquo(category)
@@ -76,6 +103,13 @@ qm_summarize <- function(clusters, key, category, ref){
   }
 
   categoryVarQ <- rlang::quo_name(rlang::enquo(category))
+
+  # check to see if category exists in clusters data
+  categoryVarQ %in% clusters$CAT -> catExists
+
+  if (catExists == FALSE){
+    stop(glue('The specified category {categoryVarQ} cannot be found in the clusters data.'))
+  }
 
   # filter, group, and summarize
   clusters %>%

@@ -34,9 +34,9 @@ expect_error(qm_validate(ref = test_sf, value = test_clusterV),
 
 # test incorrect key parameter
 expect_error(qm_validate(ref = test_sf, key = "test", value = test_clusterV),
-             "The specified key cannot be found in the reference data.")
+             "The specified key test cannot be found in the reference data.")
 expect_error(qm_validate(ref = test_sf, key = test, value = test_clusterV),
-             "The specified key cannot be found in the reference data.")
+             "The specified key test cannot be found in the reference data.")
 
 # test missing value parameter
 expect_error(qm_validate(ref = test_sf, key = "TRACTCE"),
