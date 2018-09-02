@@ -4,16 +4,16 @@
 \alias{qm_summarize}
 \title{Summarize Clusters}
 \usage{
-qm_summarize(clusters, key, category, ref)
+qm_summarize(ref, key, clusters, category)
 }
 \arguments{
-\item{clusters}{A tibble created by \code{qm_create} with two or more clusters worth of data}
+\item{ref}{Optional sf object; a join will be performed between the sf object and the summarized clusters}
 
 \item{key}{Name of geographic id variable in the tibble specified in \code{clusters}}
 
-\item{category}{Value of the \code{CAT} variable to be analyzed}
+\item{clusters}{A tibble created by \code{qm_create} with two or more clusters worth of data}
 
-\item{ref}{Optional sf object; a join will be performed between the sf object and the summarized clusters}
+\item{category}{Value of the \code{CAT} variable to be analyzed}
 }
 \value{
 A tibble or a sf object (if \code{ref} is specified) that contains a count of the number of clusters

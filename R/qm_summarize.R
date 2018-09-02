@@ -22,6 +22,7 @@
 #' @importFrom dplyr n
 #' @importFrom dplyr rename
 #' @importFrom dplyr summarize
+#' @importFrom glue glue
 #' @importFrom rlang :=
 #'
 #' @export
