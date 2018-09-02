@@ -16,12 +16,12 @@ qm_combine <- function(...){
   dots <- list(...)
 
   # pull class values for input objects and tests
-  classList <- purrr::map(dots, qm_validate_obj)
+  classList <- purrr::map(dots, qm_is_cluster)
   classList <- unlist(classList, use.names = FALSE)
 
   # test class values to ensure that
   if (all(classList) == FALSE){
-    stop('One or more of the given objects is not of class qm_cluster. Use qm_validate_obj() to evaluate each object.')
+    stop('One or more of the given objects is not of class qm_cluster. Use qm_is_cluster() to evaluate each object.')
   }
 
   # pull number of variables in each cluster
@@ -49,6 +49,7 @@ qm_combine <- function(...){
 
 }
 
+# returns count of number of columns in an object
 qm_validate_names <- function(obj){
 
   colCount <- length(colnames(obj))

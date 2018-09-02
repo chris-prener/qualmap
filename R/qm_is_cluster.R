@@ -8,7 +8,7 @@
 #' it will return \code{FALSE} otherwise.
 #'
 #' @export
-qm_validate_obj <- function(obj){
+qm_is_cluster <- function(obj){
 
   classList <- base::class(obj)
 

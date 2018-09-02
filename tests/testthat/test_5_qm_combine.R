@@ -63,7 +63,7 @@ test_obj3 %>%
 
 # test non qm_cluster object input
 expect_error(qm_combine(cluster1_obj, cluster2_obj, test_obj),
-             "One or more of the given objects is not of class qm_cluster. Use qm_validate_obj() to evaluate each object.", fixed = TRUE)
+             "One or more of the given objects is not of class qm_cluster. Use qm_is_cluster() to evaluate each object.", fixed = TRUE)
 
 # test column number equality
 expect_error(qm_combine(cluster1_obj, cluster2_obj, cluster6_obj),
@@ -87,8 +87,8 @@ test_that("returns TRUE - test result 2 matches test_tbl3", {
   expect_equal(clustersV2, test_obj3)
 })
 
-objV1 <- qm_validate_obj(clustersV1)
-objV2 <- qm_validate_obj(clustersV2)
+objV1 <- qm_is_cluster(clustersV1)
+objV2 <- qm_is_cluster(clustersV2)
 
 test_that("result objects have class qm_culster", {
   expect_equal(objV1, TRUE)

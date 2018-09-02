@@ -124,9 +124,9 @@ test_that("returns TRUE - test result 3 matches test_tbl3", {
   expect_equal(resultV3, test_tbl3)
 })
 
-objV1 <- qm_validate_obj(resultV1)
-objV2 <- qm_validate_obj(resultV2)
-objV3 <- qm_validate_obj(resultV3)
+objV1 <- qm_is_cluster(resultV1)
+objV2 <- qm_is_cluster(resultV2)
+objV3 <- qm_is_cluster(resultV3)
 
 test_that("result objects have class qm_culster", {
   expect_equal(objV1, TRUE)
