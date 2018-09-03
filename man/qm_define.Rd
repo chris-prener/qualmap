@@ -16,3 +16,7 @@ A vector list each feature.
 A wrapper around \code{c()} that is used for constructing vectors of individual feature values.
 Each output should correspond to a single cluster on the respondent's map.
 }
+\examples{
+cluster <- qm_define(118600, 119101, 119300)
+
+}
