@@ -2,11 +2,20 @@
 #'
 #' @description This function ensures that the input vector values match valid values in a source shapefile.
 #'
+#' @usage qm_validate(ref, key, value)
+#'
 #' @param ref An sf object that serves as a master list of features
 #' @param key Name of geographic id variable in the \code{ref} object to match input values to
 #' @param value A vector of input values
 #'
 #' @return A logical scalar that is \code{TRUE} is all input values match values in the key variable.
+#'
+#' @examples
+#' stl <- stLouis
+#' stl <- dplyr::mutate(stl, TRACTCE = as.numeric(TRACTCE))
+#'
+#' cluster <- qm_define(118600, 119101, 119300)
+#' qm_validate(ref = stl, key = TRACTCE, value = cluster)
 #'
 #' @importFrom glue glue
 #'

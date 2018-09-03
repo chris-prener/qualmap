@@ -19,3 +19,11 @@ A logical scalar that is \code{TRUE} is all input values match values in the key
 \description{
 This function ensures that the input vector values match valid values in a source shapefile.
 }
+\examples{
+stl <- stLouis
+stl <- dplyr::mutate(stl, TRACTCE = as.numeric(TRACTCE))
+
+cluster <- qm_define(118600, 119101, 119300)
+qm_validate(ref = stl, key = TRACTCE, value = cluster)
+
+}
