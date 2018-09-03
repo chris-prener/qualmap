@@ -2,11 +2,22 @@
 #'
 #' @description This function renders the input vector as a polygon shapefile using the leaflet package.
 #'
+#' @usage qm_preview(ref, key, value)
+#'
 #' @param ref An sf object that serves as a master list of features
 #' @param key Name of geographic id variable in the \code{ref} object to match input values to
 #' @param value A vector of input values
 #'
 #' @return An interactive leaflet map with the values from the input vector highlighted in red.
+#'
+#' @examples
+#' \dontrun{
+#' stl <- stLouis
+#' stl <- mutate(stl, TRACTCE = as.numeric(TRACTCE))
+#'
+#' cluster <- qm_define(118600, 119101, 119300)
+#' qm_preview(ref = stl, key = TRACTCE, value = cluster)
+#' }
 #'
 #' @import sf
 #' @importFrom dplyr %>%

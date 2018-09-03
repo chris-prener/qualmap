@@ -19,3 +19,13 @@ An interactive leaflet map with the values from the input vector highlighted in 
 \description{
 This function renders the input vector as a polygon shapefile using the leaflet package.
 }
+\examples{
+\dontrun{
+stl <- stLouis
+stl <- mutate(stl, TRACTCE = as.numeric(TRACTCE))
+
+cluster <- qm_define(118600, 119101, 119300)
+qm_preview(ref = stl, key = TRACTCE, value = cluster)
+}
+
+}
