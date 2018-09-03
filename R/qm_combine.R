@@ -2,9 +2,29 @@
 #'
 #' @description A wrapper around \code{dplyr::bind_rows} for combining cluster objects into a single tibble.
 #'
+#' @usage qm_combine(...)
+#'
 #' @param ... A list of cluster objects to be combined.
 #'
 #' @return A single tibble with all observations from the listed cluster objects.
+#'
+#' @examples
+#' # load and format reference data
+#' stl <- stLouis
+#' stl <- dplyr::mutate(stl, TRACTCE = as.numeric(TRACTCE))
+#'
+#' # create clusters
+#' cluster1 <- qm_define(118600, 119101, 119300)
+#' cluster2 <- qm_define(119300, 121200, 121100)
+#'
+#' # create cluster objects
+#' cluster_obj1 <- qm_create(ref = stl, key = TRACTCE, value = cluster1,
+#'     rid = 1, cid = 1, category = "positive")
+#' cluster_obj2 <- qm_create(ref = stl, key = TRACTCE, value = cluster2,
+#'     rid = 1, cid = 2, category = "positive")
+#'
+#' # combine cluster objects
+#' clusters <- qm_combine(cluster_obj1, cluster_obj2)
 #'
 #' @importFrom dplyr bind_rows
 #' @importFrom purrr map
