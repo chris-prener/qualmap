@@ -14,9 +14,9 @@
 #'
 #' @usage qm_create(ref, key, value, rid, cid, category, ...)
 #'
-#' @param ref An sf object that serves as a master list of features
+#' @param ref An \code{sf} object that serves as a master list of features
 #' @param key Name of geographic id variable in the \code{ref} object to match input values to
-#' @param value A vector of input values
+#' @param value A vector of input values created with \code{qm_define}
 #' @param rid Respondent identification number; a user defined integer value that uniquely identifies respondents
 #' in the project
 #' @param cid Cluster identification number; a user defined integer value that uniquely identifies clusters
@@ -24,7 +24,9 @@
 #' @param ... An unquoted list of variables from the sf object to include in the output
 #'
 #' @return A tibble with the cluster values merged with elements of the reference data. This tibble is stored with
-#' a custom class of \code{qm_cluster}.
+#' a custom class of \code{qm_cluster} to facilitate data validation.
+#'
+#' @seealso qm_define
 #'
 #' @examples
 #' # load and format reference data
@@ -39,7 +41,7 @@
 #'     rid = 1, cid = 1, category = "positive")
 #'
 #' # create cluster object with additional variables added from reference data
-#' cluster_obj1 <- qm_create(ref = stl, key = TRACTCE, value = cluster,
+#' cluster_obj2 <- qm_create(ref = stl, key = TRACTCE, value = cluster,
 #'     rid = 1, cid = 1, category = "positive", NAME, NAMELSAD)
 #'
 #' @importFrom dplyr %>%

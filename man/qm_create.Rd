@@ -7,11 +7,11 @@
 qm_create(ref, key, value, rid, cid, category, ...)
 }
 \arguments{
-\item{ref}{An sf object that serves as a master list of features}
+\item{ref}{An \code{sf} object that serves as a master list of features}
 
 \item{key}{Name of geographic id variable in the \code{ref} object to match input values to}
 
-\item{value}{A vector of input values}
+\item{value}{A vector of input values created with \code{qm_define}}
 
 \item{rid}{Respondent identification number; a user defined integer value that uniquely identifies respondents
 in the project}
@@ -24,7 +24,7 @@ in the project}
 }
 \value{
 A tibble with the cluster values merged with elements of the reference data. This tibble is stored with
-a custom class of \code{qm_cluster}.
+a custom class of \code{qm_cluster} to facilitate data validation.
 }
 \description{
 Each vector of input values is converted to a tibble organized in a "tidy" fashion.
@@ -53,7 +53,10 @@ cluster_obj1 <- qm_create(ref = stl, key = TRACTCE, value = cluster,
     rid = 1, cid = 1, category = "positive")
 
 # create cluster object with additional variables added from reference data
-cluster_obj1 <- qm_create(ref = stl, key = TRACTCE, value = cluster,
+cluster_obj2 <- qm_create(ref = stl, key = TRACTCE, value = cluster,
     rid = 1, cid = 1, category = "positive", NAME, NAMELSAD)
 
+}
+\seealso{
+qm_define
 }
