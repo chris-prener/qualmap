@@ -34,3 +34,6 @@ cluster_obj <- qm_create(ref = stl, key = TRACTCE, value = cluster,
 qm_is_cluster(cluster_obj)
 
 }
+\seealso{
+\code{qm_combine}, \code{qm_summarize}
+}

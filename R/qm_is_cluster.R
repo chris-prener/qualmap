@@ -11,6 +11,8 @@
 #' @return A logical scalar that is \code{TRUE} is the given object is of class \code{qm_cluster};
 #' it will return \code{FALSE} otherwise.
 #'
+#' @seealso \code{qm_combine}, \code{qm_summarize}
+#'
 #' @examples
 #' # load and format reference data
 #' stl <- stLouis
