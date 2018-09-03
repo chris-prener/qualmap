@@ -156,7 +156,7 @@ qm_create <- function(ref, key, value, rid, cid, category, ...) {
   sf::st_geometry(result) <- NULL
 
   # convert result to a tibble
-  result <- as_tibble(result)
+  result <- dplyr::as_tibble(result)
 
   # add new class
   class(result) <- append(class(result), "qm_cluster")
