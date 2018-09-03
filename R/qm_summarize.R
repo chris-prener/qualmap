@@ -121,15 +121,11 @@ qm_summarize <- function(ref, key, clusters, category){
   result <- dplyr::rename(result, !!categoryVarQ := COUNT)
 
   # add geometry
-  if (!missing(ref)){
+  result <- dplyr::left_join(ref, result, by = keyVarQ)
 
-    result <- dplyr::left_join(ref, result, by = keyVarQ)
+  result <- dplyr::mutate(result, !!categoryVarQ := ifelse(is.na(!!categoryVar) == TRUE, 0, !!categoryVar))
 
-    result <- dplyr::mutate(result, !!categoryVarQ := ifelse(is.na(!!categoryVar) == TRUE, 0, !!categoryVar))
-
-  }
-
-  # return result
+    # return result
   return(result)
 
 }

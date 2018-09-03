@@ -63,3 +63,15 @@ expect_error(qm_summarize(ref = test_sf, key = "TRACTCE", clusters = clusters, c
              "The specified category ham cannot be found in the clusters data.")
 expect_error(qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = ham),
              "The specified category ham cannot be found in the clusters data.")
+
+# test results ------------------------------------------------
+
+resultV1 <- qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = "positive")
+
+nrowV1 <- 106
+posV1 <- 0.05660377
+
+test_that("result objects has expected characteristics", {
+  expect_equal(nrowV1, nrow(resultV1))
+  expect_equal(posV1, mean(resultV1$positive))
+})
