@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://slu-openGIS.github.io/qualmap//index.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/qualmap//reference/qm_combine.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/qualmap//reference/qm_create.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/qualmap//reference/qm_define.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/qualmap//reference/qm_is_cluster.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/qualmap//reference/qm_preview.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/qualmap//reference/qm_summarize.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/qualmap//reference/qm_validate.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/qualmap//reference/stLouis.html</loc>
+  </url>
+</urlset>

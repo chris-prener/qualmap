@@ -2,4 +2,7 @@ pandoc: 2.2.2.1
 pkgdown: 1.1.0
 pkgdown_sha: ~
 articles: []
+urls:
+  reference: https://slu-openGIS.github.io/qualmap//reference
+  article: https://slu-openGIS.github.io/qualmap//articles
 

@@ -1,0 +1,24 @@
+url: https://slu-openGIS.github.io/qualmap/
+
+authors:
+  Christopher Prener:
+    href: https://chris-prener.github.io
+
+reference:
+  - title: "Core Verbs"
+    desc: "Workflow for producing qualitative GIS map clusters."
+    contents:
+    - qm_define
+    - qm_validate
+    - qm_preview
+    - qm_create
+    - qm_combine
+    - qm_summarize
+  - title: "Helper Functions"
+    desc: "Additional functions included in package."
+    contents:
+    - qm_is_cluster
+  - title: "Data"
+    desc: "Data sets included in package."
+    contents:
+    - stLouis
