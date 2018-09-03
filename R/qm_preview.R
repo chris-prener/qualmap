@@ -27,6 +27,9 @@ qm_preview <- function(ref, key, value){
   # define undefined global variables as NULL
   COUNT = NULL
 
+  # save parameters to list
+  paramList <- as.list(match.call())
+
   # check for missing parameters - ref
   if (missing(ref)) {
     stop('A reference, consisting of a simple features object, must be specified.')
@@ -51,7 +54,22 @@ qm_preview <- function(ref, key, value){
   }
 
   # quote input variables - key
+  if (!is.character(paramList$key)) {
+    keyVar <- rlang::enquo(key)
+  } else if (is.character(paramList$key)) {
+    keyVar <- rlang::quo(!! rlang::sym(key))
+  }
+
   keyVarQ <- rlang::quo_name(rlang::enquo(key))
+
+  # validate data
+  valid <- tryCatch(qm_validate(ref = ref, key = (!!keyVar), value = value), error = function(e) e, warning = function(w) w)
+
+  if(is(valid, "error") == TRUE) {
+    stop("Error in data validation: Use qualmap::qm_validate() to diagnose the problem.")
+  } else if (valid == FALSE) {
+    stop("Error in data validation: Use qualmap::qm_validate() to diagnose the problem.")
+  }
 
   # convert vector to temporary data frame
   value_df <- as.data.frame(value)
