@@ -25,7 +25,7 @@
 qm_preview <- function(ref, key, value){
 
   # define undefined global variables as NULL
-  COUNT = NULL
+  COUNT = is = NULL
 
   # save parameters to list
   paramList <- as.list(match.call())
