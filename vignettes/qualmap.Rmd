@@ -4,7 +4,7 @@ author: "Christopher Prener"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Getting Started}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -25,7 +25,7 @@ If you are new to `R`, welcome! You will need to [download `R`](https://www.r-pr
 
 ### Dependencies
 
-You should check the [`sf` package website](https://r-spatial.github.io/sf/) for the latest details on installing dependenices for that packge. Instructions vary significantly by operating system. For best results, have `sf` installed before you install `qualmap`. Other dependencies, like `dplyr` and `leaflet`, will be installed automatically with `qualmap` if they are not already present.
+You should check the [`sf` package website](https://r-spatial.github.io/sf/) for the latest details on installing dependencies for that package. Instructions vary significantly by operating system. For best results, have `sf` installed before you install `qualmap`. Other dependencies, like `dplyr` and `leaflet`, will be installed automatically with `qualmap` if they are not already present.
 
 ## Installation
 
@@ -54,8 +54,8 @@ The order that these functions are listed here is the approximate order in which
 ### Main Arguments
 All of the main functions except `qm_define()` and `qm_combine()` rely on two key arguments:
 
-* `ref` - a reference object. This should be an `sf` object that contains a master list of features that appear in your study. This could a `sf` object representing all census tracts in a city or county, for example, or a tesselated grid covering the extent of a city.
-* `key` - the name of geographic id variable in the `ref` object to match input values to. This could be a FIPS code, the `GEOID` variable in most census data, or the `OBJECTID` of a tesselated grid. Values entered into `qm_define()` should `key` values.
+* `ref` - a reference object. This should be an `sf` object that contains a master list of features that appear in your study. This could a `sf` object representing all census tracts in a city or county, for example, or a tessellated grid covering the extent of a city.
+* `key` - the name of geographic id variable in the `ref` object to match input values to. This could be a FIPS code, the `GEOID` variable in most census data, or the `OBJECTID` of a tessellated grid. Values entered into `qm_define()` should `key` values.
 
 Additionally, a number of the initial functions have a third essential argument:
 
@@ -138,7 +138,7 @@ Once several cluster objects have been created, they can be combined using `qm_c
 9     1     3 negative  119101  1.00
 ```
 
-Since the same census tract appaers in multiple rows as part of different clusters, we need to summarize these data before we can map them. Part of `qualmap`'s opionated approach revolves around clusters represting only one construct. When we summarize, therefore, we also subset our data so that they represent only one phenomenon. In the above example, there are both "positive" and "negative" clusters. We can use `qm_summarize()` to extract only the "positive" clusters and then summarize them so that we have one row per census tract:
+Since the same census tract appears in multiple rows as part of different clusters, we need to summarize these data before we can map them. Part of `qualmap`'s opinionated approach revolves around clusters representing only one construct. When we summarize, therefore, we also subset our data so that they represent only one phenomenon. In the above example, there are both "positive" and "negative" clusters. We can use `qm_summarize()` to extract only the "positive" clusters and then summarize them so that we have one row per census tract:
 
 ```r
 > pos <- qm_summarize(ref = stLouis, key = TRACTCE, clusters = clusters, 

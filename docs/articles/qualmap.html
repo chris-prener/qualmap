@@ -95,7 +95,7 @@
 <div id="dependencies" class="section level3">
 <h3 class="hasAnchor">
 <a href="#dependencies" class="anchor"></a>Dependencies</h3>
-<p>You should check the <a href="https://r-spatial.github.io/sf/"><code>sf</code> package website</a> for the latest details on installing dependenices for that packge. Instructions vary significantly by operating system. For best results, have <code>sf</code> installed before you install <code>qualmap</code>. Other dependencies, like <code>dplyr</code> and <code>leaflet</code>, will be installed automatically with <code>qualmap</code> if they are not already present.</p>
+<p>You should check the <a href="https://r-spatial.github.io/sf/"><code>sf</code> package website</a> for the latest details on installing dependencies for that package. Instructions vary significantly by operating system. For best results, have <code>sf</code> installed before you install <code>qualmap</code>. Other dependencies, like <code>dplyr</code> and <code>leaflet</code>, will be installed automatically with <code>qualmap</code> if they are not already present.</p>
 </div>
 </div>
 <div id="installation" class="section level2">
@@ -135,9 +135,9 @@
 <p>All of the main functions except <code>qm_define()</code> and <code>qm_combine()</code> rely on two key arguments:</p>
 <ul>
 <li>
-<code>ref</code> - a reference object. This should be an <code>sf</code> object that contains a master list of features that appear in your study. This could a <code>sf</code> object representing all census tracts in a city or county, for example, or a tesselated grid covering the extent of a city.</li>
+<code>ref</code> - a reference object. This should be an <code>sf</code> object that contains a master list of features that appear in your study. This could a <code>sf</code> object representing all census tracts in a city or county, for example, or a tessellated grid covering the extent of a city.</li>
 <li>
-<code>key</code> - the name of geographic id variable in the <code>ref</code> object to match input values to. This could be a FIPS code, the <code>GEOID</code> variable in most census data, or the <code>OBJECTID</code> of a tesselated grid. Values entered into <code>qm_define()</code> should <code>key</code> values.</li>
+<code>key</code> - the name of geographic id variable in the <code>ref</code> object to match input values to. This could be a FIPS code, the <code>GEOID</code> variable in most census data, or the <code>OBJECTID</code> of a tessellated grid. Values entered into <code>qm_define()</code> should <code>key</code> values.</li>
 </ul>
 <p>Additionally, a number of the initial functions have a third essential argument:</p>
 <ul>
@@ -206,7 +206,7 @@
 <a class="sourceLine" id="cb7-12" data-line-number="12"><span class="dv">7</span>     <span class="dv">1</span>     <span class="dv">3</span> negative  <span class="dv">119300</span>  <span class="fl">1.00</span></a>
 <a class="sourceLine" id="cb7-13" data-line-number="13"><span class="dv">8</span>     <span class="dv">1</span>     <span class="dv">3</span> negative  <span class="dv">118600</span>  <span class="fl">1.00</span></a>
 <a class="sourceLine" id="cb7-14" data-line-number="14"><span class="dv">9</span>     <span class="dv">1</span>     <span class="dv">3</span> negative  <span class="dv">119101</span>  <span class="fl">1.00</span></a></code></pre></div>
-<p>Since the same census tract appaers in multiple rows as part of different clusters, we need to summarize these data before we can map them. Part of <code>qualmap</code>’s opionated approach revolves around clusters represting only one construct. When we summarize, therefore, we also subset our data so that they represent only one phenomenon. In the above example, there are both “positive” and “negative” clusters. We can use <code>qm_summarize()</code> to extract only the “positive” clusters and then summarize them so that we have one row per census tract:</p>
+<p>Since the same census tract appears in multiple rows as part of different clusters, we need to summarize these data before we can map them. Part of <code>qualmap</code>’s opinionated approach revolves around clusters representing only one construct. When we summarize, therefore, we also subset our data so that they represent only one phenomenon. In the above example, there are both “positive” and “negative” clusters. We can use <code>qm_summarize()</code> to extract only the “positive” clusters and then summarize them so that we have one row per census tract:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>pos &lt;-<span class="st"> </span><span class="kw">qm_summarize</span>(<span class="dt">ref =</span> stLouis, <span class="dt">key =</span> TRACTCE, <span class="dt">clusters =</span> clusters, </a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="op">+</span><span class="st">    </span><span class="dt">category =</span> <span class="st">"positive"</span>, <span class="dt">geometry =</span> <span class="ot">TRUE</span>, <span class="dt">use.na =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="op">&gt;</span><span class="st"> </span>pos</a>

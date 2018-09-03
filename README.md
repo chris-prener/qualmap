@@ -36,7 +36,7 @@ easily associated with the features that it touches or contains.
 
 `qualmap` provides a suite of functions for entering, validating, and
 creating `sf` objects based on these hand drawn clusters and their
-associataed identification numbers. Once the clusters have been created,
+associated identification numbers. Once the clusters have been created,
 they can be summarized and analyzed either within R or using another
 tool.
 
@@ -55,11 +55,11 @@ Installation
 
 You should check the [`sf` package
 website](https://r-spatial.github.io/sf/) for the latest details on
-installing dependenices for that packge. Instructions vary significantly
-by operating system. For best results, have `sf` installed before you
-install `qualmap`. Other dependencies, like `dplyr` and `leaflet`, will
-be installed automatically with `qualmap` if they are not already
-present.
+installing dependencies for that package. Instructions vary
+significantly by operating system. For best results, have `sf` installed
+before you install `qualmap`. Other dependencies, like `dplyr` and
+`leaflet`, will be installed automatically with `qualmap` if they are
+not already present.
 
 ### Installing qualmap
 

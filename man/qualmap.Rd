@@ -23,7 +23,7 @@ boundaries or census geography, along with an identification number that can be 
 that it touches or contains.
 
 \code{qualmap} provides a suite of functions for entering, validating, and creating \code{sf} objects
-based on these hand drawn clusters and their associataed identification numbers. Once the clusters
+based on these hand drawn clusters and their associated identification numbers. Once the clusters
 have been created, they can be summarized and analyzed either within \code{R} or using another tool.
 
 This approach provides an alternative to either unstructured qualitative GIS data,
