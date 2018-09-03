@@ -2,21 +2,41 @@
 qualmap <img src="man/figures/qualmapLogo.png" align="right" />
 ===============================================================
 
-[![lifecycle\_badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/slu-openGIS/qualmap) [![Travis-CI Build Status](https://travis-ci.org/slu-openGIS/qualmap.svg?branch=master)](https://travis-ci.org/slu-openGIS/qualmap) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/qualmap?branch=master&svg=true)](https://ci.appveyor.com/project/slu-openGIS/qualmap) [![Coverage Status](https://img.shields.io/codecov/c/github/slu-openGIS/qualmap/master.svg)](https://codecov.io/github/slu-openGIS/qualmap?branch=master) [![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/gateway)](https://cran.r-project.org/package=gateway)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Travis-CI Build
+Status](https://travis-ci.org/slu-openGIS/qualmap.svg?branch=master)](https://travis-ci.org/slu-openGIS/qualmap)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/qualmap?branch=master&svg=true)](https://ci.appveyor.com/project/slu-openGIS/qualmap)
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/slu-openGIS/qualmap/master.svg)](https://codecov.io/github/slu-openGIS/qualmap?branch=master)
+[![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/gateway)](https://cran.r-project.org/package=gateway)
 
-The goal of `qualmap` is to make it easy to enter data from qualitative maps.
+The goal of `qualmap` is to make it easy to enter data from qualitative
+maps.
 
 Motivation and Approach
 -----------------------
 
-Qualitative GIS outputs are notoriously difficult to work with because individuals' conceptions of space can vary greatly from each other and from the realities of physical geography themselves. This package implements a process for converting qualitative GIS data from an exercise where respondents are asked to identify salient locations on a map. The basemaps used in this approach have a series of polygons, such as neighborhood boundaries or census geography. A circle drawn on the map is compared during data entry to a key identifying each feature, and the feature ids are entered for each feature that the respondent's cricle touches. These circles are referred to as "clusters".
+Qualitative GIS outputs are notoriously difficult to work with because
+individuals’ conceptions of space can vary greatly from each other and
+from the realities of physical geography themselves. This package
+implements a process for converting qualitative GIS data from an
+exercise where respondents are asked to identify salient locations on a
+map. The basemaps used in this approach have a series of polygons, such
+as neighborhood boundaries or census geography. A circle drawn on the
+map is compared during data entry to a key identifying each feature, and
+the feature ids are entered for each feature that the respondent’s
+cricle touches. These circles are referred to as “clusters”.
 
 Installation
 ------------
 
 ### Installing Dependencies
 
-You should check the [`sf` repository on GitHub](https://github.com/r-spatial/sf) for the latest details on installing dependenices for that packge. Instructions vary significantly by operating system.
+You should check the [`sf` repository on
+GitHub](https://github.com/r-spatial/sf) for the latest details on
+installing dependenices for that packge. Instructions vary significantly
+by operating system.
 
 ### Installing `qualmap`
 
@@ -33,27 +53,46 @@ Useage
 
 `qualmap` implements six verbs for working with mental map data:
 
--   `qm_define()` - create a vector of feature id numbers that constitute a single "cluster"
--   `qm_validate()` - check feature id numbers against a reference data set to ensure that the values are valid
--   `qm_preview()` - plot cluster on an interactive map to ensure the feature ids have been entered correctly (the preview should match the map used as a data collection instrument)
--   `qm_create()` - create a single cluster object once the data have been validated and visually inspected
--   `qm_combine()` - combine multiple cluster objects together into a single tibble data object
--   `qm_summarize()` - summarize the combined data object based on a single qualitative construct to prepare for mapping
+-   `qm_define()` - create a vector of feature id numbers that
+    constitute a single “cluster”
+-   `qm_validate()` - check feature id numbers against a reference data
+    set to ensure that the values are valid
+-   `qm_preview()` - plot cluster on an interactive map to ensure the
+    feature ids have been entered correctly (the preview should match
+    the map used as a data collection instrument)
+-   `qm_create()` - create a single cluster object once the data have
+    been validated and visually inspected
+-   `qm_combine()` - combine multiple cluster objects together into a
+    single tibble data object
+-   `qm_summarize()` - summarize the combined data object based on a
+    single qualitative construct to prepare for mapping
 
 ### Main Arguments
 
-All of the main functions except `qm_define()` and `qm_combine()` rely on two key arguments:
+All of the main functions except `qm_define()` and `qm_combine()` rely
+on two key arguments:
 
--   `ref` - a reference object. This should be an `sf` object that contains a master list of features that appear in your study. This could a `sf` object representing all census tracts in a city or county, for example, or a tesselated grid covering the extent of a city.
--   `key` - the name of geographic id variable in the `ref` object to match input values to. This could be a FIPS code, the `GEOID` variable in most census data, or the `OBJECTID` of a tesselated grid. Values entered into `qm_define()` should `key` values.
+-   `ref` - a reference object. This should be an `sf` object that
+    contains a master list of features that appear in your study. This
+    could a `sf` object representing all census tracts in a city or
+    county, for example, or a tesselated grid covering the extent of a
+    city.
+-   `key` - the name of geographic id variable in the `ref` object to
+    match input values to. This could be a FIPS code, the `GEOID`
+    variable in most census data, or the `OBJECTID` of a tesselated
+    grid. Values entered into `qm_define()` should `key` values.
 
-Additionally, a number of the initial functions have a third essential argument:
+Additionally, a number of the initial functions have a third essential
+argument:
 
 -   `value` - the name of the cluster created using `qm_define()`
 
 ### Data Preparation
 
-To begin, you will need a simple features object containing the polygons you will be matching respondents' data to. Census geography polygons can be downloaded via `tigris`, and other polygon shapefiles can be read into `R` using the `sf` package.
+To begin, you will need a simple features object containing the polygons
+you will be matching respondents’ data to. Census geography polygons can
+be downloaded via `tigris`, and other polygon shapefiles can be read
+into `R` using the `sf` package.
 
 Here is an example of preparing data downloaded via `tigris`:
 
@@ -67,26 +106,39 @@ stLouis <- st_as_sf(stLouis)
 stLouis <- mutate(stLouis, TRACTCE = as.numeric(TRACTCE))
 ```
 
-We download the census tract data for St. Louis, which come in `sp` format, using the `tracts()` function from `tigris`. We then use the `sf` package's `st_as_sf()` function to convert these data to a simple features object and convert the `TRACTCE` variable to numeric format.
+We download the census tract data for St. Louis, which come in `sp`
+format, using the `tracts()` function from `tigris`. We then use the
+`sf` package’s `st_as_sf()` function to convert these data to a simple
+features object and convert the `TRACTCE` variable to numeric format.
 
 ### Data Entry
 
-Once we have a reference data set constructed, we can begin entering the tract numbers that constitute a single circle on the map or "cluster". We use the `qm_define()` function to input these id numbers into a vector:
+Once we have a reference data set constructed, we can begin entering the
+tract numbers that constitute a single circle on the map or “cluster”.
+We use the `qm_define()` function to input these id numbers into a
+vector:
 
 ``` r
 cluster1 <- qm_define(118600, 119101, 119300)
 ```
 
-We can then use the `qm_validate()` function to check each value in the vector and ensure that these values all match the `key` variable in the reference data:
+We can then use the `qm_validate()` function to check each value in the
+vector and ensure that these values all match the `key` variable in the
+reference data:
 
 ``` r
 > qm_validate(ref = stLouis, key = TRACTCE, value = cluster1)
 [1] TRUE
 ```
 
-If `qm_validate()` returns a `TRUE` value, all data are matches. If it returns `FALSE`, at least one of the input values does not match any of the `key` variable values. In this case, our `key` is the `TRACTCE` variable in the `sf` object we created earlier.
+If `qm_validate()` returns a `TRUE` value, all data are matches. If it
+returns `FALSE`, at least one of the input values does not match any of
+the `key` variable values. In this case, our `key` is the `TRACTCE`
+variable in the `sf` object we created earlier.
 
-Once the data are validated, we can preview them interactively using `qm_preview()`, which will show the features identified in the given vector in red on the map:
+Once the data are validated, we can preview them interactively using
+`qm_preview()`, which will show the features identified in the given
+vector in red on the map:
 
 ``` r
 qm_preview(ref = stLouis, key = TRACTCE, value = cluster1)
@@ -96,7 +148,11 @@ qm_preview(ref = stLouis, key = TRACTCE, value = cluster1)
 
 ### Create Cluster Object
 
-A cluster object is tibble data frame that is "tidy" - each feature in the reference data is a row. Cluster objects also contain metadata about the cluster itself: the respondent's identification number from the study, a cluster identification number, and a category that describes what the cluster represents. Clusters are created using `qm_create()`:
+A cluster object is tibble data frame that is “tidy” - each feature in
+the reference data is a row. Cluster objects also contain metadata about
+the cluster itself: the respondent’s identification number from the
+study, a cluster identification number, and a category that describes
+what the cluster represents. Clusters are created using `qm_create()`:
 
 ``` r
 > cluster1_obj <- qm_create(ref = stLouis, key = TRACTCE, value = cluster1, rid = 1, cid = 1, category = "positive")
@@ -111,7 +167,8 @@ A cluster object is tibble data frame that is "tidy" - each feature in the refer
 
 ### Combine and Summarize Multiple Clusters
 
-Once several cluster objects have been created, they can be combined using `qm_combine()` to produce a tidy tibble formatted data object:
+Once several cluster objects have been created, they can be combined
+using `qm_combine()` to produce a tidy tibble formatted data object:
 
 ``` r
 > clusters <- qm_combine(cluster1_obj, cluster2_obj, cluster3_obj)
@@ -130,7 +187,14 @@ Once several cluster objects have been created, they can be combined using `qm_c
 9     1     3 negative  119101  1.00
 ```
 
-Since the same census tract appaers in multiple rows as part of different clusters, we need to summarize these data before we can map them. Part of `qualmap`'s opionated approach revolves around clusters represting only one construct. When we summarize, therefore, we also subset our data so that they represent only one phenomenon. In the above example, there are both "positive" and "negative" clusters. We can use `qm_summarize()` to extract only the "positive" clusters and then summarize them so that we have one row per census tract:
+Since the same census tract appaers in multiple rows as part of
+different clusters, we need to summarize these data before we can map
+them. Part of `qualmap`’s opionated approach revolves around clusters
+represting only one construct. When we summarize, therefore, we also
+subset our data so that they represent only one phenomenon. In the above
+example, there are both “positive” and “negative” clusters. We can use
+`qm_summarize()` to extract only the “positive” clusters and then
+summarize them so that we have one row per census tract:
 
 ``` r
 > pos <- qm_summarize(clusters = clusters, key = TRACTCE, category = "positive")
@@ -145,13 +209,16 @@ Since the same census tract appaers in multiple rows as part of different cluste
 5  121200        1
 ```
 
-If these data are to be mapped, the `qm_summarize()` function has an option `ref` argument that can be used to specify an `sf` object for the summarized data to be joined to:
+If these data are to be mapped, the `qm_summarize()` function has an
+option `ref` argument that can be used to specify an `sf` object for the
+summarized data to be joined to:
 
 ``` r
 posSf <- qm_summarize(clusters = clusters, key = TRACTCE, category = "positive", ref = stLouis)
 ```
 
-The same process can be used to add additional vectors to our `sf` object if we want to make multiple maps:
+The same process can be used to add additional vectors to our `sf`
+object if we want to make multiple maps:
 
 ``` r
 qualData <- qm_summarize(clusters = clusters, key = TRACTCE, category = "negative", ref = posSf)
@@ -159,7 +226,10 @@ qualData <- qm_summarize(clusters = clusters, key = TRACTCE, category = "negativ
 
 ### Mapping Summarized Data
 
-Finally, we can use the `geom_sf()` geom from the [development version of `ggplot2`](https://github.com/tidyverse/ggplot2) to map our summarized data, highlighting areas most discussed as being "positive" parts of St. Louis in our hypothetical study:
+Finally, we can use the `geom_sf()` geom from the [development version
+of `ggplot2`](https://github.com/tidyverse/ggplot2) to map our
+summarized data, highlighting areas most discussed as being “positive”
+parts of St. Louis in our hypothetical study:
 
 ``` r
 library(ggplot2)
@@ -175,4 +245,6 @@ ggplot() +
 Contributor Code of Conduct
 ---------------------------
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of
+Conduct](CONDUCT.md). By participating in this project you agree to
+abide by its terms.
