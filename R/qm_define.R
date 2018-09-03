@@ -1,6 +1,6 @@
 #' Define input values
 #'
-#' @description A wrapper around \code{c()} that is used for constructing vectors of individual feature values.
+#' @description A wrapper around \code{base::c} that is used for constructing vectors of individual feature values.
 #' Each output should correspond to a single cluster on the respondent's map.
 #'
 #' @usage qm_define(...)
@@ -16,6 +16,6 @@
 qm_define <- function(...){
 
   # concatenate listed values
-  c(...)
+  base::c(...)
 
 }

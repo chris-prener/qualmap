@@ -13,7 +13,7 @@ qm_define(...)
 A vector list each feature.
 }
 \description{
-A wrapper around \code{c()} that is used for constructing vectors of individual feature values.
+A wrapper around \code{base::c} that is used for constructing vectors of individual feature values.
 Each output should correspond to a single cluster on the respondent's map.
 }
 \examples{
