@@ -31,4 +31,37 @@ which are difficult to work with empirically, and to digitizing respondents' ann
 which require a sophisticated workflow. This semi-structured approach makes integrating qualitative GIS
 with existing census and administrative data simple and straightforward, which in turn allows
 these data to be used as measures in spatial statistical models.
+
+There are six key verbs introduced in \code{qualmap}:
+\itemize{
+    \item{\emph{define}: create a vector of feature id numbers that constitute a single "cluster"}
+    \item{\emph{validate}: check feature id numbers against a reference data set to ensure that the
+    values are valid}
+    \item{\emph{preview}: plot cluster on an interactive map to ensure the feature ids have been
+    entered correctly (the preview should match the map used as a data collection instrument)}
+    \item{\emph{create}: create a single cluster object once the data have been validated and
+    visually inspected}
+    \item{\emph{combine}: combine multiple cluster objects together into a single tibble data
+    object}
+    \item{\emph{summarize}: summarize the combined data object based on a single qualitative
+    construct to prepare for mapping}
+}
+}
+\section{Tidy Evaluation}{
+
+    \code{qualmap} makes use of tidy evaluation, meaning that key and category references may be
+    either quoted or unquoted (i.e. bare).
+}
+
+\seealso{
+Useful links:
+\itemize{
+  \item{\href{https://slu-openGIS.github.io/qualmap/}{Package Website and Documentation}}
+  \item{\href{https://github.com/slu-openGIS/qualmap}{Source Code on GitHub}}
+  \item{\href{https://github.com/slu-openGIS/qualmap/issues}{Bug Reports and Feature Requests}}
+  \item{\href{https://slu-openGIS.github.io/}{Chris Prener's Open GIS Project at Saint Louis University}}
+}
+}
+\author{
+\strong{Author and Maintainer:} Christopher Prener, Ph.D. \href{chris.prener@slu.edu}{chris.prener@slu.edu}
 }

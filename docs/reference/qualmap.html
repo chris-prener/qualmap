@@ -140,6 +140,34 @@ which are difficult to work with empirically, and to digitizing respondents' ann
 which require a sophisticated workflow. This semi-structured approach makes integrating qualitative GIS
 with existing census and administrative data simple and straightforward, which in turn allows
 these data to be used as measures in spatial statistical models.</p>
+<p>There are six key verbs introduced in <code>qualmap</code>:</p><ul>
+<li><p><em>define</em>: create a vector of feature id numbers that constitute a single "cluster"</p></li>
+<li><p><em>validate</em>: check feature id numbers against a reference data set to ensure that the
+    values are valid</p></li>
+<li><p><em>preview</em>: plot cluster on an interactive map to ensure the feature ids have been
+    entered correctly (the preview should match the map used as a data collection instrument)</p></li>
+<li><p><em>create</em>: create a single cluster object once the data have been validated and
+    visually inspected</p></li>
+<li><p><em>combine</em>: combine multiple cluster objects together into a single tibble data
+    object</p></li>
+<li><p><em>summarize</em>: summarize the combined data object based on a single qualitative
+    construct to prepare for mapping</p></li>
+</ul>
+    
+    <h2 class="hasAnchor" id="tidy-evaluation"><a class="anchor" href="#tidy-evaluation"></a>Tidy Evaluation</h2>
+
+    
+    <p><code>qualmap</code> makes use of tidy evaluation, meaning that key and category references may be
+    either quoted or unquoted (i.e. bare).</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Useful links:</p><ul>
+<li><p><a href='https://slu-openGIS.github.io/qualmap/'>Package Website and Documentation</a></p></li>
+<li><p><a href='https://github.com/slu-openGIS/qualmap'>Source Code on GitHub</a></p></li>
+<li><p><a href='https://github.com/slu-openGIS/qualmap/issues'>Bug Reports and Feature Requests</a></p></li>
+<li><p><a href='https://slu-openGIS.github.io/'>Chris Prener's Open GIS Project at Saint Louis University</a></p></li>
+</ul></div>
     
 
   </div>
@@ -148,7 +176,15 @@ these data to be used as measures in spatial statistical models.</p>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#tidy-evaluation">Tidy Evaluation</a></li>
+
+      <li><a href="#see-also">See also</a></li>
           </ul>
+
+    <h2>Author</h2>
+    
+<strong>Author and Maintainer:</strong> Christopher Prener, Ph.D. <a href='chris.prener@slu.edu'>chris.prener@slu.edu</a>
 
   </div>
 </div>
