@@ -118,7 +118,7 @@ identified in a cluster for the give category is also provided.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>qm_summarize</span>(<span class='no'>ref</span>, <span class='no'>key</span>, <span class='no'>clusters</span>, <span class='no'>category</span>)</pre>
+    <pre class="usage"><span class='fu'>qm_summarize</span>(<span class='no'>ref</span>, <span class='no'>key</span>, <span class='no'>clusters</span>, <span class='no'>category</span>, <span class='kw'>geometry</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>use.na</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -139,12 +139,28 @@ identified in a cluster for the give category is also provided.</p>
       <th>category</th>
       <td><p>Value of the <code>CAT</code> variable to be analyzed</p></td>
     </tr>
+    <tr>
+      <th>geometry</th>
+      <td><p>A logical scalar that returns the full geometry and attributes of <code>ref</code>
+when <code>TRUE</code> (default). If <code>FALSE</code>, only the <code>key</code> and count of features is
+returned after validation.</p></td>
+    </tr>
+    <tr>
+      <th>use.na</th>
+      <td><p>A logical scalar that returns <code>NA</code> values in the count variable if a feature
+is not included in any clusters when <code>TRUE</code>. If <code>FALSE</code> (default), a <code>0</code> value
+is returned in the count variable for each feature that is not included in any clusters. This
+parameter only impacts output if the <code>geometry</code> argument is <code>TRUE</code>.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble or a <code>sf</code> object (if geometry = <code>TRUE</code>) that contains a count of the number
-of clusters a given feature is included in.</p>
+of clusters a given feature is included in. The tibble option (when <code>geometry = FALSE</code>) will only
+return valid features. The <code>sf</code> option (default; when <code>geometry = TRUE</code>) will return all
+features with either zeros (when <code>use.na = FALSE</code>) or <code>NA</code> values (when <code>use.na = TRUE</code>)
+for features not included in any clusters.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -170,7 +186,17 @@ of clusters a given feature is included in.</p>
 <span class='no'>clusters</span> <span class='kw'>&lt;-</span> <span class='fu'>qm_combine</span>(<span class='no'>cluster_obj1</span>, <span class='no'>cluster_obj2</span>)
 
 <span class='co'># summarize cluster objects</span>
-<span class='no'>positive</span> <span class='kw'>&lt;-</span> <span class='fu'>qm_summarize</span>(<span class='kw'>ref</span> <span class='kw'>=</span> <span class='no'>stl</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>TRACTCE</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='no'>clusters</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>"positive"</span>)</div></pre>
+<span class='no'>positive1</span> <span class='kw'>&lt;-</span> <span class='fu'>qm_summarize</span>(<span class='kw'>ref</span> <span class='kw'>=</span> <span class='no'>stl</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>TRACTCE</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='no'>clusters</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>"positive"</span>)
+<span class='fu'>class</span>(<span class='no'>positive1</span>)</div><div class='output co'>#&gt; [1] "sf"         "data.frame"</div><div class='input'><span class='fu'>mean</span>(<span class='no'>positive1</span>$<span class='no'>positive</span>)</div><div class='output co'>#&gt; [1] 0.05660377</div><div class='input'>
+<span class='co'># summarize cluster objects with NA's instead of 0's</span>
+<span class='no'>positive2</span> <span class='kw'>&lt;-</span> <span class='fu'>qm_summarize</span>(<span class='kw'>ref</span> <span class='kw'>=</span> <span class='no'>stl</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>TRACTCE</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='no'>clusters</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>"positive"</span>,
+    <span class='kw'>use.na</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>class</span>(<span class='no'>positive2</span>)</div><div class='output co'>#&gt; [1] "sf"         "data.frame"</div><div class='input'><span class='fu'>mean</span>(<span class='no'>positive2</span>$<span class='no'>positive</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 1.2</div><div class='input'>
+<span class='co'># return tibble of valid features only</span>
+<span class='no'>positive3</span> <span class='kw'>&lt;-</span> <span class='fu'>qm_summarize</span>(<span class='kw'>ref</span> <span class='kw'>=</span> <span class='no'>stl</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>TRACTCE</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='no'>clusters</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>"positive"</span>,
+    <span class='kw'>geometry</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>class</span>(<span class='no'>positive3</span>)</div><div class='output co'>#&gt; [1] "tbl_df"     "tbl"        "data.frame"</div><div class='input'><span class='fu'>mean</span>(<span class='no'>positive3</span>$<span class='no'>positive</span>)</div><div class='output co'>#&gt; [1] 1.2</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -64,14 +64,53 @@ expect_error(qm_summarize(ref = test_sf, key = "TRACTCE", clusters = clusters, c
 expect_error(qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = ham),
              "The specified category ham cannot be found in the clusters data.")
 
+# test for incorrect geometry parameter
+expect_error(qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = positive, geometry = "TRUE"),
+             "The geometry parameter only accepts TRUE or FALSE as arguments.")
+
+# test for incorrect use.na parameter
+expect_error(qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = positive, use.na = "TRUE"),
+             "The use.na parameter only accepts TRUE or FALSE as arguments.")
+
 # test results ------------------------------------------------
 
-resultV1 <- qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = "positive")
+resultV1 <- qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = "positive", geometry = TRUE, use.na = FALSE)
+resultV1b <- qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = "positive")
 
 nrowV1 <- 106
 posV1 <- 0.05660377
+classListV1 <- class(resultV1)
+classListElementV1 <- classListV1[1]
 
-test_that("result objects has expected characteristics", {
+test_that("result object 1 has expected characteristics", {
   expect_equal(nrowV1, nrow(resultV1))
   expect_equal(posV1, mean(resultV1$positive))
+  expect_equal("sf", classListElementV1)
+  expect_equal(resultV1, resultV1b)
+})
+
+resultV2 <- qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = "positive", geometry = TRUE, use.na = TRUE)
+
+nrowV2 <- 106
+posV2 <- 1.2
+classListV2 <- class(resultV2)
+classListElementV2 <- classListV2[1]
+
+test_that("result object 2 has expected characteristics", {
+  expect_equal(nrowV2, nrow(resultV2))
+  expect_equal(posV2, mean(resultV2$positive, na.rm = TRUE))
+  expect_equal("sf", classListElementV2)
+})
+
+resultV3 <- qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = "positive", geometry = FALSE, use.na = FALSE)
+
+nrowV3 <- 5
+posV3 <- 1.2
+classListV3 <- class(resultV3)
+classListElementV3 <- classListV3[1]
+
+test_that("result object 3 has expected characteristics", {
+  expect_equal(nrowV3, nrow(resultV3))
+  expect_equal(posV3, mean(resultV3$positive))
+  expect_equal("tbl_df", classListElementV3)
 })

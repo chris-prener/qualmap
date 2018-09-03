@@ -4,7 +4,7 @@
 \alias{qm_summarize}
 \title{Summarize Clusters}
 \usage{
-qm_summarize(ref, key, clusters, category)
+qm_summarize(ref, key, clusters, category, geometry = TRUE, use.na = FALSE)
 }
 \arguments{
 \item{ref}{An \code{sf} object that serves as a master list of features}
@@ -14,10 +14,22 @@ qm_summarize(ref, key, clusters, category)
 \item{clusters}{A tibble created by \code{qm_combine} with two or more clusters worth of data}
 
 \item{category}{Value of the \code{CAT} variable to be analyzed}
+
+\item{geometry}{A logical scalar that returns the full geometry and attributes of \code{ref}
+when \code{TRUE} (default). If \code{FALSE}, only the \code{key} and count of features is
+returned after validation.}
+
+\item{use.na}{A logical scalar that returns \code{NA} values in the count variable if a feature
+is not included in any clusters when \code{TRUE}. If \code{FALSE} (default), a \code{0} value
+is returned in the count variable for each feature that is not included in any clusters. This
+parameter only impacts output if the \code{geometry} argument is \code{TRUE}.}
 }
 \value{
 A tibble or a \code{sf} object (if geometry = \code{TRUE}) that contains a count of the number
-of clusters a given feature is included in.
+of clusters a given feature is included in. The tibble option (when \code{geometry = FALSE}) will only
+return valid features. The \code{sf} option (default; when \code{geometry = TRUE}) will return all
+features with either zeros (when \code{use.na = FALSE}) or \code{NA} values (when \code{use.na = TRUE})
+for features not included in any clusters.
 }
 \description{
 This function creates a column that contains a single observation for each unique value
@@ -43,7 +55,21 @@ cluster_obj2 <- qm_create(ref = stl, key = TRACTCE, value = cluster2,
 clusters <- qm_combine(cluster_obj1, cluster_obj2)
 
 # summarize cluster objects
-positive <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive")
+positive1 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive")
+class(positive1)
+mean(positive1$positive)
+
+# summarize cluster objects with NA's instead of 0's
+positive2 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
+    use.na = TRUE)
+class(positive2)
+mean(positive2$positive, na.rm = TRUE)
+
+# return tibble of valid features only
+positive3 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
+    geometry = FALSE)
+class(positive3)
+mean(positive3$positive)
 
 }
 \seealso{

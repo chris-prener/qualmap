@@ -4,15 +4,25 @@
 #' in the key variable. For each feature, a count corresponding to the number of times that feature is
 #' identified in a cluster for the give category is also provided.
 #'
-#' @usage qm_summarize(ref, key, clusters, category)
+#' @usage qm_summarize(ref, key, clusters, category, geometry = TRUE, use.na = FALSE)
 #'
 #' @param ref An \code{sf} object that serves as a master list of features
 #' @param key Name of geographic id variable in the \code{ref} object to match input values to
 #' @param clusters A tibble created by \code{qm_combine} with two or more clusters worth of data
 #' @param category Value of the \code{CAT} variable to be analyzed
+#' @param geometry A logical scalar that returns the full geometry and attributes of \code{ref}
+#'     when \code{TRUE} (default). If \code{FALSE}, only the \code{key} and count of features is
+#'     returned after validation.
+#' @param use.na A logical scalar that returns \code{NA} values in the count variable if a feature
+#'     is not included in any clusters when \code{TRUE}. If \code{FALSE} (default), a \code{0} value
+#'     is returned in the count variable for each feature that is not included in any clusters. This
+#'     parameter only impacts output if the \code{geometry} argument is \code{TRUE}.
 #'
 #' @return A tibble or a \code{sf} object (if geometry = \code{TRUE}) that contains a count of the number
-#' of clusters a given feature is included in.
+#' of clusters a given feature is included in. The tibble option (when \code{geometry = FALSE}) will only
+#' return valid features. The \code{sf} option (default; when \code{geometry = TRUE}) will return all
+#' features with either zeros (when \code{use.na = FALSE}) or \code{NA} values (when \code{use.na = TRUE})
+#' for features not included in any clusters.
 #'
 #' @seealso \code{qm_combine}
 #'
@@ -35,7 +45,21 @@
 #' clusters <- qm_combine(cluster_obj1, cluster_obj2)
 #'
 #' # summarize cluster objects
-#' positive <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive")
+#' positive1 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive")
+#' class(positive1)
+#' mean(positive1$positive)
+#'
+#' # summarize cluster objects with NA's instead of 0's
+#' positive2 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
+#'     use.na = TRUE)
+#' class(positive2)
+#' mean(positive2$positive, na.rm = TRUE)
+#'
+#' # return tibble of valid features only
+#' positive3 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
+#'     geometry = FALSE)
+#' class(positive3)
+#' mean(positive3$positive)
 #'
 #' @import sf
 #' @importFrom dplyr filter
@@ -49,7 +73,7 @@
 #' @importFrom rlang :=
 #'
 #' @export
-qm_summarize <- function(ref, key, clusters, category){
+qm_summarize <- function(ref, key, clusters, category, geometry = TRUE, use.na = FALSE){
 
   # define undefined global variables as NULL
   CAT = COUNT = NULL
@@ -90,6 +114,26 @@ qm_summarize <- function(ref, key, clusters, category){
   # check for missing parameters - category
   if (missing(category)) {
     stop('A category from the cluster object must be specified.')
+  }
+
+  # check for missing parameters - geometry
+  if (missing(geometry)) {
+    geometry <- TRUE
+  }
+
+  # check for incorrect parameters - geometry
+  if (!is.logical(geometry)) {
+    stop('The geometry parameter only accepts TRUE or FALSE as arguments.')
+  }
+
+  # check for missing parameters - use.na
+  if (missing(use.na)) {
+    use.na <- FALSE
+  }
+
+  # check for incorrect parameters - use.na
+  if (!is.logical(use.na)) {
+    stop('The use.na parameter only accepts TRUE or FALSE as arguments.')
   }
 
   # quote input variables - key
@@ -144,11 +188,16 @@ qm_summarize <- function(ref, key, clusters, category){
   result <- dplyr::rename(result, !!categoryVarQ := COUNT)
 
   # add geometry
-  result <- dplyr::left_join(ref, result, by = keyVarQ)
+  if (geometry == TRUE) {
+    result <- dplyr::left_join(ref, result, by = keyVarQ)
+  }
 
-  result <- dplyr::mutate(result, !!categoryVarQ := ifelse(is.na(!!categoryVar) == TRUE, 0, !!categoryVar))
+  # replace zeros with missing
+  if (use.na == FALSE) {
+    result <- dplyr::mutate(result, !!categoryVarQ := ifelse(is.na(!!categoryVar) == TRUE, 0, !!categoryVar))
+  }
 
-    # return result
+  # return result
   return(result)
 
 }
