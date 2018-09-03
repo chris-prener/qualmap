@@ -24,10 +24,13 @@ This function ensures that the input vector values match valid values in a sourc
 stl <- stLouis
 stl <- dplyr::mutate(stl, TRACTCE = as.numeric(TRACTCE))
 
-# create cluster
-cluster <- qm_define(118600, 119101, 119300)
+# create clusters
+clusterValid <- qm_define(118600, 119101, 119300)
+clusterError <- qm_define(118600, 119101, 800000)
 
-# validate cluster
-qm_validate(ref = stl, key = TRACTCE, value = cluster)
+# validate clusters
+qm_validate(ref = stl, key = TRACTCE, value = clusterValid)
+
+qm_validate(ref = stl, key = TRACTCE, value = clusterError)
 
 }
