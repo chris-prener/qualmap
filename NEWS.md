@@ -1,3 +1,9 @@
+# qualmap 0.1.1
+
+* CRAN release version
+* Add CRAN installation instructions to README/pkgdown
+* Fix typo in usage section on README/pkgdown site
+
 # qualmap 0.1.0
 
 * Added a `NEWS.md` file to track changes to the package.

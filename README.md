@@ -9,6 +9,7 @@ Status](https://travis-ci.org/slu-openGIS/qualmap.svg?branch=master)](https://tr
 Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/qualmap?branch=master&svg=true)](https://ci.appveyor.com/project/chris-prener/qualmap)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/slu-openGIS/qualmap/master.svg)](https://codecov.io/github/slu-openGIS/qualmap?branch=master)
+[![DOI](https://zenodo.org/badge/122496910.svg)](https://zenodo.org/badge/latestdoi/122496910)
 [![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/qualmap)](https://cran.r-project.org/package=qualmap)
 
 The goal of `qualmap` is to make it easy to enter data from qualitative
@@ -63,15 +64,23 @@ not already present.
 
 ### Installing qualmap
 
-You can install `qualmap` from GitHub with the `remotes` package:
+The easiest way to get `qualmap` is to install it from CRAN:
+
+``` r
+install.packages("qualmap")
+```
+
+You can install the development version of `qualmap` from
+[Github](https://github.com/slu-openGIS/qualmap) with the `remotes`
+package:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("slu-openGIS/qualmap")
 ```
 
-Useage
-------
+Usage
+-----
 
 `qualmap` implements six verbs for working with mental map data:
 
