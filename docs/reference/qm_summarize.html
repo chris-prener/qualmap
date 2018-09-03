@@ -125,15 +125,15 @@ identified in a cluster for the give category is also provided.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>ref</th>
-      <td><p>Optional sf object; a join will be performed between the sf object and the summarized clusters</p></td>
+      <td><p>An <code>sf</code> object that serves as a master list of features</p></td>
     </tr>
     <tr>
       <th>key</th>
-      <td><p>Name of geographic id variable in the tibble specified in <code>clusters</code></p></td>
+      <td><p>Name of geographic id variable in the <code>ref</code> object to match input values to</p></td>
     </tr>
     <tr>
       <th>clusters</th>
-      <td><p>A tibble created by <code>qm_create</code> with two or more clusters worth of data</p></td>
+      <td><p>A tibble created by <code>qm_combine</code> with two or more clusters worth of data</p></td>
     </tr>
     <tr>
       <th>category</th>
@@ -143,12 +143,12 @@ identified in a cluster for the give category is also provided.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble or a sf object (if <code>ref</code> is specified) that contains a count of the number of clusters
-a given feature is included in.</p>
+    <p>A tibble or a <code>sf</code> object (if geometry = <code>TRUE</code>) that contains a count of the number
+of clusters a given feature is included in.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>qm_create</p></div>
+    <div class='dont-index'><p><code>qm_combine</code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

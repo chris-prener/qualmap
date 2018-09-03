@@ -121,7 +121,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>ref</th>
-      <td><p>An sf object that serves as a master list of features</p></td>
+      <td><p>An <code>sf</code> object that serves as a master list of features</p></td>
     </tr>
     <tr>
       <th>key</th>
@@ -129,7 +129,7 @@
     </tr>
     <tr>
       <th>value</th>
-      <td><p>A vector of input values</p></td>
+      <td><p>A vector of input values created with <code>qm_define</code></p></td>
     </tr>
     <tr>
       <th>rid</th>
@@ -153,7 +153,7 @@ in the project</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble with the cluster values merged with elements of the reference data. This tibble is stored with
-a custom class of <code>qm_cluster</code>.</p>
+a custom class of <code>qm_cluster</code> to facilitate data validation.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -164,8 +164,12 @@ used for summarization later in the data analysis process. Finally, three pieces
 as arguments to provide data for subsetting later: a respondent identification number (<code>rid</code>), a
 cluster identification number (<code>cid</code>), and a category for the cluster type (<code>category</code>). These
 arguments are converted into values for the output variables <code>RID</code>, <code>CID</code>, and <code>CAT</code> respectively.
-Input data for <code>qm_create()</code> are validated using <code>qm_validate()</code> as part of the cluster object
+Input data for <code>qm_create</code> are validated using <code>qm_validate</code> as part of the cluster object
 creation process.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code>qm_define</code>, <code>qm_validate</code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -181,7 +185,7 @@ creation process.</p>
     <span class='kw'>rid</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>cid</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>"positive"</span>)
 
 <span class='co'># create cluster object with additional variables added from reference data</span>
-<span class='no'>cluster_obj1</span> <span class='kw'>&lt;-</span> <span class='fu'>qm_create</span>(<span class='kw'>ref</span> <span class='kw'>=</span> <span class='no'>stl</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>TRACTCE</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>cluster</span>,
+<span class='no'>cluster_obj2</span> <span class='kw'>&lt;-</span> <span class='fu'>qm_create</span>(<span class='kw'>ref</span> <span class='kw'>=</span> <span class='no'>stl</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>TRACTCE</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>cluster</span>,
     <span class='kw'>rid</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>cid</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>"positive"</span>, <span class='no'>NAME</span>, <span class='no'>NAMELSAD</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -192,6 +196,8 @@ creation process.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

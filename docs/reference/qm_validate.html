@@ -121,7 +121,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>ref</th>
-      <td><p>An sf object that serves as a master list of features</p></td>
+      <td><p>An <code>sf</code> object that serves as a master list of features</p></td>
     </tr>
     <tr>
       <th>key</th>
@@ -129,7 +129,7 @@
     </tr>
     <tr>
       <th>value</th>
-      <td><p>A vector of input values</p></td>
+      <td><p>A vector of input values created with <code>qm_define</code></p></td>
     </tr>
     </table>
     
@@ -137,17 +137,23 @@
 
     <p>A logical scalar that is <code>TRUE</code> is all input values match values in the key variable.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code>qm_define</code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load and format reference data</span>
 <span class='no'>stl</span> <span class='kw'>&lt;-</span> <span class='no'>stLouis</span>
 <span class='no'>stl</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='no'>stl</span>, <span class='kw'>TRACTCE</span> <span class='kw'>=</span> <span class='fu'>as.numeric</span>(<span class='no'>TRACTCE</span>))
 
-<span class='co'># create cluster</span>
-<span class='no'>cluster</span> <span class='kw'>&lt;-</span> <span class='fu'>qm_define</span>(<span class='fl'>118600</span>, <span class='fl'>119101</span>, <span class='fl'>119300</span>)
+<span class='co'># create clusters</span>
+<span class='no'>clusterValid</span> <span class='kw'>&lt;-</span> <span class='fu'>qm_define</span>(<span class='fl'>118600</span>, <span class='fl'>119101</span>, <span class='fl'>119300</span>)
+<span class='no'>clusterError</span> <span class='kw'>&lt;-</span> <span class='fu'>qm_define</span>(<span class='fl'>118600</span>, <span class='fl'>119101</span>, <span class='fl'>800000</span>)
 
-<span class='co'># validate cluster</span>
-<span class='fu'>qm_validate</span>(<span class='kw'>ref</span> <span class='kw'>=</span> <span class='no'>stl</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>TRACTCE</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>cluster</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='co'># validate clusters</span>
+<span class='fu'>qm_validate</span>(<span class='kw'>ref</span> <span class='kw'>=</span> <span class='no'>stl</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>TRACTCE</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>clusterValid</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='fu'>qm_validate</span>(<span class='kw'>ref</span> <span class='kw'>=</span> <span class='no'>stl</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>TRACTCE</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>clusterError</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -156,6 +162,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
