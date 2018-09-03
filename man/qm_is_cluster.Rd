@@ -16,3 +16,19 @@ it will return \code{FALSE} otherwise.
 \description{
 This function tests to see whether an object is of class \code{qm_cluster}.
 }
+\examples{
+# load and format reference data
+stl <- stLouis
+stl <- dplyr::mutate(stl, TRACTCE = as.numeric(TRACTCE))
+
+# create cluster
+cluster <- qm_define(118600, 119101, 119300)
+
+# create simple cluster object
+cluster_obj <- qm_create(ref = stl, key = TRACTCE, value = cluster,
+    rid = 1, cid = 1, category = "positive")
+
+# test cluster object
+qm_is_cluster(cluster_obj)
+
+}
