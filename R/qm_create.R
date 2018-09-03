@@ -19,7 +19,7 @@
 #' @param value A vector of input values
 #' @param rid Respondent identification number; a user defined integer value that uniquely identifies respondents
 #' in the project
-#' @param cid Cluster identification number; a user defined interger value that unqiuely identifies clusters
+#' @param cid Cluster identification number; a user defined integer value that uniquely identifies clusters
 #' @param category Category type; a user defined value that describes what the cluster represents
 #' @param ... An unquoted list of variables from the sf object to include in the output
 #'
