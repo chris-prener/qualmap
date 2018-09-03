@@ -4,11 +4,14 @@
 #'
 #' @usage qm_preview(ref, key, value)
 #'
-#' @param ref An sf object that serves as a master list of features
+#' @param ref An \code{sf} object that serves as a master list of features
 #' @param key Name of geographic id variable in the \code{ref} object to match input values to
-#' @param value A vector of input values
+#' @param value A vector of input values created with \code{qm_define}
 #'
-#' @return An interactive leaflet map with the values from the input vector highlighted in red.
+#' @return An interactive leaflet map with the features from the defined vector specified in \code{value}
+#'     highlighted in red.
+#'
+#' @seealso qm_define
 #'
 #' @examples
 #' \dontrun{

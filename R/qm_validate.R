@@ -4,11 +4,13 @@
 #'
 #' @usage qm_validate(ref, key, value)
 #'
-#' @param ref An sf object that serves as a master list of features
+#' @param ref An \code{sf} object that serves as a master list of features
 #' @param key Name of geographic id variable in the \code{ref} object to match input values to
-#' @param value A vector of input values
+#' @param value A vector of input values created with \code{qm_define}
 #'
 #' @return A logical scalar that is \code{TRUE} is all input values match values in the key variable.
+#'
+#' @seealso qm_define
 #'
 #' @examples
 #' # load and format reference data

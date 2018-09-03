@@ -7,14 +7,15 @@
 qm_preview(ref, key, value)
 }
 \arguments{
-\item{ref}{An sf object that serves as a master list of features}
+\item{ref}{An \code{sf} object that serves as a master list of features}
 
 \item{key}{Name of geographic id variable in the \code{ref} object to match input values to}
 
-\item{value}{A vector of input values}
+\item{value}{A vector of input values created with \code{qm_define}}
 }
 \value{
-An interactive leaflet map with the values from the input vector highlighted in red.
+An interactive leaflet map with the features from the defined vector specified in \code{value}
+    highlighted in red.
 }
 \description{
 This function renders the input vector as a polygon shapefile using the leaflet package.
@@ -32,4 +33,7 @@ cluster <- qm_define(118600, 119101, 119300)
 qm_preview(ref = stl, key = TRACTCE, value = cluster)
 }
 
+}
+\seealso{
+qm_define
 }

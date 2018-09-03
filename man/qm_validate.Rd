@@ -7,11 +7,11 @@
 qm_validate(ref, key, value)
 }
 \arguments{
-\item{ref}{An sf object that serves as a master list of features}
+\item{ref}{An \code{sf} object that serves as a master list of features}
 
 \item{key}{Name of geographic id variable in the \code{ref} object to match input values to}
 
-\item{value}{A vector of input values}
+\item{value}{A vector of input values created with \code{qm_define}}
 }
 \value{
 A logical scalar that is \code{TRUE} is all input values match values in the key variable.
@@ -33,4 +33,7 @@ qm_validate(ref = stl, key = TRACTCE, value = clusterValid)
 
 qm_validate(ref = stl, key = TRACTCE, value = clusterError)
 
+}
+\seealso{
+qm_define
 }
