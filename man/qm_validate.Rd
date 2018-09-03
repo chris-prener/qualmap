@@ -35,5 +35,5 @@ qm_validate(ref = stl, key = TRACTCE, value = clusterError)
 
 }
 \seealso{
-qm_define
+\code{qm_define}
 }

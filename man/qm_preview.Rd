@@ -35,5 +35,5 @@ qm_preview(ref = stl, key = TRACTCE, value = cluster)
 
 }
 \seealso{
-qm_define
+\code{qm_define}
 }

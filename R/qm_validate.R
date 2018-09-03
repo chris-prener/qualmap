@@ -10,7 +10,7 @@
 #'
 #' @return A logical scalar that is \code{TRUE} is all input values match values in the key variable.
 #'
-#' @seealso qm_define
+#' @seealso \code{qm_define}
 #'
 #' @examples
 #' # load and format reference data

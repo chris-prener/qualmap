@@ -11,7 +11,7 @@
 #' @return An interactive leaflet map with the features from the defined vector specified in \code{value}
 #'     highlighted in red.
 #'
-#' @seealso qm_define
+#' @seealso \code{qm_define}
 #'
 #' @examples
 #' \dontrun{

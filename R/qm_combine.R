@@ -1,12 +1,16 @@
 #' Combine objects
 #'
-#' @description A wrapper around \code{dplyr::bind_rows} for combining cluster objects into a single tibble.
+#' @description A wrapper around \code{dplyr::bind_rows} for combining cluster objects created with
+#' \code{qm_create} into a single tibble. Input data for \code{qm_combine} are validated using
+#' \code{qm_is_cluster} as part of the cluster object creation process.
 #'
 #' @usage qm_combine(...)
 #'
 #' @param ... A list of cluster objects to be combined.
 #'
 #' @return A single tibble with all observations from the listed cluster objects.
+#'
+#' @seealso \code{qm_create}, \code{qm_is_cluster}
 #'
 #' @examples
 #' # load and format reference data

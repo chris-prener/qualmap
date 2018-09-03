@@ -58,5 +58,5 @@ cluster_obj2 <- qm_create(ref = stl, key = TRACTCE, value = cluster,
 
 }
 \seealso{
-qm_define
+\code{qm_define}, \code{qm_validate}
 }

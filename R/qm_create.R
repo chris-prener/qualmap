@@ -26,7 +26,7 @@
 #' @return A tibble with the cluster values merged with elements of the reference data. This tibble is stored with
 #' a custom class of \code{qm_cluster} to facilitate data validation.
 #'
-#' @seealso qm_define
+#' @seealso \code{qm_define}, \code{qm_validate}
 #'
 #' @examples
 #' # load and format reference data

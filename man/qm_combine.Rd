@@ -13,7 +13,9 @@ qm_combine(...)
 A single tibble with all observations from the listed cluster objects.
 }
 \description{
-A wrapper around \code{dplyr::bind_rows} for combining cluster objects into a single tibble.
+A wrapper around \code{dplyr::bind_rows} for combining cluster objects created with
+\code{qm_create} into a single tibble. Input data for \code{qm_combine} are validated using
+\code{qm_is_cluster} as part of the cluster object creation process.
 }
 \examples{
 # load and format reference data
@@ -33,4 +35,7 @@ cluster_obj2 <- qm_create(ref = stl, key = TRACTCE, value = cluster2,
 # combine cluster objects
 clusters <- qm_combine(cluster_obj1, cluster_obj2)
 
+}
+\seealso{
+\code{qm_create}, \code{qm_is_cluster}
 }
