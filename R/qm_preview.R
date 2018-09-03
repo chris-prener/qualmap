@@ -12,10 +12,14 @@
 #'
 #' @examples
 #' \dontrun{
+#' # load and format reference data
 #' stl <- stLouis
-#' stl <- mutate(stl, TRACTCE = as.numeric(TRACTCE))
+#' stl <- dplyr::mutate(stl, TRACTCE = as.numeric(TRACTCE))
 #'
+#' # create cluster
 #' cluster <- qm_define(118600, 119101, 119300)
+#'
+#' # preview cluster
 #' qm_preview(ref = stl, key = TRACTCE, value = cluster)
 #' }
 #'
