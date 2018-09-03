@@ -6,10 +6,10 @@ qualmap <img src="man/figures/qualmapLogo.png" align="right" />
 [![Travis-CI Build
 Status](https://travis-ci.org/slu-openGIS/qualmap.svg?branch=master)](https://travis-ci.org/slu-openGIS/qualmap)
 [![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/qualmap?branch=master&svg=true)](https://ci.appveyor.com/project/slu-openGIS/qualmap)
+Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/qualmap?branch=master&svg=true)](https://ci.appveyor.com/project/chris-prener/qualmap)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/slu-openGIS/qualmap/master.svg)](https://codecov.io/github/slu-openGIS/qualmap?branch=master)
-[![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/gateway)](https://cran.r-project.org/package=gateway)
+[![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/qualmap)](https://cran.r-project.org/package=qualmap)
 
 The goal of `qualmap` is to make it easy to enter data from qualitative
 maps. `qualmap` provides a set of functions for taking qualitative GIS
