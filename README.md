@@ -41,7 +41,7 @@ install `qualmap`. Other dependencies, like `dplyr` and `leaflet`, will
 be installed automatically with `qualmap` if they are not already
 present.
 
-### Installing `qualmap`
+### Installing qualmap
 
 You can install `qualmap` from GitHub with the `remotes` package:
 
@@ -69,8 +69,9 @@ Useage
 6.  `qm_summarize()` - summarize the combined data object based on a
     single qualitative construct to prepare for mapping
 
-The [primary vignette]() contains an overview of the workflow for
-implementing these functions.
+The [primary
+vignette](https://slu-openGIS.github.io/qualmap/articles/qualmap.html)
+contains an overview of the workflow for implementing these functions.
 
 Contributor Code of Conduct
 ---------------------------

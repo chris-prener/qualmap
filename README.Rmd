@@ -33,7 +33,7 @@ Qualitative GIS outputs are notoriously difficult to work with because individua
 
 You should check the [`sf` package website](https://r-spatial.github.io/sf/) for the latest details on installing dependenices for that packge. Instructions vary significantly by operating system. For best results, have `sf` installed before you install `qualmap`. Other dependencies, like `dplyr` and `leaflet`, will be installed automatically with `qualmap` if they are not already present.
 
-### Installing `qualmap` 
+### Installing qualmap
 
 You can install `qualmap` from GitHub with the `remotes` package:
 
@@ -52,7 +52,7 @@ remotes::install_github("slu-openGIS/qualmap")
 4. `qm_combine()` - combine multiple cluster objects together into a single tibble data object
 5. `qm_summarize()` - summarize the combined data object based on a single qualitative construct to prepare for mapping
 
-The [primary vignette]() contains an overview of the workflow for implementing these functions.
+The [primary vignette](https://slu-openGIS.github.io/qualmap/articles/qualmap.html) contains an overview of the workflow for implementing these functions.
 
 ## Contributor Code of Conduct
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
