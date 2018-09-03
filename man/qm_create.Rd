@@ -40,3 +40,20 @@ arguments are converted into values for the output variables \code{RID}, \code{C
 Input data for \code{qm_create()} are validated using \code{qm_validate()} as part of the cluster object
 creation process.
 }
+\examples{
+# load and format reference data
+stl <- stLouis
+stl <- dplyr::mutate(stl, TRACTCE = as.numeric(TRACTCE))
+
+# create cluster
+cluster <- qm_define(118600, 119101, 119300)
+
+# create simple cluster object
+cluster_obj1 <- qm_create(ref = stl, key = TRACTCE, value = cluster,
+    rid = 1, cid = 1, category = "positive")
+
+# create cluster object with additional variables added from reference data
+cluster_obj1 <- qm_create(ref = stl, key = TRACTCE, value = cluster,
+    rid = 1, cid = 1, category = "positive", NAME, NAMELSAD)
+
+}
