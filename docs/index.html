@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tools for Digitizing Qualitative GIS Data • qualmap</title>
+<title>Opinionated Approach for Digitizing Semi-structured Qualitative GIS Data • qualmap</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Tools for Digitizing Qualitative GIS Data">
+<script src="pkgdown.js"></script><meta property="og:title" content="Opinionated Approach for Digitizing Semi-structured Qualitative GIS Data">
 <meta property="og:description" content="Provides a set of functions for taking qualitative GIS data, hand drawn on a map, and 
    converting it to a simple features object. These tools are focused on data that are drawn on a map
    that contains some type of polygon features. For each area identified on the map, the id numbers
@@ -82,11 +82,13 @@
 <a href="#qualmap" class="anchor"></a>qualmap <img src="reference/figures/qualmapLogo.png" align="right">
 </h1></div>
 
-<p>The goal of <code>qualmap</code> is to make it easy to enter data from qualitative maps.</p>
+<p>The goal of <code>qualmap</code> is to make it easy to enter data from qualitative maps. <code>qualmap</code> provides a set of functions for taking qualitative GIS data, hand drawn on a map, and converting it to a simple features object. These tools are focused on data that are drawn on a map that contains some type of polygon features. For each area identified on the map, the id numbers of these polygons can be entered as vectors and transformed using <code>qualmap</code>.</p>
 <div id="motivation-and-approach" class="section level2">
 <h2 class="hasAnchor">
 <a href="#motivation-and-approach" class="anchor"></a>Motivation and Approach</h2>
-<p>Qualitative GIS outputs are notoriously difficult to work with because individuals’ conceptions of space can vary greatly from each other and from the realities of physical geography themselves. This package implements a process for converting qualitative GIS data from an exercise where respondents are asked to identify salient locations on a map. The basemaps used in this approach have a series of polygons, such as neighborhood boundaries or census geography. A circle drawn on the map is compared during data entry to a key identifying each feature, and the feature ids are entered for each feature that the respondent’s cricle touches. These circles are referred to as “clusters”.</p>
+<p>Qualitative GIS outputs are notoriously difficult to work with because individuals’ conceptions of space can vary greatly from each other and from the realities of physical geography themselves. <code>qualmap</code> builds on a semi-structured approach to qualitative GIS data collection. Respondents use a specially designed basemap that allows them free reign to identify geographic features of interest and makes it easy to convert their annotations into digital map features. This is facilitated by including on the basemap a series of polygons, such as neighborhood boundaries or census geography, along with an identification number that can be used by <code>qualmap</code>. A circle drawn on the map can therefore be easily associated with the features that it touches or contains.</p>
+<p><code>qualmap</code> provides a suite of functions for entering, validating, and creating <code>sf</code> objects based on these hand drawn clusters and their associataed identification numbers. Once the clusters have been created, they can be summarized and analyzed either within R or using another tool.</p>
+<p>This approach provides an alternative to either unstructured qualitative GIS data, which are difficult to work with empirically, and to digitizing respondents’ annotations as rasters, which require a sophisticated workflow. This semi-structured approach makes integrating qualitative GIS with existing census and administrative data simple and straightforward, which in turn allows these data to be used as measures in spatial statistical models.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">

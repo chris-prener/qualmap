@@ -1,0 +1,30 @@
+#' qualmap: Opinionated Approach for Digitizing Semi-structured Qualitative GIS Data
+#'
+#' @description Provides a set of functions for taking qualitative GIS data, hand drawn on a map, and
+#' converting it to a simple features object. These tools are focused on data that are drawn on a map
+#' that contains some type of polygon features. For each area identified on the map, the id numbers
+#' of these polygons can be entered as vectors and transformed using qualmap.
+#'
+#' @details Qualitative GIS outputs are notoriously difficult to work with because individuals'
+#' conceptions of space can vary greatly from each other and from the realities of physical geography
+#' themselves. \code{qualmap} builds on a semi-structured approach to qualitative GIS data collection.
+#' Respondents use a specially designed basemap that allows them free reign to identify geographic
+#' features of interest and makes it easy to convert their annotations into digital map features.
+#' This is facilitated by including on the basemap a series of polygons, such as neighborhood
+#' boundaries or census geography, along with an identification number that can be used by
+#' \code{qualmap}. A circle drawn on the map can therefore be easily associated with the features
+#' that it touches or contains.
+#'
+#' \code{qualmap} provides a suite of functions for entering, validating, and creating \code{sf} objects
+#' based on these hand drawn clusters and their associataed identification numbers. Once the clusters
+#' have been created, they can be summarized and analyzed either within \code{R} or using another tool.
+#'
+#' This approach provides an alternative to either unstructured qualitative GIS data,
+#' which are difficult to work with empirically, and to digitizing respondents' annotations as rasters,
+#' which require a sophisticated workflow. This semi-structured approach makes integrating qualitative GIS
+#' with existing census and administrative data simple and straightforward, which in turn allows
+#' these data to be used as measures in spatial statistical models.
+#'
+#' @name qualmap
+#' @docType package
+NULL
