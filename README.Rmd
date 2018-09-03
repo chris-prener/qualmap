@@ -101,7 +101,7 @@ Once the data are validated, we can preview them interactively using `qm_preview
 qm_preview(ref = stLouis, key = TRACTCE, value = cluster1)
 ```
 
-![](/man/figures/previewMap.png)
+![](./man/figures/previewMap.png)
 
 ### Create Cluster Object
 A cluster object is tibble data frame that is "tidy" - each feature in the reference data is a row. Cluster objects also contain metadata about the cluster itself: the respondent's identification number from the study, a cluster identification number, and a category that describes what the cluster represents. Clusters are created using `qm_create()`:
@@ -176,7 +176,7 @@ ggplot() +
   scale_fill_viridis()
 ```
 
-![](/man/figures/exampleMap.png)
+![](./man/figures/exampleMap.png)
 
 ## Contributor Code of Conduct
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

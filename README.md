@@ -144,7 +144,7 @@ vector in red on the map:
 qm_preview(ref = stLouis, key = TRACTCE, value = cluster1)
 ```
 
-![](/man/figures/previewMap.png)
+![](./man/figures/previewMap.png)
 
 ### Create Cluster Object
 
@@ -240,7 +240,7 @@ ggplot() +
   scale_fill_viridis()
 ```
 
-![](/man/figures/exampleMap.png)
+![](./man/figures/exampleMap.png)
 
 Contributor Code of Conduct
 ---------------------------
