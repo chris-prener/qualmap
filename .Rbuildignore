@@ -7,3 +7,7 @@
 ^\.travis$
 ^codecov\.yml$
 ^appveyor\.yml$
+^docs$
+^_pkgdown\.yml$
+^\.zenodo\.json$
+^LICENSE$
