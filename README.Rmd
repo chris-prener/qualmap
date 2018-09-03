@@ -66,4 +66,4 @@ remotes::install_github("slu-openGIS/qualmap")
 The [primary vignette](https://slu-openGIS.github.io/qualmap/articles/qualmap.html) contains an overview of the workflow for implementing these functions.
 
 ## Contributor Code of Conduct
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
