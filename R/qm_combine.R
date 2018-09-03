@@ -8,7 +8,8 @@
 #'
 #' @param ... A list of cluster objects to be combined.
 #'
-#' @return A single tibble with all observations from the listed cluster objects.
+#' @return A single tibble with all observations from the listed cluster objects. This tibble is
+#' stored with a custom class of \code{qm_cluster} to facilitate data validation.
 #'
 #' @seealso \code{qm_create}, \code{qm_is_cluster}
 #'

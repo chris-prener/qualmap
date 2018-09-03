@@ -10,7 +10,8 @@ qm_combine(...)
 \item{...}{A list of cluster objects to be combined.}
 }
 \value{
-A single tibble with all observations from the listed cluster objects.
+A single tibble with all observations from the listed cluster objects. This tibble is
+stored with a custom class of \code{qm_cluster} to facilitate data validation.
 }
 \description{
 A wrapper around \code{dplyr::bind_rows} for combining cluster objects created with

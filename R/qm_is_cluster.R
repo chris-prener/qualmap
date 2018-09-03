@@ -1,6 +1,8 @@
 #' Validate cluster object
 #'
-#' @description This function tests to see whether an object is of class \code{qm_cluster}.
+#' @description This function tests to see whether an object is of class \code{qm_cluster}. It is used
+#' as part of the \code{qm_combine} and \code{qm_summarize} functions, and is exported so that it
+#' can be used interactively as well.
 #'
 #' @usage qm_is_cluster(obj)
 #'

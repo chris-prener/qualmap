@@ -14,7 +14,9 @@ A logical scalar that is \code{TRUE} is the given object is of class \code{qm_cl
 it will return \code{FALSE} otherwise.
 }
 \description{
-This function tests to see whether an object is of class \code{qm_cluster}.
+This function tests to see whether an object is of class \code{qm_cluster}. It is used
+as part of the \code{qm_combine} and \code{qm_summarize} functions, and is exported so that it
+can be used interactively as well.
 }
 \examples{
 # load and format reference data
