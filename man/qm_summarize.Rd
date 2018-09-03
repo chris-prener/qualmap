@@ -7,17 +7,17 @@
 qm_summarize(ref, key, clusters, category)
 }
 \arguments{
-\item{ref}{Optional sf object; a join will be performed between the sf object and the summarized clusters}
+\item{ref}{An \code{sf} object that serves as a master list of features}
 
-\item{key}{Name of geographic id variable in the tibble specified in \code{clusters}}
+\item{key}{Name of geographic id variable in the \code{ref} object to match input values to}
 
-\item{clusters}{A tibble created by \code{qm_create} with two or more clusters worth of data}
+\item{clusters}{A tibble created by \code{qm_combine} with two or more clusters worth of data}
 
 \item{category}{Value of the \code{CAT} variable to be analyzed}
 }
 \value{
-A tibble or a sf object (if \code{ref} is specified) that contains a count of the number of clusters
-a given feature is included in.
+A tibble or a \code{sf} object (if geometry = \code{TRUE}) that contains a count of the number
+of clusters a given feature is included in.
 }
 \description{
 This function creates a column that contains a single observation for each unique value
@@ -47,5 +47,5 @@ positive <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category
 
 }
 \seealso{
-qm_create
+\code{qm_combine}
 }

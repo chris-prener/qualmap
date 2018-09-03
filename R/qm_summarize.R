@@ -6,15 +6,15 @@
 #'
 #' @usage qm_summarize(ref, key, clusters, category)
 #'
-#' @param clusters A tibble created by \code{qm_create} with two or more clusters worth of data
-#' @param key Name of geographic id variable in the tibble specified in \code{clusters}
+#' @param ref An \code{sf} object that serves as a master list of features
+#' @param key Name of geographic id variable in the \code{ref} object to match input values to
+#' @param clusters A tibble created by \code{qm_combine} with two or more clusters worth of data
 #' @param category Value of the \code{CAT} variable to be analyzed
-#' @param ref Optional sf object; a join will be performed between the sf object and the summarized clusters
 #'
-#' @return A tibble or a sf object (if \code{ref} is specified) that contains a count of the number of clusters
-#' a given feature is included in.
+#' @return A tibble or a \code{sf} object (if geometry = \code{TRUE}) that contains a count of the number
+#' of clusters a given feature is included in.
 #'
-#' @seealso qm_create
+#' @seealso \code{qm_combine}
 #'
 #' @examples
 #' # load and format reference data
