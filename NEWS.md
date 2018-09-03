@@ -3,6 +3,7 @@
 * CRAN release version
 * Add CRAN installation instructions to README/pkgdown
 * Fix typo in usage section on README/pkgdown site
+* Add `.github/` subdir with community files
 
 # qualmap 0.1.0
 
