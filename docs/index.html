@@ -45,6 +45,9 @@
   </a>
 </li>
 <li>
+  <a href="articles/qualmap.html">Get started</a>
+</li>
+<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
@@ -91,24 +94,22 @@
 <div id="installing-dependencies" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installing-dependencies" class="anchor"></a>Installing Dependencies</h3>
-<p>You should check the <a href="https://github.com/r-spatial/sf"><code>sf</code> repository on GitHub</a> for the latest details on installing dependenices for that packge. Instructions vary significantly by operating system.</p>
+<p>You should check the <a href="https://r-spatial.github.io/sf/"><code>sf</code> package website</a> for the latest details on installing dependenices for that packge. Instructions vary significantly by operating system. For best results, have <code>sf</code> installed before you install <code>qualmap</code>. Other dependencies, like <code>dplyr</code> and <code>leaflet</code>, will be installed automatically with <code>qualmap</code> if they are not already present.</p>
 </div>
 <div id="installing-qualmap" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installing-qualmap" class="anchor"></a>Installing <code>qualmap</code>
 </h3>
-<p>You can install <code>qualmap</code> from GitHub with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/qualmap"</span>)</a></code></pre></div>
+<p>You can install <code>qualmap</code> from GitHub with the <code>remotes</code> package:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/qualmap"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="useage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#useage" class="anchor"></a>Useage</h2>
-<div id="verbs" class="section level3">
-<h3 class="hasAnchor">
-<a href="#verbs" class="anchor"></a>Verbs</h3>
 <p><code>qualmap</code> implements six verbs for working with mental map data:</p>
-<ul>
+<ol style="list-style-type: decimal">
 <li>
 <code>qm_define()</code> - create a vector of feature id numbers that constitute a single “cluster”</li>
 <li>
@@ -121,111 +122,8 @@
 <code>qm_combine()</code> - combine multiple cluster objects together into a single tibble data object</li>
 <li>
 <code>qm_summarize()</code> - summarize the combined data object based on a single qualitative construct to prepare for mapping</li>
-</ul>
-</div>
-<div id="main-arguments" class="section level3">
-<h3 class="hasAnchor">
-<a href="#main-arguments" class="anchor"></a>Main Arguments</h3>
-<p>All of the main functions except <code>qm_define()</code> and <code>qm_combine()</code> rely on two key arguments:</p>
-<ul>
-<li>
-<code>ref</code> - a reference object. This should be an <code>sf</code> object that contains a master list of features that appear in your study. This could a <code>sf</code> object representing all census tracts in a city or county, for example, or a tesselated grid covering the extent of a city.</li>
-<li>
-<code>key</code> - the name of geographic id variable in the <code>ref</code> object to match input values to. This could be a FIPS code, the <code>GEOID</code> variable in most census data, or the <code>OBJECTID</code> of a tesselated grid. Values entered into <code>qm_define()</code> should <code>key</code> values.</li>
-</ul>
-<p>Additionally, a number of the initial functions have a third essential argument:</p>
-<ul>
-<li>
-<code>value</code> - the name of the cluster created using <code>qm_define()</code>
-</li>
-</ul>
-</div>
-<div id="data-preparation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#data-preparation" class="anchor"></a>Data Preparation</h3>
-<p>To begin, you will need a simple features object containing the polygons you will be matching respondents’ data to. Census geography polygons can be downloaded via <code>tigris</code>, and other polygon shapefiles can be read into <code>R</code> using the <code>sf</code> package.</p>
-<p>Here is an example of preparing data downloaded via <code>tigris</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(dplyr)   <span class="co"># data wrangling</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(sf)      <span class="co"># simple features objects</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">library</span>(tigris)  <span class="co"># access census tiger/line data</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">stLouis &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tigris/topics/tracts">tracts</a></span>(<span class="dt">state =</span> <span class="st">"MO"</span>, <span class="dt">county =</span> <span class="dv">510</span>)</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">stLouis &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/st_as_sf">st_as_sf</a></span>(stLouis)</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">stLouis &lt;-<span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(stLouis, <span class="dt">TRACTCE =</span> <span class="kw">as.numeric</span>(TRACTCE))</a></code></pre></div>
-<p>We download the census tract data for St. Louis, which come in <code>sp</code> format, using the <code><a href="http://www.rdocumentation.org/packages/tigris/topics/tracts">tracts()</a></code> function from <code>tigris</code>. We then use the <code>sf</code> package’s <code><a href="http://www.rdocumentation.org/packages/sf/topics/st_as_sf">st_as_sf()</a></code> function to convert these data to a simple features object and convert the <code>TRACTCE</code> variable to numeric format.</p>
-</div>
-<div id="data-entry" class="section level3">
-<h3 class="hasAnchor">
-<a href="#data-entry" class="anchor"></a>Data Entry</h3>
-<p>Once we have a reference data set constructed, we can begin entering the tract numbers that constitute a single circle on the map or “cluster”. We use the <code>qm_define()</code> function to input these id numbers into a vector:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">cluster1 &lt;-<span class="st"> </span><span class="kw">qm_define</span>(<span class="dv">118600</span>, <span class="dv">119101</span>, <span class="dv">119300</span>)</a></code></pre></div>
-<p>We can then use the <code>qm_validate()</code> function to check each value in the vector and ensure that these values all match the <code>key</code> variable in the reference data:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">qm_validate</span>(<span class="dt">ref =</span> stLouis, <span class="dt">key =</span> TRACTCE, <span class="dt">value =</span> cluster1)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">[<span class="dv">1</span>] <span class="ot">TRUE</span></a></code></pre></div>
-<p>If <code>qm_validate()</code> returns a <code>TRUE</code> value, all data are matches. If it returns <code>FALSE</code>, at least one of the input values does not match any of the <code>key</code> variable values. In this case, our <code>key</code> is the <code>TRACTCE</code> variable in the <code>sf</code> object we created earlier.</p>
-<p>Once the data are validated, we can preview them interactively using <code>qm_preview()</code>, which will show the features identified in the given vector in red on the map:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">qm_preview</span>(<span class="dt">ref =</span> stLouis, <span class="dt">key =</span> TRACTCE, <span class="dt">value =</span> cluster1)</a></code></pre></div>
-<p><img src="reference/figures/previewMap.png"></p>
-</div>
-<div id="create-cluster-object" class="section level3">
-<h3 class="hasAnchor">
-<a href="#create-cluster-object" class="anchor"></a>Create Cluster Object</h3>
-<p>A cluster object is tibble data frame that is “tidy” - each feature in the reference data is a row. Cluster objects also contain metadata about the cluster itself: the respondent’s identification number from the study, a cluster identification number, and a category that describes what the cluster represents. Clusters are created using <code>qm_create()</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>cluster1_obj &lt;-<span class="st"> </span><span class="kw">qm_create</span>(<span class="dt">ref =</span> stLouis, <span class="dt">key =</span> TRACTCE, <span class="dt">value =</span> cluster1, <span class="dt">rid =</span> <span class="dv">1</span>, <span class="dt">cid =</span> <span class="dv">1</span>, <span class="dt">category =</span> <span class="st">"positive"</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span>cluster1_obj</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co"># A tibble: 3 x 5</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">    RID   CID CAT      TRACTCE COUNT</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="op">*</span><span class="st"> </span><span class="er">&lt;</span>int<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>int<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">      </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="dv">1</span>     <span class="dv">1</span>     <span class="dv">1</span> positive  <span class="dv">119300</span>  <span class="fl">1.00</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="dv">2</span>     <span class="dv">1</span>     <span class="dv">1</span> positive  <span class="dv">118600</span>  <span class="fl">1.00</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">1</span> positive  <span class="dv">119101</span>  <span class="fl">1.00</span></a></code></pre></div>
-</div>
-<div id="combine-and-summarize-multiple-clusters" class="section level3">
-<h3 class="hasAnchor">
-<a href="#combine-and-summarize-multiple-clusters" class="anchor"></a>Combine and Summarize Multiple Clusters</h3>
-<p>Once several cluster objects have been created, they can be combined using <code>qm_combine()</code> to produce a tidy tibble formatted data object:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>clusters &lt;-<span class="st"> </span><span class="kw">qm_combine</span>(cluster1_obj, cluster2_obj, cluster3_obj)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span>clusters</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co"># A tibble: 9 x 5</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">    RID   CID CAT      TRACTCE COUNT</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="op">&lt;</span>int<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>int<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">      </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="dv">1</span>     <span class="dv">1</span>     <span class="dv">1</span> positive  <span class="dv">119300</span>  <span class="fl">1.00</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="dv">2</span>     <span class="dv">1</span>     <span class="dv">1</span> positive  <span class="dv">118600</span>  <span class="fl">1.00</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">1</span> positive  <span class="dv">119101</span>  <span class="fl">1.00</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="dv">4</span>     <span class="dv">1</span>     <span class="dv">2</span> positive  <span class="dv">119300</span>  <span class="fl">1.00</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="dv">5</span>     <span class="dv">1</span>     <span class="dv">2</span> positive  <span class="dv">121200</span>  <span class="fl">1.00</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="dv">6</span>     <span class="dv">1</span>     <span class="dv">2</span> positive  <span class="dv">121100</span>  <span class="fl">1.00</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="dv">7</span>     <span class="dv">1</span>     <span class="dv">3</span> negative  <span class="dv">119300</span>  <span class="fl">1.00</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="dv">8</span>     <span class="dv">1</span>     <span class="dv">3</span> negative  <span class="dv">118600</span>  <span class="fl">1.00</span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="dv">9</span>     <span class="dv">1</span>     <span class="dv">3</span> negative  <span class="dv">119101</span>  <span class="fl">1.00</span></a></code></pre></div>
-<p>Since the same census tract appaers in multiple rows as part of different clusters, we need to summarize these data before we can map them. Part of <code>qualmap</code>’s opionated approach revolves around clusters represting only one construct. When we summarize, therefore, we also subset our data so that they represent only one phenomenon. In the above example, there are both “positive” and “negative” clusters. We can use <code>qm_summarize()</code> to extract only the “positive” clusters and then summarize them so that we have one row per census tract:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>pos &lt;-<span class="st"> </span><span class="kw">qm_summarize</span>(<span class="dt">clusters =</span> clusters, <span class="dt">key =</span> TRACTCE, <span class="dt">category =</span> <span class="st">"positive"</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span>pos</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co"># A tibble: 5 x 2</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">  TRACTCE positive</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">    <span class="op">&lt;</span>dbl<span class="op">&gt;</span><span class="st">    </span><span class="er">&lt;</span>int<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="dv">1</span>  <span class="dv">118600</span>        <span class="dv">1</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="dv">2</span>  <span class="dv">119101</span>        <span class="dv">1</span></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="dv">3</span>  <span class="dv">119300</span>        <span class="dv">2</span></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="dv">4</span>  <span class="dv">121100</span>        <span class="dv">1</span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="dv">5</span>  <span class="dv">121200</span>        <span class="dv">1</span></a></code></pre></div>
-<p>If these data are to be mapped, the <code>qm_summarize()</code> function has an option <code>ref</code> argument that can be used to specify an <code>sf</code> object for the summarized data to be joined to:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">posSf &lt;-<span class="st"> </span><span class="kw">qm_summarize</span>(<span class="dt">clusters =</span> clusters, <span class="dt">key =</span> TRACTCE, <span class="dt">category =</span> <span class="st">"positive"</span>, <span class="dt">ref =</span> stLouis)</a></code></pre></div>
-<p>The same process can be used to add additional vectors to our <code>sf</code> object if we want to make multiple maps:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">qualData &lt;-<span class="st"> </span><span class="kw">qm_summarize</span>(<span class="dt">clusters =</span> clusters, <span class="dt">key =</span> TRACTCE, <span class="dt">category =</span> <span class="st">"negative"</span>, <span class="dt">ref =</span> posSf)</a></code></pre></div>
-</div>
-<div id="mapping-summarized-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#mapping-summarized-data" class="anchor"></a>Mapping Summarized Data</h3>
-<p>Finally, we can use the <code><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggsf">geom_sf()</a></code> geom from the <a href="https://github.com/tidyverse/ggplot2">development version of <code>ggplot2</code></a> to map our summarized data, highlighting areas most discussed as being “positive” parts of St. Louis in our hypothetical study:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">library</span>(viridis)</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggsf">geom_sf</a></span>(<span class="dt">data =</span> qualData, <span class="dt">mapping =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">fill =</span> positive)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/viridis/topics/scale_viridis">scale_fill_viridis</a></span>()</a></code></pre></div>
-<p><img src="reference/figures/exampleMap.png"></p>
-</div>
+</ol>
+<p>The <a href="">primary vignette</a> contains an overview of the workflow for implementing these functions.</p>
 </div>
 <div id="contributor-code-of-conduct" class="section level2">
 <h2 class="hasAnchor">

@@ -27,4 +27,7 @@ Suggests:
     ggplot2,
     testthat,
     tigris,
-    tidycensus
+    tidycensus,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
