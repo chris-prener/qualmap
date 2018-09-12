@@ -3,7 +3,6 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^README-.*\.png$
-^CONDUCT\.md$
 ^\.travis\.yml$
 ^\.travis$
 ^codecov\.yml$
@@ -12,3 +11,4 @@
 ^_pkgdown\.yml$
 ^\.zenodo\.json$
 ^LICENSE$
+^.github$
