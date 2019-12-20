@@ -4,7 +4,7 @@
 \alias{qm_summarize}
 \title{Summarize Clusters}
 \usage{
-qm_summarize(ref, key, clusters, category, geometry = TRUE, use.na = FALSE)
+qm_summarize(ref, key, clusters, category, count, geometry = TRUE, use.na = FALSE)
 }
 \arguments{
 \item{ref}{An \code{sf} object that serves as a master list of features}
@@ -14,6 +14,10 @@ qm_summarize(ref, key, clusters, category, geometry = TRUE, use.na = FALSE)
 \item{clusters}{A tibble created by \code{qm_combine} with two or more clusters worth of data}
 
 \item{category}{Value of the \code{CAT} variable to be analyzed}
+
+\item{count}{How should clusters be summarized: by counting each time a feature is included
+in a cluster (\code{"clusters"}) or by counting the number of respondents
+(\code{"respondents"}) who associated a feature with the given category.}
 
 \item{geometry}{A logical scalar that returns the full geometry and attributes of \code{ref}
 when \code{TRUE} (default). If \code{FALSE}, only the \code{key} and count of features is
@@ -55,21 +59,27 @@ cluster_obj2 <- qm_create(ref = stl, key = TRACTCE, value = cluster2,
 clusters <- qm_combine(cluster_obj1, cluster_obj2)
 
 # summarize cluster objects
-positive1 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive")
+positive1 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
+    count = "clusters")
 class(positive1)
 mean(positive1$positive)
 
 # summarize cluster objects with NA's instead of 0's
 positive2 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
-    use.na = TRUE)
+    count = "clusters", use.na = TRUE)
 class(positive2)
 mean(positive2$positive, na.rm = TRUE)
 
 # return tibble of valid features only
 positive3 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
-    geometry = FALSE)
+    count = "clusters", geometry = FALSE)
 class(positive3)
 mean(positive3$positive)
+
+# count respondents instead of clusters
+positive4 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
+    count = "respondents")
+mean(positive4$positive)
 
 }
 \seealso{
