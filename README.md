@@ -1,4 +1,5 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 qualmap <img src="man/figures/qualmapLogo.png" align="right" />
 ===============================================================
 
@@ -19,6 +20,23 @@ object. These tools are focused on data that are drawn on a map that
 contains some type of polygon features. For each area identified on the
 map, the id numbers of these polygons can be entered as vectors and
 transformed using `qualmap`.
+
+News
+----
+
+`qualmap` is under construction right now as a new release is prepared.
+Among the changes:
+
+-   Add `qm_verify()` as a means for verifying data data previously
+    saved to disk prior to processing them with `qm_summarize()`
+-   Add second approach to producing counts using `qm_summarize()` that
+    returns counts of participants rather than counts of clusters
+    associated with each feature
+-   Remove the inclusion of the `COUNT` from what is returned with
+    `qm_create()`
+
+A pre-print article on implementing `qualmap` in qualitative GIS
+research is also forthcoming!
 
 Motivation and Approach
 -----------------------
@@ -82,7 +100,7 @@ remotes::install_github("slu-openGIS/qualmap")
 Usage
 -----
 
-`qualmap` implements six verbs for working with mental map data:
+`qualmap` implements six primary verbs for working with mental map data:
 
 1.  `qm_define()` - create a vector of feature id numbers that
     constitute a single “cluster”

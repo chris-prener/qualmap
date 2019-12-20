@@ -4,12 +4,15 @@
 #' in the key variable. For each feature, a count corresponding to the number of times that feature is
 #' identified in a cluster for the give category is also provided.
 #'
-#' @usage qm_summarize(ref, key, clusters, category, geometry = TRUE, use.na = FALSE)
+#' @usage qm_summarize(ref, key, clusters, category, count, geometry = TRUE, use.na = FALSE)
 #'
 #' @param ref An \code{sf} object that serves as a master list of features
 #' @param key Name of geographic id variable in the \code{ref} object to match input values to
 #' @param clusters A tibble created by \code{qm_combine} with two or more clusters worth of data
 #' @param category Value of the \code{CAT} variable to be analyzed
+#' @param count How should clusters be summarized: by counting each time a feature is included
+#'     in a cluster (\code{"clusters"}) or by counting the number of respondents
+#'     (\code{"respondents"}) who associated a feature with the given category.
 #' @param geometry A logical scalar that returns the full geometry and attributes of \code{ref}
 #'     when \code{TRUE} (default). If \code{FALSE}, only the \code{key} and count of features is
 #'     returned after validation.
@@ -45,21 +48,27 @@
 #' clusters <- qm_combine(cluster_obj1, cluster_obj2)
 #'
 #' # summarize cluster objects
-#' positive1 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive")
+#' positive1 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
+#'     count = "clusters")
 #' class(positive1)
 #' mean(positive1$positive)
 #'
 #' # summarize cluster objects with NA's instead of 0's
 #' positive2 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
-#'     use.na = TRUE)
+#'     count = "clusters", use.na = TRUE)
 #' class(positive2)
 #' mean(positive2$positive, na.rm = TRUE)
 #'
 #' # return tibble of valid features only
 #' positive3 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
-#'     geometry = FALSE)
+#'     count = "clusters", geometry = FALSE)
 #' class(positive3)
 #' mean(positive3$positive)
+#'
+#' # count respondents instead of clusters
+#' positive4 <- qm_summarize(ref = stl, key = TRACTCE, clusters = clusters, category = "positive",
+#'     count = "respondents")
+#' mean(positive4$positive)
 #'
 #' @import sf
 #' @importFrom dplyr filter
@@ -73,10 +82,10 @@
 #' @importFrom rlang :=
 #'
 #' @export
-qm_summarize <- function(ref, key, clusters, category, geometry = TRUE, use.na = FALSE){
+qm_summarize <- function(ref, key, clusters, category, count, geometry = TRUE, use.na = FALSE){
 
   # define undefined global variables as NULL
-  CAT = COUNT = NULL
+  RID = CAT = COUNT = NULL
 
   # save parameters to list
   paramList <- as.list(match.call())
@@ -116,6 +125,16 @@ qm_summarize <- function(ref, key, clusters, category, geometry = TRUE, use.na =
     stop('A category from the cluster object must be specified.')
   }
 
+  # check for missing parameters - count
+  if (missing(count)) {
+    stop("A method for producing counts, either 'clusters' or 'respondents', must be specified.")
+  }
+
+  # check for incorrect parameters - count
+  if (count %in% c("clusters", "respondents") == FALSE){
+    stop("Counts only accepts 'clusters' or 'respondents' as arguments.")
+  }
+
   # check for missing parameters - geometry
   if (missing(geometry)) {
     geometry <- TRUE
@@ -146,20 +165,12 @@ qm_summarize <- function(ref, key, clusters, category, geometry = TRUE, use.na =
   keyVarQ <- rlang::quo_name(rlang::enquo(key))
 
   # check to see if key exists in ref data
-  refCols <- colnames(ref)
-
-  keyVarQ %in% refCols -> keyExists
-
-  if (keyExists == FALSE){
+  if (keyVarQ %in% colnames(ref) == FALSE){
     stop(glue('The specified key {keyVarQ} cannot be found in the reference data.'))
   }
 
   # check to see if key exists in clusters data
-  clusterCols <- colnames(clusters)
-
-  keyVarQ %in% clusterCols -> keyExistsC
-
-  if (keyExistsC == FALSE){
+  if (keyVarQ %in% colnames(clusters) == FALSE){
     stop(glue('The specified key {keyVarQ} cannot be found in the clusters data.'))
   }
 
@@ -173,31 +184,42 @@ qm_summarize <- function(ref, key, clusters, category, geometry = TRUE, use.na =
   categoryVarQ <- rlang::quo_name(rlang::enquo(category))
 
   # check to see if category exists in clusters data
-  categoryVarQ %in% clusters$CAT -> catExists
-
-  if (catExists == FALSE){
+  if (categoryVarQ %in% clusters$CAT == FALSE){
     stop(glue('The specified category {categoryVarQ} cannot be found in the clusters data.'))
   }
 
-  # filter, group, and summarize
-  clusters %>%
-    dplyr::filter(CAT == category) %>%
-    dplyr::group_by(!!keyVar) %>%
-    dplyr::summarize(COUNT := n()) -> result
+  # subset
+  clusters <- dplyr::filter(clusters, CAT == category)
 
-  result <- dplyr::rename(result, !!categoryVarQ := COUNT)
+  # summarize
+  if (count == "clusters"){
+
+    # will return the number of clusters that included each feature for the given category
+    clusters <- dplyr::group_by(clusters, !!keyVar)
+    clusters <- dplyr::summarize(clusters, !!categoryVarQ := n())
+    # clusters <- dplyr::summarize(clusters, COUNT := n())
+    # clusters <- dplyr::rename(clusters, !!categoryVarQ := COUNT)
+
+  } else if (count == "respondents"){
+
+    # will return the number of respondents that associated a feature with the category
+    clusters <- dplyr::distinct(clusters, RID, CAT, !!keyVar)
+    clusters <- dplyr::group_by(clusters, !!keyVar)
+    clusters <- dplyr::summarize(clusters, !!categoryVarQ := n())
+
+  }
 
   # add geometry
   if (geometry == TRUE) {
-    result <- dplyr::left_join(ref, result, by = keyVarQ)
+    clusters <- dplyr::left_join(ref, clusters, by = keyVarQ)
   }
 
   # replace zeros with missing
   if (use.na == FALSE) {
-    result <- dplyr::mutate(result, !!categoryVarQ := ifelse(is.na(!!categoryVar) == TRUE, 0, !!categoryVar))
+    clusters <- dplyr::mutate(clusters, !!categoryVarQ := ifelse(is.na(!!categoryVar) == TRUE, 0, !!categoryVar))
   }
 
   # return result
-  return(result)
+  return(clusters)
 
 }
