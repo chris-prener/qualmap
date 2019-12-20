@@ -150,7 +150,7 @@ qm_create <- function(ref, key, value, rid, cid, category, ...) {
     dplyr::mutate(RID = as.integer(rid)) %>%
     dplyr::mutate(CID = as.integer(cid)) %>%
     dplyr::mutate(CAT = category) %>%
-    dplyr::select(RID, CID, CAT, !!keyVarQ, COUNT, ...) -> result
+    dplyr::select(RID, CID, CAT, !!keyVarQ, ...) -> result
 
   # remove geometry
   sf::st_geometry(result) <- NULL

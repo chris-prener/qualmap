@@ -18,12 +18,8 @@
 qm_verify <- function(clusters){
 
   # verify columns
-  if (ncol(clusters) > 4){
-    stop("The object given for 'clusters' has more than the expected 4 columns.")
-  }
-
   if (ncol(clusters) < 4){
-    stop("The object given for 'clusters' has fewer than the expected 4 columns.")
+    stop("The object given for 'clusters' has fewer than the minimum 4 columns.")
   }
 
   if ("RID" %in% names(clusters) == FALSE){

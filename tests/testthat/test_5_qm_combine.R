@@ -24,7 +24,6 @@ test_obj <- as_tibble(data.frame(
   CID = c(1,1,1),
   CAT = c("positive", "positive", "positive"),
   TRACTCE = c(119300, 118600, 119101),
-  COUNT = c(1,1,1),
   stringsAsFactors = FALSE
 ))
 
@@ -37,7 +36,6 @@ test_obj2 <- as_tibble(data.frame(
   CID = c(1,1,1,2,2,2,3,3,3),
   CAT = c("positive", "positive", "positive", "positive", "positive", "positive", "negative", "negative", "negative"),
   TRACTCE = c(119300, 118600, 119101, 119300, 121200, 121100, 119300, 118600, 119101),
-  COUNT = c(1,1,1,1,1,1,1,1,1),
   stringsAsFactors = FALSE
 ))
 
@@ -50,7 +48,6 @@ test_obj3 <- as_tibble(data.frame(
   CID = c(1,1,1,2,2,2,3,3,3),
   CAT = c("positive", "positive", "positive", "positive", "positive", "positive", "negative", "negative", "negative"),
   TRACTCE = c(119300, 118600, 119101, 119300, 121200, 121100, 119300, 118600, 119101),
-  COUNT = c(1,1,1,1,1,1,1,1,1),
   NAME = c("1193", "1186", "1191.01", "1193", "1212", "1211", "1193", "1186", "1191.01"),
   stringsAsFactors = FALSE
 ))

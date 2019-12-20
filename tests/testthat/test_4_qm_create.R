@@ -19,7 +19,6 @@ test_tbl2 <- as_tibble(data.frame(
   CID = c(1,1,1),
   CAT = c("positive", "positive", "positive"),
   TRACTCE = c(119300, 118600, 119101),
-  COUNT = c(1,1,1),
   stringsAsFactors = FALSE
 ))
 
@@ -32,7 +31,6 @@ test_tbl3 <- as_tibble(data.frame(
   CID = c(1,1,1),
   CAT = c("positive", "positive", "positive"),
   TRACTCE = c(119300, 118600, 119101),
-  COUNT = c(1,1,1),
   NAME = c("1193", "1186", "1191.01"),
   stringsAsFactors = FALSE
 ))
