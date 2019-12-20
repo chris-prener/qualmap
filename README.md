@@ -100,7 +100,7 @@ remotes::install_github("slu-openGIS/qualmap")
 Usage
 -----
 
-`qualmap` implements six verbs for working with mental map data:
+`qualmap` implements six primary verbs for working with mental map data:
 
 1.  `qm_define()` - create a vector of feature id numbers that
     constitute a single “cluster”
