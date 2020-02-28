@@ -1,16 +1,15 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, echo = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/index-",
+  out.width = "100%"
 )
 ```
 
@@ -42,37 +41,21 @@ This approach provides an alternative to either unstructured qualitative GIS dat
 
 More details on the package and how it fits into the broader ecosystem of qualitative GIS are available in a [pre-print on SocArXiv](https://osf.io/preprints/socarxiv/p9qn5/). All data associated with the pre-print are also available on [Open Science Framework](https://osf.io/pxzuc/), and the code are available via [Open Science Framework](https://osf.io/pxzuc/) and [GitHub](http://github.com/PrenerLab/sketch_mapping/).
 
-## Installation
-### Installing Dependencies
-
-You should check the [`sf` package website](https://r-spatial.github.io/sf/) for the latest details on installing dependencies for that package. Instructions vary significantly by operating system. For best results, have `sf` installed before you install `qualmap`. Other dependencies, like `dplyr` and `leaflet`, will be installed automatically with `qualmap` if they are not already present.
-
-### Installing qualmap
-
-The easiest way to get `qualmap` is to install it from CRAN:
+## Quick Start
+If the `sf` package is already installed, the easiest way to get `qualmap` is to install it from CRAN:
 
 ``` r
 install.packages("qualmap")
 ```
 
-You can install the development version of `qualmap` from [Github](https://github.com/slu-openGIS/qualmap) with the `remotes` package:
+Alternatively, the development version of `qualmap` can be accessed from GitHub with `remotes`:
 
 ```r
 # install.packages("remotes")
 remotes::install_github("slu-openGIS/qualmap")
 ```
 
-## Usage
-`qualmap` implements six primary verbs for working with mental map data:
-
-1. `qm_define()` - create a vector of feature id numbers that constitute a single "cluster"
-2. `qm_validate()` - check feature id numbers against a reference data set to ensure that the values are valid
-3. `qm_preview()` - plot cluster on an interactive map to ensure the feature ids have been entered correctly (the preview should match the map used as a data collection instrument)
-4. `qm_create()` - create a single cluster object once the data have been validated and visually inspected
-5. `qm_combine()` - combine multiple cluster objects together into a single tibble data object
-6. `qm_summarize()` - summarize the combined data object based on a single qualitative construct to prepare for mapping
-
-The [primary vignette](https://slu-openGIS.github.io/qualmap/articles/qualmap.html) contains an overview of the workflow for implementing these functions.
+Additional details, including some tips for installing `sf`, can be found in the [Get started article](articles/qualmap.html#getting-started).
 
 ## Contributor Code of Conduct
-Please note that this project is released with a [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](/CODE_OF_CONDUCT.html). By participating in this project you agree to abide by its terms.
