@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Validate input vector — qm_validate • qualmap</title>
+<title>Verify Previously Saved Cluster Data — qm_verify • qualmap</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,13 @@
 
 
 
-<meta property="og:title" content="Validate input vector — qm_validate" />
-<meta property="og:description" content="This function ensures that the input vector values match valid values in a source shapefile." />
+<meta property="og:title" content="Verify Previously Saved Cluster Data — qm_verify" />
+<meta property="og:description" content="Users may wish to save long-form combined cluster data as a .csv file
+    or similar after combining individual clusters with qm_combine. Unless
+    data are saved as an .rda file, the class definition of &quot;qm_cluster&quot;
+    will be lost. The qm_verify function allows users to import data from any
+    file type readable by R, verify that it has the column names needed for
+    qm_summarize, and re-add the &quot;qm_cluster&quot; class." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,62 +116,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Validate input vector</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/qualmap/blob/master/R/qm_validate.R'><code>R/qm_validate.R</code></a></small>
-    <div class="hidden name"><code>qm_validate.Rd</code></div>
+    <h1>Verify Previously Saved Cluster Data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/qualmap/blob/master/R/qm_verify.R'><code>R/qm_verify.R</code></a></small>
+    <div class="hidden name"><code>qm_verify.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function ensures that the input vector values match valid values in a source shapefile.</p>
+    <p>Users may wish to save long-form combined cluster data as a <code>.csv</code> file
+    or similar after combining individual clusters with <code><a href='qm_combine.html'>qm_combine</a></code>. Unless
+    data are saved as an <code>.rda</code> file, the class definition of <code>"qm_cluster"</code>
+    will be lost. The <code>qm_verify</code> function allows users to import data from any
+    file type readable by <code>R</code>, verify that it has the column names needed for
+    <code><a href='qm_summarize.html'>qm_summarize</a></code>, and re-add the <code>"qm_cluster"</code> class.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>qm_validate</span>(<span class='no'>ref</span>, <span class='no'>key</span>, <span class='no'>value</span>)</pre>
+    <pre class="usage"><span class='fu'>qm_verify</span>(<span class='no'>clusters</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>ref</th>
-      <td><p>An <code>sf</code> object that serves as a master list of features</p></td>
-    </tr>
-    <tr>
-      <th>key</th>
-      <td><p>Name of geographic id variable in the <code>ref</code> object to match input values to</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>A vector of input values created with <code>qm_define</code></p></td>
+      <th>clusters</th>
+      <td><p>An object created by <code>qm_combine</code> with two or more clusters worth of data
+that has been previously saved and requires verification before summarization.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A logical scalar that is <code>TRUE</code> is all input values match values in the key variable.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p>A tibble stored with a custom class of <code>qm_cluster</code> to facilitate data validation.</p>
 
-    <div class='dont-index'><p><code>qm_define</code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># load and format reference data</span>
-<span class='no'>stl</span> <span class='kw'>&lt;-</span> <span class='no'>stLouis</span>
-<span class='no'>stl</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='no'>stl</span>, <span class='kw'>TRACTCE</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>TRACTCE</span>))
-
-<span class='co'># create clusters</span>
-<span class='no'>clusterValid</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='qm_define.html'>qm_define</a></span>(<span class='fl'>118600</span>, <span class='fl'>119101</span>, <span class='fl'>119300</span>)
-<span class='no'>clusterError</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='qm_define.html'>qm_define</a></span>(<span class='fl'>118600</span>, <span class='fl'>119101</span>, <span class='fl'>800000</span>)
-
-<span class='co'># validate clusters</span>
-<span class='fu'>qm_validate</span>(<span class='kw'>ref</span> <span class='kw'>=</span> <span class='no'>stl</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>TRACTCE</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>clusterValid</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='fu'>qm_validate</span>(<span class='kw'>ref</span> <span class='kw'>=</span> <span class='no'>stl</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>TRACTCE</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>clusterError</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

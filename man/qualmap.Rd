@@ -3,7 +3,6 @@
 \docType{package}
 \name{qualmap}
 \alias{qualmap}
-\alias{qualmap-package}
 \title{qualmap: Opinionated Approach for Digitizing Semi-structured Qualitative GIS Data}
 \description{
 Provides a set of functions for taking qualitative GIS data, hand drawn on a map, and

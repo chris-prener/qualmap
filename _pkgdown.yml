@@ -13,6 +13,7 @@ reference:
     - qm_preview
     - qm_create
     - qm_combine
+    - qm_verify
     - qm_summarize
   - title: "Helper Functions"
     desc: "Additional functions included in package."

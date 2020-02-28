@@ -35,9 +35,6 @@ Among the changes:
 -   Remove the inclusion of the `COUNT` from what is returned with
     `qm_create()`
 
-A pre-print article on implementing `qualmap` in qualitative GIS
-research is also forthcoming!
-
 Motivation and Approach
 -----------------------
 
@@ -66,6 +63,14 @@ sophisticated workflow. This semi-structured approach makes integrating
 qualitative GIS with existing census and administrative data simple and
 straightforward, which in turn allows these data to be used as measures
 in spatial statistical models.
+
+More details on the package and how it fits into the broader ecosystem
+of qualitative GIS are available in a [pre-print on
+SocArXiv](https://osf.io/preprints/socarxiv/p9qn5/). All data associated
+with the pre-print are also available on [Open Science
+Framework](https://osf.io/pxzuc/), and the code are available via [Open
+Science Framework](https://osf.io/pxzuc/) and
+[GitHub](http://github.com/PrenerLab/sketch_mapping/).
 
 Installation
 ------------
