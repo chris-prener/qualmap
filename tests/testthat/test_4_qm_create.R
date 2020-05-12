@@ -9,35 +9,37 @@ test_clusterE2 <- qm_define("118600", "119101", "119300")
 test_sf <- stLouis
 test_sf <- dplyr::mutate(test_sf, TRACTCE = as.numeric(TRACTCE))
 
-test_tbl <- as_tibble(data.frame(
+test_tbl <- dplyr::tibble(
   x = c(1,2,3),
   y = c("a", "b", "a")
-))
+)
 
-test_tbl2 <- as_tibble(data.frame(
+test_tbl2 <- dplyr::tibble(
   RID = c(1,1,1),
   CID = c(1,1,1),
   CAT = c("positive", "positive", "positive"),
-  TRACTCE = c(119300, 118600, 119101),
-  stringsAsFactors = FALSE
-))
+  TRACTCE = c(119300, 118600, 119101)
+)
 
 test_tbl2 %>%
   dplyr::mutate(RID = as.integer(RID)) %>%
   dplyr::mutate(CID = as.integer(CID)) -> test_tbl2
 
-test_tbl3 <- as_tibble(data.frame(
+test_tbl3 <- dplyr::tibble(
   RID = c(1,1,1),
   CID = c(1,1,1),
   CAT = c("positive", "positive", "positive"),
   TRACTCE = c(119300, 118600, 119101),
-  NAME = c("1193", "1186", "1191.01"),
-  stringsAsFactors = FALSE
-))
+  NAME = c("1193", "1186", "1191.01")
+)
 
 test_tbl3 %>%
   dplyr::mutate(RID = as.integer(RID)) %>%
   dplyr::mutate(CID = as.integer(CID)) -> test_tbl3
+
+# add new class
+# class(test_tbl2) <- append(class(test_tbl2), "qm_cluster")
+# class(test_tbl3) <- append(class(test_tbl3), "qm_cluster")
 
 # test inputs ------------------------------------------------
 
@@ -122,12 +124,12 @@ test_that("returns TRUE - test result 3 matches test_tbl3", {
   expect_equal(resultV3, test_tbl3)
 })
 
-objV1 <- qm_is_cluster(resultV1)
-objV2 <- qm_is_cluster(resultV2)
-objV3 <- qm_is_cluster(resultV3)
+# objV1 <- qm_is_cluster(resultV1)
+# objV2 <- qm_is_cluster(resultV2)
+# objV3 <- qm_is_cluster(resultV3)
 
-test_that("result objects have class qm_culster", {
-  expect_equal(objV1, TRUE)
-  expect_equal(objV2, TRUE)
-  expect_equal(objV3, TRUE)
-})
+# test_that("result objects have class qm_culster", {
+#  expect_equal(objV1, TRUE)
+#  expect_equal(objV2, TRUE)
+#  expect_equal(objV3, TRUE)
+# })

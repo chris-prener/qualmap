@@ -38,7 +38,7 @@ qm_verify <- function(clusters){
   clusters <- dplyr::as_tibble(clusters)
 
   # add new class
-  class(clusters) <- append(class(clusters), "qm_cluster")
+  # class(clusters) <- append(class(clusters), "qm_cluster")
 
   # return output
   return(clusters)

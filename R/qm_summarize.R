@@ -116,9 +116,9 @@ qm_summarize <- function(ref, key, clusters, category, count, geometry = TRUE, u
   clustersQ <- rlang::quo_name(rlang::enquo(clusters))
 
   # test class value to ensure that they are class qm_cluster
-  if (qm_is_cluster(clusters) == FALSE) {
-    stop(glue('The object {clustersQ} is not class qm_cluster. The cluster object should be created with qm_combine().'))
-  }
+  # if (qm_is_cluster(clusters) == FALSE) {
+  #  stop(glue('The object {clustersQ} is not class qm_cluster. The cluster object should be created with qm_combine().'))
+  # }
 
   # check for missing parameters - category
   if (missing(category)) {

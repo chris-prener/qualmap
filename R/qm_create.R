@@ -159,7 +159,7 @@ qm_create <- function(ref, key, value, rid, cid, category, ...) {
   result <- dplyr::as_tibble(result)
 
   # add new class
-  class(result) <- append(class(result), "qm_cluster")
+  # class(result) <- append(class(result), "qm_cluster")
 
   # return result
   return(result)

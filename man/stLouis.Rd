@@ -4,7 +4,8 @@
 \name{stLouis}
 \alias{stLouis}
 \title{St. Louis Census Tracts, 2016}
-\format{A data frame with 106 rows and 7 variables:
+\format{
+A data frame with 106 rows and 7 variables:
 \describe{
   \item{STATEFP}{state FIPS code}
   \item{COUNTYFP}{county FIPS code}
@@ -13,7 +14,8 @@
   \item{NAME}{tract FIPS code, decimal}
   \item{NAMELSAD}{tract name}
   \item{geometry}{simple features geometry}
-  }}
+  }
+}
 \source{
 \href{https://www.census.gov}{U.S. Census Bureau}
 
