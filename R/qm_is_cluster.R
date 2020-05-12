@@ -1,15 +1,16 @@
 #' Validate cluster object
 #'
-#' @description This function tests to see whether an object is of class \code{qm_cluster}. It is used
-#' as part of the \code{qm_combine} and \code{qm_summarize} functions, and is exported so that it
-#' can be used interactively as well.
+#' @description This function tests to see whether an object contains the characteristics of an object
+#'   created by \code{qm_cluster}. It is used as part of the \code{qm_combine} and \code{qm_summarize}
+#'   functions, and is exported so that it can be used interactively as well.
 #'
-#' @usage qm_is_cluster(obj)
+#' @usage qm_is_cluster(obj, verbose = FALSE)
 #'
 #' @param obj Object to test
+#' @param verbose A logical scalar; if \code{TRUE}, a tibble with test results is returned
 #'
-#' @return A logical scalar that is \code{TRUE} is the given object is of class \code{qm_cluster};
-#' it will return \code{FALSE} otherwise.
+#' @return A logical scalar that is \code{TRUE} if the given object contains the approprite
+#'   characteristics; if it does not, \code{FALSE} is returned.
 #'
 #' @seealso \code{qm_combine}, \code{qm_summarize}
 #'
@@ -27,14 +28,53 @@
 #'
 #' # test cluster object
 #' qm_is_cluster(cluster_obj)
+#' qm_is_cluster(cluster_obj, verbose = TRUE)
 #'
 #' @export
-qm_is_cluster <- function(obj){
+qm_is_cluster <- function(obj, verbose = FALSE){
 
-  classList <- base::class(obj)
+  # check parameters
+  if (verbose != TRUE & verbose != FALSE){
+    stop("The 'verbose' argument must be either 'TRUE' or 'FALSE'.")
+  }
 
-  "qm_cluster" %in% classList -> classResult
+  # verify columns
+  if (ncol(obj) < 4){
+    count <- FALSE
+  } else {
+    count <- TRUE
+  }
 
-  return(classResult)
+  if ("RID" %in% names(obj) == FALSE){
+    rid <- FALSE
+  } else {
+    rid <- TRUE
+  }
+
+  if ("CID" %in% names(obj) == FALSE){
+    cid <- FALSE
+  } else {
+    cid <- TRUE
+  }
+
+  if ("CAT" %in% names(obj) == FALSE){
+    cat <- FALSE
+  } else {
+    cat <- TRUE
+  }
+
+  # construct output
+  output <- dplyr::tibble(
+    test = c("Contains at least 4 columns", "Contains RID variable", "Contains CID variable", "Contains CAT variable"),
+    result = c(count, rid, cid, cat)
+  )
+
+  # summarise optionally
+  if (verbose == FALSE){
+    output <- all(output$result)
+  }
+
+  # return output
+  return(output)
 
 }

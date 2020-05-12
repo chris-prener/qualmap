@@ -116,9 +116,9 @@ qm_summarize <- function(ref, key, clusters, category, count, geometry = TRUE, u
   clustersQ <- rlang::quo_name(rlang::enquo(clusters))
 
   # test class value to ensure that they are class qm_cluster
-  # if (qm_is_cluster(clusters) == FALSE) {
-  #  stop(glue('The object {clustersQ} is not class qm_cluster. The cluster object should be created with qm_combine().'))
-  # }
+  if (qm_is_cluster(clusters) == FALSE) {
+      stop(glue('The object {clustersQ} is not a cluster object. Create a cluster object with qm_combine().'))
+  }
 
   # check for missing parameters - category
   if (missing(category)) {
@@ -197,8 +197,6 @@ qm_summarize <- function(ref, key, clusters, category, count, geometry = TRUE, u
     # will return the number of clusters that included each feature for the given category
     clusters <- dplyr::group_by(clusters, !!keyVar)
     clusters <- dplyr::summarize(clusters, !!categoryVarQ := n())
-    # clusters <- dplyr::summarize(clusters, COUNT := n())
-    # clusters <- dplyr::rename(clusters, !!categoryVarQ := COUNT)
 
   } else if (count == "respondents"){
 

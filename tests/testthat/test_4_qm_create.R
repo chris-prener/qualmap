@@ -37,10 +37,6 @@ test_tbl3 %>%
   dplyr::mutate(RID = as.integer(RID)) %>%
   dplyr::mutate(CID = as.integer(CID)) -> test_tbl3
 
-# add new class
-# class(test_tbl2) <- append(class(test_tbl2), "qm_cluster")
-# class(test_tbl3) <- append(class(test_tbl3), "qm_cluster")
-
 # test inputs ------------------------------------------------
 
 # test missing ref parameter
@@ -124,12 +120,12 @@ test_that("returns TRUE - test result 3 matches test_tbl3", {
   expect_equal(resultV3, test_tbl3)
 })
 
-# objV1 <- qm_is_cluster(resultV1)
-# objV2 <- qm_is_cluster(resultV2)
-# objV3 <- qm_is_cluster(resultV3)
+objV1 <- qm_is_cluster(resultV1)
+objV2 <- qm_is_cluster(resultV2)
+objV3 <- qm_is_cluster(resultV3)
 
-# test_that("result objects have class qm_culster", {
-#  expect_equal(objV1, TRUE)
-#  expect_equal(objV2, TRUE)
-#  expect_equal(objV3, TRUE)
-# })
+test_that("result objects have have the correct characteristics", {
+  expect_equal(objV1, TRUE)
+  expect_equal(objV2, TRUE)
+  expect_equal(objV3, TRUE)
+})

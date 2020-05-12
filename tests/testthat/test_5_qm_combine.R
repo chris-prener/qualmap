@@ -22,7 +22,6 @@ cluster6_obj <- qm_create(ref = test_sf, key = TRACTCE, value = cluster3, rid = 
 test_obj <- dplyr::tibble(
   RID = c(1,1,1),
   CID = c(1,1,1),
-  CAT = c("positive", "positive", "positive"),
   TRACTCE = c(119300, 118600, 119101)
 )
 
@@ -56,8 +55,8 @@ test_obj3 %>%
 # test inputs ------------------------------------------------
 
 # test non qm_cluster object input
-# expect_error(qm_combine(cluster1_obj, cluster2_obj, test_obj),
-#             "One or more of the given objects is not of class qm_cluster. Use qm_is_cluster() to evaluate each object.", fixed = TRUE)
+expect_error(qm_combine(cluster1_obj, cluster2_obj, test_obj),
+             "One or more of the given objects is not a cluster object. Use qm_is_cluster() to evaluate each object.", fixed = TRUE)
 
 # test column number equality
 expect_error(qm_combine(cluster1_obj, cluster2_obj, cluster6_obj),
@@ -81,10 +80,10 @@ test_that("returns TRUE - test result 2 matches test_tbl3", {
   expect_equal(clustersV2, test_obj3)
 })
 
-# objV1 <- qm_is_cluster(clustersV1)
-# objV2 <- qm_is_cluster(clustersV2)
+objV1 <- qm_is_cluster(clustersV1)
+objV2 <- qm_is_cluster(clustersV2)
 
-# test_that("result objects have class qm_culster", {
-#  expect_equal(objV1, TRUE)
-#  expect_equal(objV2, TRUE)
-# })
+test_that("result objects have cluster characteristics", {
+  expect_equal(objV1, TRUE)
+  expect_equal(objV2, TRUE)
+})

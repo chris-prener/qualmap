@@ -3,6 +3,9 @@
 * Add `qm_verify()` as a means for verifying data data previously saved to disk prior to processing them with `qm_summarize()`
 * Add second approach to producing counts using `qm_summarize()` that returns counts of participants rather than counts of clusters associated with each feature
 * Remove the inclusion of the `COUNT` from what is returned with `qm_create()`
+* Ensure compatability with the `dplyr` v1.0 release:
+  * `qm_cluster()` no longer adds a custom class
+  * instead, `qm_is_cluster()` can be used to check for the appropriate characteristics of objects, but no longer checks the class itself
 * Update `pkgdown` site and `README` with details on pre-print
 
 # qualmap 0.1.1

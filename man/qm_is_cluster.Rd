@@ -4,19 +4,21 @@
 \alias{qm_is_cluster}
 \title{Validate cluster object}
 \usage{
-qm_is_cluster(obj)
+qm_is_cluster(obj, verbose = FALSE)
 }
 \arguments{
 \item{obj}{Object to test}
+
+\item{verbose}{A logical scalar; if \code{TRUE}, a tibble with test results is returned}
 }
 \value{
-A logical scalar that is \code{TRUE} is the given object is of class \code{qm_cluster};
-it will return \code{FALSE} otherwise.
+A logical scalar that is \code{TRUE} if the given object contains the approprite
+  characteristics; if it does not, \code{FALSE} is returned.
 }
 \description{
-This function tests to see whether an object is of class \code{qm_cluster}. It is used
-as part of the \code{qm_combine} and \code{qm_summarize} functions, and is exported so that it
-can be used interactively as well.
+This function tests to see whether an object contains the characteristics of an object
+  created by \code{qm_cluster}. It is used as part of the \code{qm_combine} and \code{qm_summarize}
+  functions, and is exported so that it can be used interactively as well.
 }
 \examples{
 # load and format reference data
@@ -32,6 +34,7 @@ cluster_obj <- qm_create(ref = stl, key = TRACTCE, value = cluster,
 
 # test cluster object
 qm_is_cluster(cluster_obj)
+qm_is_cluster(cluster_obj, verbose = TRUE)
 
 }
 \seealso{
