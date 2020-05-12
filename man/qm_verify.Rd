@@ -15,9 +15,7 @@ A tibble stored with a custom class of \code{qm_cluster} to facilitate data vali
 }
 \description{
 Users may wish to save long-form combined cluster data as a \code{.csv} file
-    or similar after combining individual clusters with \code{\link{qm_combine}}. Unless
-    data are saved as an \code{.rda} file, the class definition of \code{"qm_cluster"}
-    will be lost. The \code{qm_verify} function allows users to import data from any
-    file type readable by \code{R}, verify that it has the column names needed for
-    \code{\link{qm_summarize}}, and re-add the \code{"qm_cluster"} class.
+    or similar after combining individual clusters with \code{\link{qm_combine}}. The \code{qm_verify}
+    function allows users to import data from any file type readable by \code{R}, and verify that it
+    has the column names needed for \code{\link{qm_summarize}}.
 }

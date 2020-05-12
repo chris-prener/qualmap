@@ -12,7 +12,11 @@ This is an update to the previous CRAN release. It contains modifications that m
 * r-hub not used because it lacks dependencies needed to build `sf` on Debian
 
 ## R CMD check results
-There were no ERRORs, WARNINGs, or NOTEs with local or CI checks except for R-3.5.3 on macOS (via Travis), which is having an issue installing the `DT` package. Other checks of R-3.5.3 install `DT` without issue on Linux and Windows.
+There were no ERRORs, WARNINGs, or NOTEs with local or CI checks except: 
+
+* R-3.5.3 on macOS (via Travis), which is having an issue installing the `DT` package. Other checks of R-3.5.3 install `DT` without issue on Linux and Windows.
+* R-3.4.4 on Linux and macOS (via Travis), which are trying and failing to install the suggested package, `rgdal`, of a depdency for this package, `sf`
+* 1 NOTE on winbuilder about my email in the package's top-level help file possibly being an invalid url
 
 ## Reverse dependencies
 Not applicable.
