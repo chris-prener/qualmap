@@ -1,4 +1,4 @@
-# qualmap 0.2.0.9000
+# qualmap 0.2.0
 
 * Add `qm_verify()` as a means for verifying data data previously saved to disk prior to processing them with `qm_summarize()`
 * Add second approach to producing counts using `qm_summarize()` that returns counts of participants rather than counts of clusters associated with each feature
