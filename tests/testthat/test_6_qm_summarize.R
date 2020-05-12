@@ -22,6 +22,13 @@ test_tbl <- dplyr::tibble(
   y = c("a", "b", "a")
 )
 
+# test verification ------------------------------------------------
+
+# test the qm_verify function
+test_that("verification occurs without error", {
+  expect_error(qm_verify(clusters), NA)
+})
+
 # test inputs ------------------------------------------------
 
 # test missing ref parameter
@@ -106,6 +113,7 @@ test_that("result object 1 has expected characteristics", {
   expect_equal(nrowV1, nrow(resultV1))
   expect_equal(posV1, mean(resultV1$positive))
   expect_equal("sf" %in% class(resultV1), TRUE)
+  expect_equal(resultV1, resultV1b)
 })
 
 resultV2 <- qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = "positive",
@@ -130,4 +138,16 @@ test_that("result object 3 has expected characteristics", {
   expect_equal(nrowV3, nrow(resultV3))
   expect_equal(posV3, mean(resultV3$positive))
   expect_equal("sf" %in% class(resultV3), FALSE)
+})
+
+resultV4 <- qm_summarize(ref = test_sf, key = TRACTCE, clusters = clusters, category = "positive",
+                         count = "respondents", geometry = TRUE, use.na = FALSE)
+
+nrowV4 <- 106
+posV4 <- 0.04716981
+
+test_that("result object 4 has expected characteristics", {
+  expect_equal(nrowV4, nrow(resultV4))
+  expect_equal(posV4, mean(resultV4$positive))
+  expect_equal("sf" %in% class(resultV4), TRUE)
 })
