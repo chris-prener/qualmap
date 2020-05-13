@@ -45,7 +45,7 @@
 #'     either quoted or unquoted (i.e. bare).
 #'
 #' @author
-#'     \strong{Author and Maintainer:} Christopher Prener, Ph.D. \href{mailto:chris.prener@slu.edu}{chris.prener@slu.edu}
+#'     \strong{Author and Maintainer:} Christopher Prener, Ph.D.
 #'
 #' @seealso Useful links:
 #' \itemize{

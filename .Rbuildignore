@@ -13,3 +13,4 @@
 ^\.zenodo\.json$
 ^LICENSE$
 ^.github$
+^CRAN-RELEASE$
