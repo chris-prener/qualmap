@@ -1,7 +1,5 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -28,12 +26,12 @@ knitr::opts_chunk$set(
 The goal of `qualmap` is to make it easy to enter data from qualitative maps. `qualmap` provides a set of functions for taking qualitative GIS data, hand drawn on a map, and converting it to a simple features object. These tools are focused on data that are drawn on a map that contains some type of polygon features. For each area identified on the map, the id numbers of these polygons can be entered as vectors and transformed using `qualmap`.
 
 ## What is New in v0.2?
-`qualmap` is under construction right now as a new release is prepared. Among the changes:
+Version v0.2 brings a number of changes:
 
 * Add `qm_verify()` as a means for verifying data data previously saved to disk prior to processing them with `qm_summarize()`
 * Add second approach to producing counts using `qm_summarize()` that returns counts of participants rather than counts of clusters associated with each feature
 * Remove the inclusion of the `COUNT` from what is returned with `qm_create()`
-* Ensure compatability with the `dplyr` v1.0 release:
+* Ensure compatibility with the `dplyr` v1.0 release:
   * `qm_create()` no longer adds a custom class
   * instead, `qm_is_cluster()` can be used to check for the appropriate characteristics of objects, but no longer checks the class itself
 

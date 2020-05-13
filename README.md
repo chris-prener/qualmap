@@ -1,6 +1,7 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-qualmap <img src="man/figures/qualmapLogo.png" align="right" />
-===============================================================
+
+# qualmap <img src="man/figures/qualmapLogo.png" align="right" />
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis-CI Build
@@ -23,27 +24,24 @@ contains some type of polygon features. For each area identified on the
 map, the id numbers of these polygons can be entered as vectors and
 transformed using `qualmap`.
 
-What is New in v0.2?
---------------------
+## What is New in v0.2?
 
-`qualmap` is under construction right now as a new release is prepared.
-Among the changes:
+Version v0.2 brings a number of changes:
 
--   Add `qm_verify()` as a means for verifying data data previously
+  - Add `qm_verify()` as a means for verifying data data previously
     saved to disk prior to processing them with `qm_summarize()`
--   Add second approach to producing counts using `qm_summarize()` that
+  - Add second approach to producing counts using `qm_summarize()` that
     returns counts of participants rather than counts of clusters
     associated with each feature
--   Remove the inclusion of the `COUNT` from what is returned with
+  - Remove the inclusion of the `COUNT` from what is returned with
     `qm_create()`
--   Ensure compatability with the `dplyr` v1.0 release:
-    -   `qm_create()` no longer adds a custom class
-    -   instead, `qm_is_cluster()` can be used to check for the
+  - Ensure compatibility with the `dplyr` v1.0 release:
+      - `qm_create()` no longer adds a custom class
+      - instead, `qm_is_cluster()` can be used to check for the
         appropriate characteristics of objects, but no longer checks the
         class itself
 
-Motivation and Approach
------------------------
+## Motivation and Approach
 
 Qualitative GIS outputs are notoriously difficult to work with because
 individuals’ conceptions of space can vary greatly from each other and
@@ -79,8 +77,7 @@ Framework](https://osf.io/pxzuc/), and the code are available via [Open
 Science Framework](https://osf.io/pxzuc/) and
 [GitHub](http://github.com/PrenerLab/sketch_mapping/).
 
-Installation
-------------
+## Installation
 
 ### Installing Dependencies
 
@@ -109,8 +106,7 @@ package:
 remotes::install_github("slu-openGIS/qualmap")
 ```
 
-Usage
------
+## Usage
 
 `qualmap` implements six primary verbs for working with mental map data:
 
@@ -132,8 +128,7 @@ The [primary
 vignette](https://slu-openGIS.github.io/qualmap/articles/qualmap.html)
 contains an overview of the workflow for implementing these functions.
 
-Contributor Code of Conduct
----------------------------
+## Contributor Code of Conduct
 
 Please note that this project is released with a [Contributor Code of
 Conduct](https://slu-opengis.github.io/qualmap/CODE_OF_CONDUCT.html). By
