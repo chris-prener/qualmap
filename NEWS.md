@@ -1,6 +1,6 @@
 # qualmap 0.2.1
 
-* Change the minimum required version of `R` to v3.4
+* Change the minimum required version of `R` to v3.5
 * Minor documentation updates
 
 # qualmap 0.2.0
