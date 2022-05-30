@@ -1,3 +1,8 @@
+# qualmap 0.2.1
+
+* Change the minimum required version of `R` to v3.4
+* Minor documentation updates
+
 # qualmap 0.2.0
 
 * Add `qm_verify()` as a means for verifying data data previously saved to disk prior to processing them with `qm_summarize()`
