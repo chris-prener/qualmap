@@ -1,10 +1,8 @@
 
 # qualmap <img src="man/figures/qualmapLogo.png" align="right" />
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Travis-CI Build Status](https://travis-ci.com/slu-openGIS/qualmap.svg?branch=master)](https://travis-ci.com/slu-openGIS/qualmap)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/qualmap?branch=master&svg=true)](https://ci.appveyor.com/project/chris-prener/qualmap)
-[![Coverage Status](https://img.shields.io/codecov/c/github/slu-openGIS/qualmap/master.svg)](https://codecov.io/github/slu-openGIS/qualmap?branch=master)
+[![R build status](https://github.com/slu-openGIS/qualmap/workflows/R-CMD-check/badge.svg)](https://github.com/slu-openGIS/qualmap/actions)
+[![Coverage Status](https://img.shields.io/codecov/c/github/slu-openGIS/qualmap/master.svg)](https://codecov.io/github/slu-openGIS/qualmap?branch=main)
 [![CRAN_status_badge](http://www.r-pkg.org/badges/version/qualmap)](https://cran.r-project.org/package=qualmap)
 [![cran checks](https://cranchecks.info/badges/worst/qualmap)](https://cran.r-project.org/web/checks/check_results_qualmap.html)
 [![Downloads](http://cranlogs.r-pkg.org/badges/qualmap?color=brightgreen)](http://www.r-pkg.org/pkg/qualmap)
