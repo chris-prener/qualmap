@@ -1,23 +1,27 @@
 ## Release summary
-This is the first resubmission of an update to the previous CRAN release. Based on an email this morning from Uwe, a link in the package level help file has been removed that was causing a NOTE. The NOTE no longer appears on winbuilder.
-
-It contains modifications that make it compatible with the upcoming release of `dplyr` v1.0 as well as several bug fixes. It also adds new functionality to several key functions and a new function, `qm_verify()`.
+This version of `qualmap` is a maintenance release, largely to update the contact information for the maintainer and make small changes to documentation. The only other change is that R v3.5 is now the minimum version.
 
 ## Test environments
-* local OS X install: R 4.0.0
-* Linux xenial distribution (on Travis CI): R-release, R-oldrel, R-devel, R-3.5.3, and R-3.4.4
-* macOS (on Travis CI): R-release, R-oldrel, R-3.5.3, and R-3.4.4
-* windows x64 (on Appveyor): R-release, R-patched, R-oldrel, R-3.5.3, and R-3.4.4
-* windows i386 (on Appveyor): R-patched
-* winbuilder, R-release, R-oldrel, R-devel
-
-* r-hub not used because it lacks dependencies needed to build `sf` on Debian
+* local macOS install: R 4.1.2
+* Linux ubuntu distribution (via GitHub Actions): R-devel, R-release, past four R-oldrel (4.1.3, 4.0.5, 3.6.3, 3.5.3)
+* macOS (via GitHub Actions): R-release
+* windows (via GitHub Actions): R-release
+* winbuilder: R-release, R-oldrel, R-devel
 
 ## R CMD check results
-There were no ERRORs, WARNINGs, or NOTEs with local or CI checks except: 
+There were no ERRORs, WARNINGs, or NOTEs with local or CI checks. There is one NOTE on winbuilder:
 
-* R-3.5.3 on macOS (via Travis), which is having an issue installing the `DT` package. Other checks of R-3.5.3 install `DT` without issue on Linux and Windows.
-* R-3.4.4 on Linux and macOS (via Travis), which are trying and failing to install the suggested package, `rgdal`, of a depdency for this package, `sf`
+```r
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Christopher Prener <chris.prener@gmail.com>'
+
+New maintainer:
+  Christopher Prener <chris.prener@gmail.com>
+Old maintainer(s):
+  Christopher Prener <chris.prener@slu.edu>
+```
+
+I am still the maintainer - I have just changed my contact information due to new employment!
 
 ## Reverse dependencies
 Not applicable.
