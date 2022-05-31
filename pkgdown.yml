@@ -3,7 +3,7 @@ pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   qualmap: qualmap.html
-last_built: 2022-05-31T01:17Z
+last_built: 2022-05-31T01:23Z
 urls:
   reference: https://chris-prener.github.io/qualmap/reference
   article: https://chris-prener.github.io/qualmap/articles
