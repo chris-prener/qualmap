@@ -1,0 +1,10 @@
+pandoc: 2.14.2
+pkgdown: 2.0.3
+pkgdown_sha: ~
+articles:
+  qualmap: qualmap.html
+last_built: 2022-05-31T00:56Z
+urls:
+  reference: https://slu-openGIS.github.io/qualmap/reference
+  article: https://slu-openGIS.github.io/qualmap/articles
+
