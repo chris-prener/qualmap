@@ -1,7 +1,7 @@
 Package: qualmap
 Type: Package
 Title: Opinionated Approach for Digitizing Semi-Structured Qualitative GIS Data
-Version: 0.2.1.9000
+Version: 0.2.1
 Authors@R: person("Christopher", "Prener", email = "chris.prener@gmail.com", 
                   role = c("aut", "cre"), comment = c(ORCID = "0000-0002-4310-9888"))
 Description: Provides a set of functions for taking qualitative GIS data, hand drawn on a map, and 
