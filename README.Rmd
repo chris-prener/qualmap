@@ -14,8 +14,8 @@ knitr::opts_chunk$set(
 
 # qualmap <img src="man/figures/qualmapLogo.png" align="right" />
 
-[![R build status](https://github.com/slu-openGIS/qualmap/workflows/R-CMD-check/badge.svg)](https://github.com/slu-openGIS/qualmap/actions)
-[![Coverage Status](https://img.shields.io/codecov/c/github/slu-openGIS/qualmap/master.svg)](https://codecov.io/github/slu-openGIS/qualmap?branch=main)
+[![R build status](https://github.com/chris-prener/qualmap/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/qualmap/actions)
+[![Coverage Status](https://img.shields.io/codecov/c/github/chris-prener/qualmap/master.svg)](https://codecov.io/github/chris-prener/qualmap?branch=main)
 [![CRAN_status_badge](http://www.r-pkg.org/badges/version/qualmap)](https://cran.r-project.org/package=qualmap)
 [![cran checks](https://cranchecks.info/badges/worst/qualmap)](https://cran.r-project.org/web/checks/check_results_qualmap.html)
 [![Downloads](http://cranlogs.r-pkg.org/badges/qualmap?color=brightgreen)](https://www.r-pkg.org:443/pkg/qualmap)
@@ -32,7 +32,7 @@ Qualitative GIS outputs are notoriously difficult to work with because individua
 This approach provides an alternative to either unstructured qualitative GIS data, which are difficult to work with empirically, and to digitizing respondents' annotations as rasters, which require a sophisticated workflow. This semi-structured approach makes integrating qualitative GIS with existing census and administrative data simple and straightforward, which in turn allows these data to be used as measures in spatial statistical models.
 
 ### *Cartographica* Article
-An [article describing `qualmap`'s approach to qualitative GIS](https://www.utpjournals.press/doi/abs/10.3138/cart-2020-0030) has been published in [*Cartographica*](https://www.utpjournals.press/loi/cart). All data associated with the article are also available on [Open Science Framework](https://osf.io/pxzuc/), and the code are available via [Open Science Framework](https://osf.io/pxzuc/) and [GitHub](https://github.com/PrenerLab/sketch_mapping/). Please cite the paper if you use areal in your work!
+An [article describing `qualmap`'s approach to qualitative GIS](https://doi.org/10.3138/cart-2020-0030) has been published in [*Cartographica*](https://www.utpjournals.press/loi/cart). All data associated with the article are also available on [Open Science Framework](https://osf.io/pxzuc/), and the code are available via [Open Science Framework](https://osf.io/pxzuc/) and [GitHub](https://github.com/PrenerLab/sketch_mapping/). Please cite the paper if you use areal in your work!
 
 ## Installation
 The easiest way to get `qualmap` is to install it from CRAN:
@@ -41,11 +41,11 @@ The easiest way to get `qualmap` is to install it from CRAN:
 install.packages("qualmap")
 ```
 
-You can install the development version of `qualmap` from [Github](https://github.com/slu-openGIS/qualmap) with the `remotes` package:
+You can install the development version of `qualmap` from [Github](https://github.com/chris-prener/qualmap) with the `remotes` package:
 
 ```r
 # install.packages("remotes")
-remotes::install_github("slu-openGIS/qualmap")
+remotes::install_github("chris-prener/qualmap")
 ```
 
 Note that installations that require `sf` to be built from *source* will require additional software regardless of operating system. You should check the [`sf` package website](https://r-spatial.github.io/sf/) for the latest details on installing dependencies for that package. Instructions vary significantly by operating system.
@@ -60,7 +60,7 @@ Note that installations that require `sf` to be built from *source* will require
 5. `qm_combine()` - combine multiple cluster objects together into a single tibble data object
 6. `qm_summarize()` - summarize the combined data object based on a single qualitative construct to prepare for mapping
 
-The [primary vignette](https://slu-openGIS.github.io/qualmap/articles/qualmap.html) contains an overview of the workflow for implementing these functions.
+The [primary vignette](https://chris-prener.github.io/qualmap/articles/qualmap.html) contains an overview of the workflow for implementing these functions.
 
 ## Contributor Code of Conduct
-Please note that this project is released with a [Contributor Code of Conduct](https://slu-opengis.github.io/qualmap/CODE_OF_CONDUCT.html). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](https://chris-prener.github.io/qualmap/CODE_OF_CONDUCT.html). By participating in this project you agree to abide by its terms.

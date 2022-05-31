@@ -1,0 +1,14 @@
+citHeader("To cite package qualmap in publications, please use:")
+
+citEntry(entry="Article",
+  author = "Prener, Christopher",
+  title = "{Digitizing and Visualizing Sketch Map Data: A Semi-Structured Approach to Qualitative GIS}",
+  year = 2021,
+  journal = "{Cartographica}",
+  doi = "10.3138/cart-2020-0030",
+  url = "https://doi.org/10.3138/cart-2020-0030",
+  volume = 56,
+  number = 4,
+  pages = 267--283,
+  textVersion = "Prener, C. Digitizing and Visualizing Sketch Map Data: A Semi-Structured Approach to Qualitative GIS. Cartographica 56(4), 267-283. https://doi.org/10.3138/cart-2020-0030"
+)

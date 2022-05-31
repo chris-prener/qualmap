@@ -3,17 +3,14 @@
 
 # qualmap <img src="man/figures/qualmapLogo.png" align="right" />
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Travis-CI Build
-Status](https://travis-ci.com/slu-openGIS/qualmap.svg?branch=master)](https://travis-ci.com/slu-openGIS/qualmap)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/qualmap?branch=master&svg=true)](https://ci.appveyor.com/project/chris-prener/qualmap)
+[![R build
+status](https://github.com/chris-prener/qualmap/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/qualmap/actions)
 [![Coverage
-Status](https://img.shields.io/codecov/c/github/slu-openGIS/qualmap/master.svg)](https://codecov.io/github/slu-openGIS/qualmap?branch=master)
-[![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/qualmap)](https://cran.r-project.org/package=qualmap)
+Status](https://img.shields.io/codecov/c/github/chris-prener/qualmap/master.svg)](https://codecov.io/github/chris-prener/qualmap?branch=main)
+[![CRAN_status_badge](http://www.r-pkg.org/badges/version/qualmap)](https://cran.r-project.org/package=qualmap)
 [![cran
 checks](https://cranchecks.info/badges/worst/qualmap)](https://cran.r-project.org/web/checks/check_results_qualmap.html)
-[![Downloads](http://cranlogs.r-pkg.org/badges/qualmap?color=brightgreen)](http://www.r-pkg.org/pkg/qualmap)
+[![Downloads](http://cranlogs.r-pkg.org/badges/qualmap?color=brightgreen)](https://www.r-pkg.org:443/pkg/qualmap)
 [![DOI](https://zenodo.org/badge/122496910.svg)](https://zenodo.org/badge/latestdoi/122496910)
 
 The goal of `qualmap` is to make it easy to enter data from qualitative
@@ -23,23 +20,6 @@ object. These tools are focused on data that are drawn on a map that
 contains some type of polygon features. For each area identified on the
 map, the id numbers of these polygons can be entered as vectors and
 transformed using `qualmap`.
-
-## What is New in v0.2?
-
-Version v0.2 brings a number of changes:
-
-  - Add `qm_verify()` as a means for verifying data data previously
-    saved to disk prior to processing them with `qm_summarize()`
-  - Add second approach to producing counts using `qm_summarize()` that
-    returns counts of participants rather than counts of clusters
-    associated with each feature
-  - Remove the inclusion of the `COUNT` from what is returned with
-    `qm_create()`
-  - Ensure compatibility with the `dplyr` v1.0 release:
-      - `qm_create()` no longer adds a custom class
-      - instead, `qm_is_cluster()` can be used to check for the
-        appropriate characteristics of objects, but no longer checks the
-        class itself
 
 ## Motivation and Approach
 
@@ -69,27 +49,18 @@ qualitative GIS with existing census and administrative data simple and
 straightforward, which in turn allows these data to be used as measures
 in spatial statistical models.
 
-More details on the package and how it fits into the broader ecosystem
-of qualitative GIS are available in a [pre-print on
-SocArXiv](https://osf.io/preprints/socarxiv/p9qn5/). All data associated
-with the pre-print are also available on [Open Science
+### *Cartographica* Article
+
+An [article describing `qualmap`’s approach to qualitative
+GIS](https://doi.org/10.3138/cart-2020-0030) has been published in
+[*Cartographica*](https://www.utpjournals.press/loi/cart). All data
+associated with the article are also available on [Open Science
 Framework](https://osf.io/pxzuc/), and the code are available via [Open
 Science Framework](https://osf.io/pxzuc/) and
-[GitHub](http://github.com/PrenerLab/sketch_mapping/).
+[GitHub](https://github.com/PrenerLab/sketch_mapping/). Please cite the
+paper if you use areal in your work!
 
 ## Installation
-
-### Installing Dependencies
-
-You should check the [`sf` package
-website](https://r-spatial.github.io/sf/) for the latest details on
-installing dependencies for that package. Instructions vary
-significantly by operating system. For best results, have `sf` installed
-before you install `qualmap`. Other dependencies, like `dplyr` and
-`leaflet`, will be installed automatically with `qualmap` if they are
-not already present.
-
-### Installing qualmap
 
 The easiest way to get `qualmap` is to install it from CRAN:
 
@@ -98,13 +69,19 @@ install.packages("qualmap")
 ```
 
 You can install the development version of `qualmap` from
-[Github](https://github.com/slu-openGIS/qualmap) with the `remotes`
+[Github](https://github.com/chris-prener/qualmap) with the `remotes`
 package:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("slu-openGIS/qualmap")
+remotes::install_github("chris-prener/qualmap")
 ```
+
+Note that installations that require `sf` to be built from *source* will
+require additional software regardless of operating system. You should
+check the [`sf` package website](https://r-spatial.github.io/sf/) for
+the latest details on installing dependencies for that package.
+Instructions vary significantly by operating system.
 
 ## Usage
 
@@ -125,11 +102,11 @@ remotes::install_github("slu-openGIS/qualmap")
     single qualitative construct to prepare for mapping
 
 The [primary
-vignette](https://slu-openGIS.github.io/qualmap/articles/qualmap.html)
+vignette](https://chris-prener.github.io/qualmap/articles/qualmap.html)
 contains an overview of the workflow for implementing these functions.
 
 ## Contributor Code of Conduct
 
 Please note that this project is released with a [Contributor Code of
-Conduct](https://slu-opengis.github.io/qualmap/CODE_OF_CONDUCT.html). By
-participating in this project you agree to abide by its terms.
+Conduct](https://chris-prener.github.io/qualmap/CODE_OF_CONDUCT.html).
+By participating in this project you agree to abide by its terms.
