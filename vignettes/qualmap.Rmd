@@ -20,21 +20,34 @@ knitr::opts_chunk$set(
 
 This package implements a process for converting qualitative GIS data from an exercise where respondents are asked to identify salient locations on a map. This article focuses primarily on the use of the software to digitize these data. 
 
-## Getting Started with `R`
-If you are new to `R`, welcome! You will need to [download `R`](https://www.r-project.org). You are also strongly encouraged to download and use [RStudio](https://www.rstudio.com/products/rstudio/download/#download). macOS users should also [download and install XQuartz](https://www.xquartz.org).
+## Motivation and Approach
 
-### Dependencies
+Qualitative GIS outputs are notoriously difficult to work with because individuals' conceptions of space can vary greatly from each other and from the realities of physical geography themselves. `qualmap` builds on a semi-structured approach to qualitative GIS data collection. Respondents use a specially designed basemap that allows them free reign to identify geographic features of interest and makes it easy to convert their annotations into digital map features. This is facilitated by including on the basemap a series of polygons, such as neighborhood boundaries or census geography, along with an identification number that can be used by `qualmap`. A circle drawn on the map can therefore be easily associated with the features that it touches or contains.
 
-You should check the [`sf` package website](https://r-spatial.github.io/sf/) for the latest details on installing dependencies for that package. Instructions vary significantly by operating system. For best results, have `sf` installed before you install `qualmap`. Other dependencies, like `dplyr` and `leaflet`, will be installed automatically with `qualmap` if they are not already present.
+`qualmap` provides a suite of functions for entering, validating, and creating `sf` objects based on these hand drawn clusters and their associated identification numbers. Once the clusters have been created, they can be summarized and analyzed either within R or using another tool.
+
+This approach provides an alternative to either unstructured qualitative GIS data, which are difficult to work with empirically, and to digitizing respondents' annotations as rasters, which require a sophisticated workflow. This semi-structured approach makes integrating qualitative GIS with existing census and administrative data simple and straightforward, which in turn allows these data to be used as measures in spatial statistical models.
+
+More details on the package and how it fits into the broader ecosystem of qualitative GIS are available in a [pre-print on SocArXiv](https://osf.io/preprints/socarxiv/p9qn5/). All data associated with the pre-print are also available on [Open Science Framework](https://osf.io/pxzuc/), and the code are available via [Open Science Framework](https://osf.io/pxzuc/) and [GitHub](http://github.com/PrenerLab/sketch_mapping/).
+
+### *Cartographica* Article
+An [article describing `qualmap`'s approach to qualitative GIS](https://www.utpjournals.press/doi/abs/10.3138/cart-2020-0030) has been published in [*Cartographica*](https://www.utpjournals.press/loi/cart). All data associated with the article are also available on [Open Science Framework](https://osf.io/pxzuc/), and the code are available via [Open Science Framework](https://osf.io/pxzuc/) and [GitHub](https://github.com/PrenerLab/sketch_mapping/). Please cite the paper if you use areal in your work!
 
 ## Installation
+The easiest way to get `qualmap` is to install it from CRAN:
 
-Once you have those installed, you can install `qualmap` using the `remotes` package:
+``` r
+install.packages("qualmap")
+```
 
-```{r, eval = FALSE}
+You can install the development version of `qualmap` from [Github](https://github.com/slu-openGIS/qualmap) with the `remotes` package:
+
+```r
 # install.packages("remotes")
 remotes::install_github("slu-openGIS/qualmap")
 ```
+
+Note that installations that require `sf` to be built from *source* will require additional software regardless of operating system. You should check the [`sf` package website](https://r-spatial.github.io/sf/) for the latest details on installing dependencies for that package. Instructions vary significantly by operating system.
 
 ## Basics 
 `qualmap` is built around a number of fundamental principles. The primary data objects created by `qm_combine()` are *long* data rather than *wide*. This is done to facilitate easy, consistent data management. The package also implements simple features objects using the `sf` package. This provides a modern interface for working with spatial data in `R`.
@@ -181,3 +194,9 @@ ggplot() +
 ![](exampleMap.png)
 
 Since `qualmap` output are `sf` objects, they will work with any of the spatial packages that also support `sf`.
+
+## Getting Help
+* If you are new to `R` itself, welcome! Hadley Wickham's [*R for Data Science*](https://r4ds.had.co.nz) is an excellent way to get started with data manipulation in the tidyverse, which `areal` is designed to integrate seamlessly with.
+* If you are new to spatial analysis in `R`, we strongly encourage you check out the excellent new [*Geocomputation in R*](https://geocompr.robinlovelace.net) by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.
+* If you have questions about using `areal`, you are encouraged to use the [RStudio Community forums](https://community.rstudio.com). Please create a [`reprex`](https://reprex.tidyverse.org/) before posting. Feel free to tag Chris (`@chris.prener`) in any posts about `areal`.
+* If you think you've found a bug, please create a [`reprex`](https://reprex.tidyverse.org/) and then open an issue on [GitHub](https://github.com/chris-prener/qualmap/issues/new/choose).

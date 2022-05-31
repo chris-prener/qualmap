@@ -10,28 +10,8 @@
 
 The goal of `qualmap` is to make it easy to enter data from qualitative maps. `qualmap` provides a set of functions for taking qualitative GIS data, hand drawn on a map, and converting it to a simple features object. These tools are focused on data that are drawn on a map that contains some type of polygon features. For each area identified on the map, the id numbers of these polygons can be entered as vectors and transformed using `qualmap`.
 
-## What is New in v0.2?
-Version v0.2 brings a number of changes:
-
-* Add `qm_verify()` as a means for verifying data data previously saved to disk prior to processing them with `qm_summarize()`
-* Add second approach to producing counts using `qm_summarize()` that returns counts of participants rather than counts of clusters associated with each feature
-* Remove the inclusion of the `COUNT` from what is returned with `qm_create()`
-* Ensure compatibility with the `dplyr` v1.0 release:
-  * `qm_create()` no longer adds a custom class
-  * instead, `qm_is_cluster()` can be used to check for the appropriate characteristics of objects, but no longer checks the class itself
-
-## Motivation and Approach
-
-Qualitative GIS outputs are notoriously difficult to work with because individuals' conceptions of space can vary greatly from each other and from the realities of physical geography themselves. `qualmap` builds on a semi-structured approach to qualitative GIS data collection. Respondents use a specially designed basemap that allows them free reign to identify geographic features of interest and makes it easy to convert their annotations into digital map features. This is facilitated by including on the basemap a series of polygons, such as neighborhood boundaries or census geography, along with an identification number that can be used by `qualmap`. A circle drawn on the map can therefore be easily associated with the features that it touches or contains.
-
-`qualmap` provides a suite of functions for entering, validating, and creating `sf` objects based on these hand drawn clusters and their associated identification numbers. Once the clusters have been created, they can be summarized and analyzed either within R or using another tool.
-
-This approach provides an alternative to either unstructured qualitative GIS data, which are difficult to work with empirically, and to digitizing respondents' annotations as rasters, which require a sophisticated workflow. This semi-structured approach makes integrating qualitative GIS with existing census and administrative data simple and straightforward, which in turn allows these data to be used as measures in spatial statistical models.
-
-More details on the package and how it fits into the broader ecosystem of qualitative GIS are available in a [pre-print on SocArXiv](https://osf.io/preprints/socarxiv/p9qn5/). All data associated with the pre-print are also available on [Open Science Framework](https://osf.io/pxzuc/), and the code are available via [Open Science Framework](https://osf.io/pxzuc/) and [GitHub](http://github.com/PrenerLab/sketch_mapping/).
-
 ## Quick Start
-If the `sf` package is already installed, the easiest way to get `qualmap` is to install it from CRAN:
+The easiest way to get `qualmap` is to install it from CRAN:
 
 ``` r
 install.packages("qualmap")
