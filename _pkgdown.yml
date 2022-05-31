@@ -25,5 +25,5 @@ reference:
     - stLouis
   - title: "internal"
     contents:
-    - qualmap-package
+    - qualmap
 
