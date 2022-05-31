@@ -45,6 +45,10 @@ There are six key verbs introduced in \code{qualmap}:
     \item{\emph{summarize}: summarize the combined data object based on a single qualitative
     construct to prepare for mapping}
 }
+
+If you use \code{qualmap} in your work, please cite the package using the
+article that discusses this work in Cartographica. See \code{citation("qualmap")}
+for details.
 }
 \section{Tidy Evaluation}{
 
@@ -55,10 +59,9 @@ There are six key verbs introduced in \code{qualmap}:
 \seealso{
 Useful links:
 \itemize{
-  \item{\href{https://slu-openGIS.github.io/qualmap/}{Package Website and Documentation}}
-  \item{\href{https://github.com/slu-openGIS/qualmap}{Source Code on GitHub}}
-  \item{\href{https://github.com/slu-openGIS/qualmap/issues}{Bug Reports and Feature Requests}}
-  \item{\href{https://slu-openGIS.github.io/}{Chris Prener's Open GIS Project at Saint Louis University}}
+  \item{\href{https://chris-prener.github.io/qualmap/}{Package Website and Documentation}}
+  \item{\href{https://github.com/chris-prener/qualmap}{Source Code on GitHub}}
+  \item{\href{https://github.com/chris-prener/qualmap/issues}{Bug Reports and Feature Requests}}
 }
 }
 \author{

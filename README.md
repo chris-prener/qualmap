@@ -7,10 +7,10 @@
 status](https://github.com/chris-prener/qualmap/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/qualmap/actions)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/chris-prener/qualmap/master.svg)](https://codecov.io/github/chris-prener/qualmap?branch=main)
-[![CRAN_status_badge](http://www.r-pkg.org/badges/version/qualmap)](https://cran.r-project.org/package=qualmap)
+[![CRAN_status_badge](https://www.r-pkg.org/badges/version/qualmap)](https://cran.r-project.org/package=qualmap)
 [![cran
 checks](https://cranchecks.info/badges/worst/qualmap)](https://cran.r-project.org/web/checks/check_results_qualmap.html)
-[![Downloads](http://cranlogs.r-pkg.org/badges/qualmap?color=brightgreen)](https://www.r-pkg.org:443/pkg/qualmap)
+[![Downloads](https://cranlogs.r-pkg.org/badges/qualmap?color=brightgreen)](https://www.r-pkg.org:443/pkg/qualmap)
 [![DOI](https://zenodo.org/badge/122496910.svg)](https://zenodo.org/badge/latestdoi/122496910)
 
 The goal of `qualmap` is to make it easy to enter data from qualitative
