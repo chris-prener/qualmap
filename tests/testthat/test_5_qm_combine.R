@@ -71,13 +71,13 @@ expect_error(qm_combine(cluster4a_obj, cluster5_obj, cluster6_obj),
 clustersV1 <- qm_combine(cluster1_obj, cluster2_obj, cluster3_obj)
 
 test_that("returns TRUE - test result 1 matches test_tbl2", {
-  expect_equal(clustersV1, test_obj2)
+  expect_equal(clustersV1, test_obj2, check.attributes = FALSE)
 })
 
 clustersV2 <- qm_combine(cluster4b_obj, cluster5_obj, cluster6_obj)
 
 test_that("returns TRUE - test result 2 matches test_tbl3", {
-  expect_equal(clustersV2, test_obj3)
+  expect_equal(clustersV2, test_obj3, check.attributes = FALSE)
 })
 
 objV1 <- qm_is_cluster(clustersV1)

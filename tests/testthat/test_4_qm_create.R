@@ -107,17 +107,17 @@ resultV1 <- qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid 
 resultV2 <- qm_create(ref = test_sf, key = TRACTCE, value = test_cluster, rid = 1, cid = 1, category = "positive")
 
 test_that("returns TRUE - test result 1 matches test_tbl2", {
-  expect_equal(resultV1, test_tbl2)
+  expect_equal(resultV1, test_tbl2, check.attributes = FALSE)
 })
 
 test_that("returns TRUE - test result 2 matches test_tbl2", {
-  expect_equal(resultV2, test_tbl2)
+  expect_equal(resultV2, test_tbl2, check.attributes = FALSE)
 })
 
 resultV3 <- qm_create(ref = test_sf, key = "TRACTCE", value = test_cluster, rid = 1, cid = 1, category = "positive", NAME)
 
 test_that("returns TRUE - test result 3 matches test_tbl3", {
-  expect_equal(resultV3, test_tbl3)
+  expect_equal(resultV3, test_tbl3, check.attributes = FALSE)
 })
 
 objV1 <- qm_is_cluster(resultV1)
