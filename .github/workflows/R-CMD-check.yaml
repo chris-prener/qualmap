@@ -60,7 +60,6 @@ jobs:
       - name: Install macOS specific dependencies for sf
         if: runner.os == 'macOS'
         run: |
-          sudo rm /usr/local/bin/gfortran
           brew install udunits gdal proj
 
       - name: Install Linux specific dependencies for sf
