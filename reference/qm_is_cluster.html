@@ -60,19 +60,24 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">qm_is_cluster</span><span class="op">(</span><span class="va">obj</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">qm_is_cluster</span><span class="op">(</span><span class="va">obj</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>obj</dt>
 <dd><p>Object to test</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>A logical scalar; if <code>TRUE</code>, a tibble with test results is returned</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A logical scalar that is <code>TRUE</code> if the given object contains the approprite
+    
+
+<p>A logical scalar that is <code>TRUE</code> if the given object contains the approprite
   characteristics; if it does not, <code>FALSE</code> is returned.</p>
     </div>
     <div id="see-also">
@@ -82,22 +87,22 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># load and format reference data</span></span>
-<span class="r-in"><span class="va">stl</span> <span class="op">&lt;-</span> <span class="va">stLouis</span></span>
-<span class="r-in"><span class="va">stl</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">stl</span>, TRACTCE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">TRACTCE</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># create cluster</span></span>
-<span class="r-in"><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">119300</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># create simple cluster object</span></span>
-<span class="r-in"><span class="va">cluster_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_create.html">qm_create</a></span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster</span>,</span>
-<span class="r-in">    rid <span class="op">=</span> <span class="fl">1</span>, cid <span class="op">=</span> <span class="fl">1</span>, category <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># load and format reference data</span></span></span>
+<span class="r-in"><span><span class="va">stl</span> <span class="op">&lt;-</span> <span class="va">stLouis</span></span></span>
+<span class="r-in"><span><span class="va">stl</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">stl</span>, TRACTCE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">TRACTCE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create cluster</span></span></span>
+<span class="r-in"><span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">119300</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create simple cluster object</span></span></span>
+<span class="r-in"><span><span class="va">cluster_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_create.html">qm_create</a></span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster</span>,</span></span>
+<span class="r-in"><span>    rid <span class="op">=</span> <span class="fl">1</span>, cid <span class="op">=</span> <span class="fl">1</span>, category <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> old-style crs object detected; please recreate object with a recent sf::st_crs()</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># test cluster object</span></span>
-<span class="r-in"><span class="fu">qm_is_cluster</span><span class="op">(</span><span class="va">cluster_obj</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># test cluster object</span></span></span>
+<span class="r-in"><span><span class="fu">qm_is_cluster</span><span class="op">(</span><span class="va">cluster_obj</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"><span class="fu">qm_is_cluster</span><span class="op">(</span><span class="va">cluster_obj</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">qm_is_cluster</span><span class="op">(</span><span class="va">cluster_obj</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   test                        result</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> </span>
@@ -105,7 +110,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Contains RID variable       TRUE  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Contains CID variable       TRUE  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Contains CAT variable       TRUE  </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -120,7 +125,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

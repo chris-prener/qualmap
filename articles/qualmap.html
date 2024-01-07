@@ -69,10 +69,12 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Digitizing Qualitative GIS Data with qualmap</h1>
-                        <h4 data-toc-skip class="author">Christopher Prener</h4>
+      <h1 data-toc-skip>Digitizing Qualitative GIS Data with
+qualmap</h1>
+                        <h4 data-toc-skip class="author">Christopher
+Prener</h4>
             
-            <h4 data-toc-skip class="date">2022-05-31</h4>
+            <h4 data-toc-skip class="date">2024-01-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/chris-prener/qualmap/blob/HEAD/vignettes/qualmap.Rmd" class="external-link"><code>vignettes/qualmap.Rmd</code></a></small>
       <div class="hidden name"><code>qualmap.Rmd</code></div>
@@ -84,72 +86,142 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>This package implements a process for converting qualitative GIS data from an exercise where respondents are asked to identify salient locations on a map. This article focuses primarily on the use of the software to digitize these data.</p>
+<p>This package implements a process for converting qualitative GIS data
+from an exercise where respondents are asked to identify salient
+locations on a map. This article focuses primarily on the use of the
+software to digitize these data.</p>
 </div>
 <div class="section level2">
 <h2 id="motivation-and-approach">Motivation and Approach<a class="anchor" aria-label="anchor" href="#motivation-and-approach"></a>
 </h2>
-<p>Qualitative GIS outputs are notoriously difficult to work with because individuals’ conceptions of space can vary greatly from each other and from the realities of physical geography themselves. <code>qualmap</code> builds on a semi-structured approach to qualitative GIS data collection. Respondents use a specially designed basemap that allows them free reign to identify geographic features of interest and makes it easy to convert their annotations into digital map features. This is facilitated by including on the basemap a series of polygons, such as neighborhood boundaries or census geography, along with an identification number that can be used by <code>qualmap</code>. A circle drawn on the map can therefore be easily associated with the features that it touches or contains.</p>
-<p><code>qualmap</code> provides a suite of functions for entering, validating, and creating <code>sf</code> objects based on these hand drawn clusters and their associated identification numbers. Once the clusters have been created, they can be summarized and analyzed either within R or using another tool.</p>
-<p>This approach provides an alternative to either unstructured qualitative GIS data, which are difficult to work with empirically, and to digitizing respondents’ annotations as rasters, which require a sophisticated workflow. This semi-structured approach makes integrating qualitative GIS with existing census and administrative data simple and straightforward, which in turn allows these data to be used as measures in spatial statistical models.</p>
-<p>More details on the package and how it fits into the broader ecosystem of qualitative GIS are available in a <a href="https://osf.io/preprints/socarxiv/p9qn5/" class="external-link">pre-print on SocArXiv</a>. All data associated with the pre-print are also available on <a href="https://osf.io/pxzuc/" class="external-link">Open Science Framework</a>, and the code are available via <a href="https://osf.io/pxzuc/" class="external-link">Open Science Framework</a> and <a href="https://github.com/PrenerLab/sketch_mapping/" class="external-link">GitHub</a>.</p>
+<p>Qualitative GIS outputs are notoriously difficult to work with
+because individuals’ conceptions of space can vary greatly from each
+other and from the realities of physical geography themselves.
+<code>qualmap</code> builds on a semi-structured approach to qualitative
+GIS data collection. Respondents use a specially designed basemap that
+allows them free reign to identify geographic features of interest and
+makes it easy to convert their annotations into digital map features.
+This is facilitated by including on the basemap a series of polygons,
+such as neighborhood boundaries or census geography, along with an
+identification number that can be used by <code>qualmap</code>. A circle
+drawn on the map can therefore be easily associated with the features
+that it touches or contains.</p>
+<p><code>qualmap</code> provides a suite of functions for entering,
+validating, and creating <code>sf</code> objects based on these hand
+drawn clusters and their associated identification numbers. Once the
+clusters have been created, they can be summarized and analyzed either
+within R or using another tool.</p>
+<p>This approach provides an alternative to either unstructured
+qualitative GIS data, which are difficult to work with empirically, and
+to digitizing respondents’ annotations as rasters, which require a
+sophisticated workflow. This semi-structured approach makes integrating
+qualitative GIS with existing census and administrative data simple and
+straightforward, which in turn allows these data to be used as measures
+in spatial statistical models.</p>
+<p>More details on the package and how it fits into the broader
+ecosystem of qualitative GIS are available in a <a href="https://osf.io/preprints/socarxiv/p9qn5/" class="external-link">pre-print on
+SocArXiv</a>. All data associated with the pre-print are also available
+on <a href="https://osf.io/pxzuc/" class="external-link">Open Science Framework</a>, and the
+code are available via <a href="https://osf.io/pxzuc/" class="external-link">Open Science
+Framework</a> and <a href="https://github.com/PrenerLab/sketch_mapping/" class="external-link">GitHub</a>.</p>
 <div class="section level3">
 <h3 id="cartographica-article">
 <em>Cartographica</em> Article<a class="anchor" aria-label="anchor" href="#cartographica-article"></a>
 </h3>
-<p>An <a href="https://doi.org/10.3138/cart-2020-0030" class="external-link">article describing <code>qualmap</code>’s approach to qualitative GIS</a> has been published in <a href="https://www.utpjournals.press/loi/cart" class="external-link"><em>Cartographica</em></a>. All data associated with the article are also available on <a href="https://osf.io/pxzuc/" class="external-link">Open Science Framework</a>, and the code are available via <a href="https://osf.io/pxzuc/" class="external-link">Open Science Framework</a> and <a href="https://github.com/PrenerLab/sketch_mapping/" class="external-link">GitHub</a>. Please cite the paper if you use areal in your work!</p>
+<p>An <a href="https://doi.org/10.3138/cart-2020-0030" class="external-link">article
+describing <code>qualmap</code>’s approach to qualitative GIS</a> has
+been published in <a href="https://www.utpjournals.press/loi/cart" class="external-link"><em>Cartographica</em></a>.
+All data associated with the article are also available on <a href="https://osf.io/pxzuc/" class="external-link">Open Science Framework</a>, and the code
+are available via <a href="https://osf.io/pxzuc/" class="external-link">Open Science
+Framework</a> and <a href="https://github.com/PrenerLab/sketch_mapping/" class="external-link">GitHub</a>. Please
+cite the paper if you use areal in your work!</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The easiest way to get <code>qualmap</code> is to install it from CRAN:</p>
+<p>The easiest way to get <code>qualmap</code> is to install it from
+CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"qualmap"</span><span class="op">)</span></code></pre></div>
-<p>You can install the development version of <code>qualmap</code> from <a href="https://github.com/chris-prener/qualmap" class="external-link">Github</a> with the <code>remotes</code> package:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"qualmap"</span><span class="op">)</span></span></code></pre></div>
+<p>You can install the development version of <code>qualmap</code> from
+<a href="https://github.com/chris-prener/qualmap" class="external-link">Github</a> with the
+<code>remotes</code> package:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"chris-prener/qualmap"</span><span class="op">)</span></code></pre></div>
-<p>Note that installations that require <code>sf</code> to be built from <em>source</em> will require additional software regardless of operating system. You should check the <a href="https://r-spatial.github.io/sf/" class="external-link"><code>sf</code> package website</a> for the latest details on installing dependencies for that package. Instructions vary significantly by operating system.</p>
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"chris-prener/qualmap"</span><span class="op">)</span></span></code></pre></div>
+<p>Note that installations that require <code>sf</code> to be built from
+<em>source</em> will require additional software regardless of operating
+system. You should check the <a href="https://r-spatial.github.io/sf/" class="external-link"><code>sf</code> package
+website</a> for the latest details on installing dependencies for that
+package. Instructions vary significantly by operating system.</p>
 </div>
 <div class="section level2">
 <h2 id="basics">Basics<a class="anchor" aria-label="anchor" href="#basics"></a>
 </h2>
-<p><code>qualmap</code> is built around a number of fundamental principles. The primary data objects created by <code><a href="../reference/qm_combine.html">qm_combine()</a></code> are <em>long</em> data rather than <em>wide</em>. This is done to facilitate easy, consistent data management. The package also implements simple features objects using the <code>sf</code> package. This provides a modern interface for working with spatial data in <code>R</code>.</p>
+<p><code>qualmap</code> is built around a number of fundamental
+principles. The primary data objects created by
+<code><a href="../reference/qm_combine.html">qm_combine()</a></code> are <em>long</em> data rather than
+<em>wide</em>. This is done to facilitate easy, consistent data
+management. The package also implements simple features objects using
+the <code>sf</code> package. This provides a modern interface for
+working with spatial data in <code>R</code>.</p>
 <div class="section level3">
 <h3 id="core-verbs">Core Verbs<a class="anchor" aria-label="anchor" href="#core-verbs"></a>
 </h3>
-<p><code>qualmap</code> implements six core verbs for working with mental map data:</p>
+<p><code>qualmap</code> implements six core verbs for working with
+mental map data:</p>
 <ol style="list-style-type: decimal">
 <li>
-<code><a href="../reference/qm_define.html">qm_define()</a></code> - create a vector of feature id numbers that constitute a single “cluster”</li>
+<code><a href="../reference/qm_define.html">qm_define()</a></code> - create a vector of feature id numbers
+that constitute a single “cluster”</li>
 <li>
-<code><a href="../reference/qm_validate.html">qm_validate()</a></code> - check feature id numbers against a reference data set to ensure that the values are valid</li>
+<code><a href="../reference/qm_validate.html">qm_validate()</a></code> - check feature id numbers against a
+reference data set to ensure that the values are valid</li>
 <li>
-<code><a href="../reference/qm_preview.html">qm_preview()</a></code> - plot cluster on an interactive map to ensure the feature ids have been entered correctly (the preview should match the map used as a data collection instrument)</li>
+<code><a href="../reference/qm_preview.html">qm_preview()</a></code> - plot cluster on an interactive map to
+ensure the feature ids have been entered correctly (the preview should
+match the map used as a data collection instrument)</li>
 <li>
-<code><a href="../reference/qm_create.html">qm_create()</a></code> - create a single cluster object once the data have been validated and visually inspected</li>
+<code><a href="../reference/qm_create.html">qm_create()</a></code> - create a single cluster object once the
+data have been validated and visually inspected</li>
 <li>
-<code><a href="../reference/qm_combine.html">qm_combine()</a></code> - combine multiple cluster objects together into a single tibble data object</li>
+<code><a href="../reference/qm_combine.html">qm_combine()</a></code> - combine multiple cluster objects
+together into a single tibble data object</li>
 <li>
-<code><a href="../reference/qm_summarize.html">qm_summarize()</a></code> - summarize the combined data object based on a single qualitative construct to prepare for mapping</li>
+<code><a href="../reference/qm_summarize.html">qm_summarize()</a></code> - summarize the combined data object
+based on a single qualitative construct to prepare for mapping</li>
 </ol>
-<p>The order that these functions are listed here is the approximate order in which they should be utilized. Data should be defined, validated and previewed, and then cluster objects should be created, combined, and summarized.</p>
+<p>The order that these functions are listed here is the approximate
+order in which they should be utilized. Data should be defined,
+validated and previewed, and then cluster objects should be created,
+combined, and summarized.</p>
 </div>
 <div class="section level3">
 <h3 id="main-arguments">Main Arguments<a class="anchor" aria-label="anchor" href="#main-arguments"></a>
 </h3>
-<p>All of the main functions except <code><a href="../reference/qm_define.html">qm_define()</a></code> and <code><a href="../reference/qm_combine.html">qm_combine()</a></code> rely on two key arguments:</p>
+<p>All of the main functions except <code><a href="../reference/qm_define.html">qm_define()</a></code> and
+<code><a href="../reference/qm_combine.html">qm_combine()</a></code> rely on two key arguments:</p>
 <ul>
 <li>
-<code>ref</code> - a reference object. This should be an <code>sf</code> object that contains a master list of features that appear in your study. This could a <code>sf</code> object representing all census tracts in a city or county, for example, or a tessellated grid covering the extent of a city.</li>
+<code>ref</code> - a reference object. This should be an
+<code>sf</code> object that contains a master list of features that
+appear in your study. This could a <code>sf</code> object representing
+all census tracts in a city or county, for example, or a tessellated
+grid covering the extent of a city.</li>
 <li>
-<code>key</code> - the name of geographic id variable in the <code>ref</code> object to match input values to. This could be a FIPS code, the <code>GEOID</code> variable in most census data, or the <code>OBJECTID</code> of a tessellated grid. Values entered into <code><a href="../reference/qm_define.html">qm_define()</a></code> should <code>key</code> values.</li>
+<code>key</code> - the name of geographic id variable in the
+<code>ref</code> object to match input values to. This could be a FIPS
+code, the <code>GEOID</code> variable in most census data, or the
+<code>OBJECTID</code> of a tessellated grid. Values entered into
+<code><a href="../reference/qm_define.html">qm_define()</a></code> should <code>key</code> values.</li>
 </ul>
-<p>Additionally, a number of the initial functions have a third essential argument:</p>
+<p>Additionally, a number of the initial functions have a third
+essential argument:</p>
 <ul>
 <li>
-<code>value</code> - the name of the cluster created using <code><a href="../reference/qm_define.html">qm_define()</a></code>
+<code>value</code> - the name of the cluster created using
+<code><a href="../reference/qm_define.html">qm_define()</a></code>
 </li>
 </ul>
 </div>
@@ -157,38 +229,66 @@
 <div class="section level2">
 <h2 id="data-preparation">Data Preparation<a class="anchor" aria-label="anchor" href="#data-preparation"></a>
 </h2>
-<p>To begin, you will need a simple features object containing the polygons you will be matching respondents’ data to. Census geography polygons can be downloaded via <code>tigris</code>, and other polygon shapefiles can be read into <code>R</code> using the <code>sf</code> package.</p>
-<p>Here is an example of preparing data downloaded via <code>tigris</code>:</p>
+<p>To begin, you will need a simple features object containing the
+polygons you will be matching respondents’ data to. Census geography
+polygons can be downloaded via <code>tigris</code>, and other polygon
+shapefiles can be read into <code>R</code> using the <code>sf</code>
+package.</p>
+<p>Here is an example of preparing data downloaded via
+<code>tigris</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>   <span class="co"># data wrangling</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>      <span class="co"># simple features objects</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/walkerke/tigris" class="external-link">tigris</a></span><span class="op">)</span>  <span class="co"># access census tiger/line data</span>
-
-<span class="va">stLouis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tigris/man/tracts.html" class="external-link">tracts</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"MO"</span>, county <span class="op">=</span> <span class="fl">510</span><span class="op">)</span>
-<span class="va">stLouis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">stLouis</span><span class="op">)</span>
-<span class="va">stLouis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">stLouis</span>, TRACTCE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">TRACTCE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>We download the census tract data for St. Louis, which come in <code>sp</code> format, using the <code><a href="https://rdrr.io/pkg/tigris/man/tracts.html" class="external-link">tracts()</a></code> function from <code>tigris</code>. We then use the <code>sf</code> package’s <code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf()</a></code> function to convert these data to a simple features object and convert the <code>TRACTCE</code> variable to numeric format.</p>
-<p>If you want to use your own base data instead, you can use the <code><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read()</a></code> function from <code>sf</code> to bring them into <code>R</code>.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>   <span class="co"># data wrangling</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>      <span class="co"># simple features objects</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/walkerke/tigris" class="external-link">tigris</a></span><span class="op">)</span>  <span class="co"># access census tiger/line data</span></span>
+<span></span>
+<span><span class="va">stLouis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tigris/man/tracts.html" class="external-link">tracts</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"MO"</span>, county <span class="op">=</span> <span class="fl">510</span><span class="op">)</span></span>
+<span><span class="va">stLouis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">stLouis</span><span class="op">)</span></span>
+<span><span class="va">stLouis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">stLouis</span>, TRACTCE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">TRACTCE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>We download the census tract data for St. Louis, which come in
+<code>sp</code> format, using the <code><a href="https://rdrr.io/pkg/tigris/man/tracts.html" class="external-link">tracts()</a></code> function from
+<code>tigris</code>. We then use the <code>sf</code> package’s
+<code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf()</a></code> function to convert these data to a simple
+features object and convert the <code>TRACTCE</code> variable to numeric
+format.</p>
+<p>If you want to use your own base data instead, you can use the
+<code><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read()</a></code> function from <code>sf</code> to bring them into
+<code>R</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="data-entry">Data Entry<a class="anchor" aria-label="anchor" href="#data-entry"></a>
 </h2>
-<p>Once we have a reference data set constructed, we can begin entering the tract numbers that constitute a single circle on the map or “cluster”. We use the <code><a href="../reference/qm_define.html">qm_define()</a></code> function to input these id numbers into a vector:</p>
+<p>Once we have a reference data set constructed, we can begin entering
+the tract numbers that constitute a single circle on the map or
+“cluster”. We use the <code><a href="../reference/qm_define.html">qm_define()</a></code> function to input these
+id numbers into a vector:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cluster1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">119300</span><span class="op">)</span></code></pre></div>
-<p>We can then use the <code><a href="../reference/qm_validate.html">qm_validate()</a></code> function to check each value in the vector and ensure that these values all match the <code>key</code> variable in the reference data:</p>
+<code class="sourceCode R"><span><span class="va">cluster1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">119300</span><span class="op">)</span></span></code></pre></div>
+<p>We can then use the <code><a href="../reference/qm_validate.html">qm_validate()</a></code> function to check each
+value in the vector and ensure that these values all match the
+<code>key</code> variable in the reference data:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">qm_validate</span>(<span class="at">ref =</span> stLouis, <span class="at">key =</span> TRACTCE, <span class="at">value =</span> cluster1)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span></code></pre></div>
-<p>If <code><a href="../reference/qm_validate.html">qm_validate()</a></code> returns a <code>TRUE</code> value, all data are matches. If it returns <code>FALSE</code>, at least one of the input values does not match any of the <code>key</code> variable values. In this case, our <code>key</code> is the <code>TRACTCE</code> variable in the <code>sf</code> object we created earlier.</p>
-<p>Once the data are validated, we can preview them interactively using <code><a href="../reference/qm_preview.html">qm_preview()</a></code>, which will show the features identified in the given vector in red on the map:</p>
+<p>If <code><a href="../reference/qm_validate.html">qm_validate()</a></code> returns a <code>TRUE</code> value, all
+data are matches. If it returns <code>FALSE</code>, at least one of the
+input values does not match any of the <code>key</code> variable values.
+In this case, our <code>key</code> is the <code>TRACTCE</code> variable
+in the <code>sf</code> object we created earlier.</p>
+<p>Once the data are validated, we can preview them interactively using
+<code><a href="../reference/qm_preview.html">qm_preview()</a></code>, which will show the features identified in
+the given vector in red on the map:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/qm_preview.html">qm_preview</a></span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stLouis</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/qm_preview.html">qm_preview</a></span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stLouis</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster1</span><span class="op">)</span></span></code></pre></div>
 <p><img src="previewMap.png"></p>
 </div>
 <div class="section level2">
 <h2 id="create-cluster-object">Create Cluster Object<a class="anchor" aria-label="anchor" href="#create-cluster-object"></a>
 </h2>
-<p>A cluster object is tibble data frame that is “tidy” - each feature in the reference data is a row. Cluster objects also contain metadata about the cluster itself: the respondent’s identification number from the study, a cluster identification number, and a category that describes what the cluster represents. Clusters are created using <code><a href="../reference/qm_create.html">qm_create()</a></code>:</p>
+<p>A cluster object is tibble data frame that is “tidy” - each feature
+in the reference data is a row. Cluster objects also contain metadata
+about the cluster itself: the respondent’s identification number from
+the study, a cluster identification number, and a category that
+describes what the cluster represents. Clusters are created using
+<code><a href="../reference/qm_create.html">qm_create()</a></code>:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> cluster1_obj <span class="ot">&lt;-</span> <span class="fu">qm_create</span>(<span class="at">ref =</span> stLouis, <span class="at">key =</span> TRACTCE, <span class="at">value =</span> cluster1, <span class="at">rid =</span> <span class="dv">1</span>, <span class="at">cid =</span> <span class="dv">1</span>, <span class="at">category =</span> <span class="st">"positive"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> cluster1_obj</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 x 5</span></span>
@@ -201,7 +301,9 @@
 <div class="section level2">
 <h2 id="combine-and-summarize-multiple-clusters">Combine and Summarize Multiple Clusters<a class="anchor" aria-label="anchor" href="#combine-and-summarize-multiple-clusters"></a>
 </h2>
-<p>Once several cluster objects have been created, they can be combined using <code><a href="../reference/qm_combine.html">qm_combine()</a></code> to produce a tidy tibble formatted data object:</p>
+<p>Once several cluster objects have been created, they can be combined
+using <code><a href="../reference/qm_combine.html">qm_combine()</a></code> to produce a tidy tibble formatted data
+object:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> clusters <span class="ot">&lt;-</span> <span class="fu">qm_combine</span>(cluster1_obj, cluster2_obj, cluster3_obj)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> clusters</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 9 x 5</span></span>
@@ -216,7 +318,15 @@
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>     <span class="dv">1</span>     <span class="dv">3</span> negative  <span class="dv">119300</span>  <span class="fl">1.00</span></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>     <span class="dv">1</span>     <span class="dv">3</span> negative  <span class="dv">118600</span>  <span class="fl">1.00</span></span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>     <span class="dv">1</span>     <span class="dv">3</span> negative  <span class="dv">119101</span>  <span class="fl">1.00</span></span></code></pre></div>
-<p>Since the same census tract appears in multiple rows as part of different clusters, we need to summarize these data before we can map them. Part of <code>qualmap</code>’s opinionated approach revolves around clusters representing only one construct. When we summarize, therefore, we also subset our data so that they represent only one phenomenon. In the above example, there are both “positive” and “negative” clusters. We can use <code><a href="../reference/qm_summarize.html">qm_summarize()</a></code> to extract only the “positive” clusters and then summarize them so that we have one row per census tract:</p>
+<p>Since the same census tract appears in multiple rows as part of
+different clusters, we need to summarize these data before we can map
+them. Part of <code>qualmap</code>’s opinionated approach revolves
+around clusters representing only one construct. When we summarize,
+therefore, we also subset our data so that they represent only one
+phenomenon. In the above example, there are both “positive” and
+“negative” clusters. We can use <code><a href="../reference/qm_summarize.html">qm_summarize()</a></code> to extract
+only the “positive” clusters and then summarize them so that we have one
+row per census tract:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> pos <span class="ot">&lt;-</span> <span class="fu">qm_summarize</span>(<span class="at">ref =</span> stLouis, <span class="at">key =</span> TRACTCE, <span class="at">clusters =</span> clusters, </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>    <span class="at">category =</span> <span class="st">"positive"</span>, <span class="at">geometry =</span> <span class="cn">TRUE</span>, <span class="at">use.na =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> pos</span>
@@ -238,30 +348,48 @@
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>       <span class="dv">29</span>      <span class="dv">510</span>  <span class="dv">105500</span> <span class="dv">29510105500</span> <span class="dv">1055</span> Census Tract <span class="dv">1055</span>        <span class="dv">0</span> <span class="fu">POLYGON</span> ((<span class="sc">-</span><span class="fl">90.28601</span> <span class="dv">38</span>.<span class="dv">6589</span>...</span>
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>       <span class="dv">29</span>      <span class="dv">510</span>  <span class="dv">105200</span> <span class="dv">29510105200</span> <span class="dv">1052</span> Census Tract <span class="dv">1052</span>        <span class="dv">0</span> <span class="fu">POLYGON</span> ((<span class="sc">-</span><span class="fl">90.29481</span> <span class="dv">38</span>.<span class="dv">6473</span>...</span>
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>      <span class="dv">29</span>      <span class="dv">510</span>  <span class="dv">105300</span> <span class="dv">29510105300</span> <span class="dv">1053</span> Census Tract <span class="dv">1053</span>        <span class="dv">0</span> <span class="fu">POLYGON</span> ((<span class="sc">-</span><span class="fl">90.29705</span> <span class="dv">38</span>.<span class="dv">6617</span>...</span></code></pre></div>
-<p>The <code><a href="../reference/qm_summarize.html">qm_summarize()</a></code> function has an options to return <code>NA</code> values instead of <code>0</code> values for features not included in any clusters (when <code>use.na = TRUE</code>), and can return a non-<code>sf</code> tibble of valid features instead of the <code>sf</code> object (when <code>geometry = FALSE</code>).</p>
+<p>The <code><a href="../reference/qm_summarize.html">qm_summarize()</a></code> function has an options to return
+<code>NA</code> values instead of <code>0</code> values for features not
+included in any clusters (when <code>use.na = TRUE</code>), and can
+return a non-<code>sf</code> tibble of valid features instead of the
+<code>sf</code> object (when <code>geometry = FALSE</code>).</p>
 </div>
 <div class="section level2">
 <h2 id="mapping-summarized-data">Mapping Summarized Data<a class="anchor" aria-label="anchor" href="#mapping-summarized-data"></a>
 </h2>
-<p>Finally, we can use the <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf()</a></code> geom from <a href="https://github.com/tidyverse/ggplot2" class="external-link"><code>ggplot2</code></a> to map our summarized data, highlighting areas most discussed as being “positive” parts of St. Louis in our hypothetical study:</p>
+<p>Finally, we can use the <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf()</a></code> geom from <a href="https://github.com/tidyverse/ggplot2" class="external-link"><code>ggplot2</code></a> to
+map our summarized data, highlighting areas most discussed as being
+“positive” parts of St. Louis in our hypothetical study:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridis/" class="external-link">viridis</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">qualData</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">positive</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://sjmgarnier.github.io/viridis/reference/scale_viridis.html" class="external-link">scale_fill_viridis</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridis/" class="external-link">viridis</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">qualData</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">positive</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://sjmgarnier.github.io/viridis/reference/scale_viridis.html" class="external-link">scale_fill_viridis</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="exampleMap.png"></p>
-<p>Since <code>qualmap</code> output are <code>sf</code> objects, they will work with any of the spatial packages that also support <code>sf</code>.</p>
+<p>Since <code>qualmap</code> output are <code>sf</code> objects, they
+will work with any of the spatial packages that also support
+<code>sf</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="getting-help">Getting Help<a class="anchor" aria-label="anchor" href="#getting-help"></a>
 </h2>
 <ul>
-<li>If you are new to <code>R</code> itself, welcome! Hadley Wickham’s <a href="https://r4ds.had.co.nz" class="external-link"><em>R for Data Science</em></a> is an excellent way to get started with data manipulation in the tidyverse, which <code>areal</code> is designed to integrate seamlessly with.</li>
-<li>If you are new to spatial analysis in <code>R</code>, we strongly encourage you check out the excellent new <a href="https://geocompr.robinlovelace.net" class="external-link"><em>Geocomputation in R</em></a> by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.</li>
-<li>If you have questions about using <code>areal</code>, you are encouraged to use the <a href="https://community.rstudio.com" class="external-link">RStudio Community forums</a>. Please create a <a href="https://reprex.tidyverse.org/" class="external-link"><code>reprex</code></a> before posting. Feel free to tag Chris (<code>@chris.prener</code>) in any posts about <code>areal</code>.</li>
-<li>If you think you’ve found a bug, please create a <a href="https://reprex.tidyverse.org/" class="external-link"><code>reprex</code></a> and then open an issue on <a href="https://github.com/chris-prener/qualmap/issues/new/choose" class="external-link">GitHub</a>.</li>
+<li>If you are new to <code>R</code> itself, welcome! Hadley Wickham’s
+<a href="https://r4ds.had.co.nz" class="external-link"><em>R for Data Science</em></a> is an
+excellent way to get started with data manipulation in the tidyverse,
+which <code>areal</code> is designed to integrate seamlessly with.</li>
+<li>If you are new to spatial analysis in <code>R</code>, we strongly
+encourage you check out the excellent new <a href="https://geocompr.robinlovelace.net" class="external-link"><em>Geocomputation in
+R</em></a> by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.</li>
+<li>If you have questions about using <code>areal</code>, you are
+encouraged to use the <a href="https://community.rstudio.com" class="external-link">RStudio
+Community forums</a>. Please create a <a href="https://reprex.tidyverse.org/" class="external-link"><code>reprex</code></a> before
+posting. Feel free to tag Chris (<code>@chris.prener</code>) in any
+posts about <code>areal</code>.</li>
+<li>If you think you’ve found a bug, please create a <a href="https://reprex.tidyverse.org/" class="external-link"><code>reprex</code></a> and then
+open an issue on <a href="https://github.com/chris-prener/qualmap/issues/new/choose" class="external-link">GitHub</a>.</li>
 </ul>
 </div>
   </div>
@@ -283,7 +411,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

@@ -60,36 +60,51 @@ identified in a cluster for the give category is also provided.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">qm_summarize</span><span class="op">(</span><span class="va">ref</span>, <span class="va">key</span>, <span class="va">clusters</span>, <span class="va">category</span>, <span class="va">count</span>, geometry <span class="op">=</span> <span class="cn">TRUE</span>, use.na <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">qm_summarize</span><span class="op">(</span><span class="va">ref</span>, <span class="va">key</span>, <span class="va">clusters</span>, <span class="va">category</span>, <span class="va">count</span>, geometry <span class="op">=</span> <span class="cn">TRUE</span>, use.na <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>ref</dt>
 <dd><p>An <code>sf</code> object that serves as a master list of features</p></dd>
+
+
 <dt>key</dt>
 <dd><p>Name of geographic id variable in the <code>ref</code> object to match input values to</p></dd>
+
+
 <dt>clusters</dt>
 <dd><p>A tibble created by <code>qm_combine</code> with two or more clusters worth of data</p></dd>
+
+
 <dt>category</dt>
 <dd><p>Value of the <code>CAT</code> variable to be analyzed</p></dd>
+
+
 <dt>count</dt>
 <dd><p>How should clusters be summarized: by counting each time a feature is included
 in a cluster (<code>"clusters"</code>) or by counting the number of respondents
 (<code>"respondents"</code>) who associated a feature with the given category.</p></dd>
+
+
 <dt>geometry</dt>
 <dd><p>A logical scalar that returns the full geometry and attributes of <code>ref</code>
 when <code>TRUE</code> (default). If <code>FALSE</code>, only the <code>key</code> and count of features is
 returned after validation.</p></dd>
+
+
 <dt>use.na</dt>
 <dd><p>A logical scalar that returns <code>NA</code> values in the count variable if a feature
 is not included in any clusters when <code>TRUE</code>. If <code>FALSE</code> (default), a <code>0</code> value
 is returned in the count variable for each feature that is not included in any clusters. This
 parameter only impacts output if the <code>geometry</code> argument is <code>TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A tibble or a <code>sf</code> object (if geometry = <code>TRUE</code>) that contains a count of the number
+    
+
+<p>A tibble or a <code>sf</code> object (if geometry = <code>TRUE</code>) that contains a count of the number
 of clusters a given feature is included in. The tibble option (when <code>geometry = FALSE</code>) will only
 return valid features. The <code>sf</code> option (default; when <code>geometry = TRUE</code>) will return all
 features with either zeros (when <code>use.na = FALSE</code>) or <code>NA</code> values (when <code>use.na = TRUE</code>)
@@ -102,58 +117,58 @@ for features not included in any clusters.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># load and format reference data</span></span>
-<span class="r-in"><span class="va">stl</span> <span class="op">&lt;-</span> <span class="va">stLouis</span></span>
-<span class="r-in"><span class="va">stl</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">stl</span>, TRACTCE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">TRACTCE</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># create clusters</span></span>
-<span class="r-in"><span class="va">cluster1</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">119300</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">cluster2</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">119300</span>, <span class="fl">121200</span>, <span class="fl">121100</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># create cluster objects</span></span>
-<span class="r-in"><span class="va">cluster_obj1</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_create.html">qm_create</a></span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster1</span>,</span>
-<span class="r-in">    rid <span class="op">=</span> <span class="fl">1</span>, cid <span class="op">=</span> <span class="fl">1</span>, category <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># load and format reference data</span></span></span>
+<span class="r-in"><span><span class="va">stl</span> <span class="op">&lt;-</span> <span class="va">stLouis</span></span></span>
+<span class="r-in"><span><span class="va">stl</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">stl</span>, TRACTCE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">TRACTCE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create clusters</span></span></span>
+<span class="r-in"><span><span class="va">cluster1</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">119300</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cluster2</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">119300</span>, <span class="fl">121200</span>, <span class="fl">121100</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create cluster objects</span></span></span>
+<span class="r-in"><span><span class="va">cluster_obj1</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_create.html">qm_create</a></span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster1</span>,</span></span>
+<span class="r-in"><span>    rid <span class="op">=</span> <span class="fl">1</span>, cid <span class="op">=</span> <span class="fl">1</span>, category <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> old-style crs object detected; please recreate object with a recent sf::st_crs()</span>
-<span class="r-in"><span class="va">cluster_obj2</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_create.html">qm_create</a></span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster2</span>,</span>
-<span class="r-in">    rid <span class="op">=</span> <span class="fl">1</span>, cid <span class="op">=</span> <span class="fl">2</span>, category <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">cluster_obj2</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_create.html">qm_create</a></span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster2</span>,</span></span>
+<span class="r-in"><span>    rid <span class="op">=</span> <span class="fl">1</span>, cid <span class="op">=</span> <span class="fl">2</span>, category <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> old-style crs object detected; please recreate object with a recent sf::st_crs()</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># combine cluster objects</span></span>
-<span class="r-in"><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_combine.html">qm_combine</a></span><span class="op">(</span><span class="va">cluster_obj1</span>, <span class="va">cluster_obj2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># summarize cluster objects</span></span>
-<span class="r-in"><span class="va">positive1</span> <span class="op">&lt;-</span> <span class="fu">qm_summarize</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, clusters <span class="op">=</span> <span class="va">clusters</span>, category <span class="op">=</span> <span class="st">"positive"</span>,</span>
-<span class="r-in">    count <span class="op">=</span> <span class="st">"clusters"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># combine cluster objects</span></span></span>
+<span class="r-in"><span><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_combine.html">qm_combine</a></span><span class="op">(</span><span class="va">cluster_obj1</span>, <span class="va">cluster_obj2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># summarize cluster objects</span></span></span>
+<span class="r-in"><span><span class="va">positive1</span> <span class="op">&lt;-</span> <span class="fu">qm_summarize</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, clusters <span class="op">=</span> <span class="va">clusters</span>, category <span class="op">=</span> <span class="st">"positive"</span>,</span></span>
+<span class="r-in"><span>    count <span class="op">=</span> <span class="st">"clusters"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> old-style crs object detected; please recreate object with a recent sf::st_crs()</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">positive1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">positive1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "sf"         "data.frame"</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">positive1</span><span class="op">$</span><span class="va">positive</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">positive1</span><span class="op">$</span><span class="va">positive</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.05660377</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># summarize cluster objects with NA's instead of 0's</span></span>
-<span class="r-in"><span class="va">positive2</span> <span class="op">&lt;-</span> <span class="fu">qm_summarize</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, clusters <span class="op">=</span> <span class="va">clusters</span>, category <span class="op">=</span> <span class="st">"positive"</span>,</span>
-<span class="r-in">    count <span class="op">=</span> <span class="st">"clusters"</span>, use.na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># summarize cluster objects with NA's instead of 0's</span></span></span>
+<span class="r-in"><span><span class="va">positive2</span> <span class="op">&lt;-</span> <span class="fu">qm_summarize</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, clusters <span class="op">=</span> <span class="va">clusters</span>, category <span class="op">=</span> <span class="st">"positive"</span>,</span></span>
+<span class="r-in"><span>    count <span class="op">=</span> <span class="st">"clusters"</span>, use.na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> old-style crs object detected; please recreate object with a recent sf::st_crs()</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">positive2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">positive2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "sf"         "data.frame"</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">positive2</span><span class="op">$</span><span class="va">positive</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">positive2</span><span class="op">$</span><span class="va">positive</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.2</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># return tibble of valid features only</span></span>
-<span class="r-in"><span class="va">positive3</span> <span class="op">&lt;-</span> <span class="fu">qm_summarize</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, clusters <span class="op">=</span> <span class="va">clusters</span>, category <span class="op">=</span> <span class="st">"positive"</span>,</span>
-<span class="r-in">    count <span class="op">=</span> <span class="st">"clusters"</span>, geometry <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">positive3</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># return tibble of valid features only</span></span></span>
+<span class="r-in"><span><span class="va">positive3</span> <span class="op">&lt;-</span> <span class="fu">qm_summarize</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, clusters <span class="op">=</span> <span class="va">clusters</span>, category <span class="op">=</span> <span class="st">"positive"</span>,</span></span>
+<span class="r-in"><span>    count <span class="op">=</span> <span class="st">"clusters"</span>, geometry <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">positive3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "tbl_df"     "tbl"        "data.frame"</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">positive3</span><span class="op">$</span><span class="va">positive</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">positive3</span><span class="op">$</span><span class="va">positive</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.2</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># count respondents instead of clusters</span></span>
-<span class="r-in"><span class="va">positive4</span> <span class="op">&lt;-</span> <span class="fu">qm_summarize</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, clusters <span class="op">=</span> <span class="va">clusters</span>, category <span class="op">=</span> <span class="st">"positive"</span>,</span>
-<span class="r-in">    count <span class="op">=</span> <span class="st">"respondents"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># count respondents instead of clusters</span></span></span>
+<span class="r-in"><span><span class="va">positive4</span> <span class="op">&lt;-</span> <span class="fu">qm_summarize</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, clusters <span class="op">=</span> <span class="va">clusters</span>, category <span class="op">=</span> <span class="st">"positive"</span>,</span></span>
+<span class="r-in"><span>    count <span class="op">=</span> <span class="st">"respondents"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> old-style crs object detected; please recreate object with a recent sf::st_crs()</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">positive4</span><span class="op">$</span><span class="va">positive</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">positive4</span><span class="op">$</span><span class="va">positive</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.04716981</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -168,7 +183,7 @@ for features not included in any clusters.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

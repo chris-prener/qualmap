@@ -1,9 +1,9 @@
-pandoc: 2.14.2
-pkgdown: 2.0.3
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   qualmap: qualmap.html
-last_built: 2022-05-31T01:23Z
+last_built: 2024-01-07T03:57Z
 urls:
   reference: https://chris-prener.github.io/qualmap/reference
   article: https://chris-prener.github.io/qualmap/articles

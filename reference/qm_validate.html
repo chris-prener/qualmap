@@ -56,21 +56,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">qm_validate</span><span class="op">(</span><span class="va">ref</span>, <span class="va">key</span>, <span class="va">value</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">qm_validate</span><span class="op">(</span><span class="va">ref</span>, <span class="va">key</span>, <span class="va">value</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>ref</dt>
 <dd><p>An <code>sf</code> object that serves as a master list of features</p></dd>
+
+
 <dt>key</dt>
 <dd><p>Name of geographic id variable in the <code>ref</code> object to match input values to</p></dd>
+
+
 <dt>value</dt>
 <dd><p>A vector of input values created with <code>qm_define</code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A logical scalar that is <code>TRUE</code> is all input values match values in the key variable.</p>
+    
+
+<p>A logical scalar that is <code>TRUE</code> is all input values match values in the key variable.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -79,21 +86,21 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># load and format reference data</span></span>
-<span class="r-in"><span class="va">stl</span> <span class="op">&lt;-</span> <span class="va">stLouis</span></span>
-<span class="r-in"><span class="va">stl</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">stl</span>, TRACTCE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">TRACTCE</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># create clusters</span></span>
-<span class="r-in"><span class="va">clusterValid</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">119300</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">clusterError</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">800000</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># validate clusters</span></span>
-<span class="r-in"><span class="fu">qm_validate</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">clusterValid</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># load and format reference data</span></span></span>
+<span class="r-in"><span><span class="va">stl</span> <span class="op">&lt;-</span> <span class="va">stLouis</span></span></span>
+<span class="r-in"><span><span class="va">stl</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">stl</span>, TRACTCE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">TRACTCE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create clusters</span></span></span>
+<span class="r-in"><span><span class="va">clusterValid</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">119300</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">clusterError</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">800000</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># validate clusters</span></span></span>
+<span class="r-in"><span><span class="fu">qm_validate</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">clusterValid</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">qm_validate</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">clusterError</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">qm_validate</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">clusterError</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -108,7 +115,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

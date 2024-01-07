@@ -56,30 +56,45 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">qm_create</span><span class="op">(</span><span class="va">ref</span>, <span class="va">key</span>, <span class="va">value</span>, <span class="va">rid</span>, <span class="va">cid</span>, <span class="va">category</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">qm_create</span><span class="op">(</span><span class="va">ref</span>, <span class="va">key</span>, <span class="va">value</span>, <span class="va">rid</span>, <span class="va">cid</span>, <span class="va">category</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>ref</dt>
 <dd><p>An <code>sf</code> object that serves as a master list of features</p></dd>
+
+
 <dt>key</dt>
 <dd><p>Name of geographic id variable in the <code>ref</code> object to match input values to</p></dd>
+
+
 <dt>value</dt>
 <dd><p>A vector of input values created with <code>qm_define</code></p></dd>
+
+
 <dt>rid</dt>
 <dd><p>Respondent identification number; a user defined integer value that uniquely identifies respondents
 in the project</p></dd>
+
+
 <dt>cid</dt>
 <dd><p>Cluster identification number; a user defined integer value that uniquely identifies clusters</p></dd>
+
+
 <dt>category</dt>
 <dd><p>Category type; a user defined value that describes what the cluster represents</p></dd>
+
+
 <dt>...</dt>
 <dd><p>An unquoted list of variables from the sf object to include in the output</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A tibble with the cluster values merged with elements of the reference data. This tibble is stored with
+    
+
+<p>A tibble with the cluster values merged with elements of the reference data. This tibble is stored with
 a custom class of <code>qm_cluster</code> to facilitate data validation.</p>
     </div>
     <div id="details">
@@ -99,23 +114,23 @@ creation process.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># load and format reference data</span></span>
-<span class="r-in"><span class="va">stl</span> <span class="op">&lt;-</span> <span class="va">stLouis</span></span>
-<span class="r-in"><span class="va">stl</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">stl</span>, TRACTCE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">TRACTCE</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># create cluster</span></span>
-<span class="r-in"><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">119300</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># create simple cluster object</span></span>
-<span class="r-in"><span class="va">cluster_obj1</span> <span class="op">&lt;-</span> <span class="fu">qm_create</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster</span>,</span>
-<span class="r-in">    rid <span class="op">=</span> <span class="fl">1</span>, cid <span class="op">=</span> <span class="fl">1</span>, category <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># load and format reference data</span></span></span>
+<span class="r-in"><span><span class="va">stl</span> <span class="op">&lt;-</span> <span class="va">stLouis</span></span></span>
+<span class="r-in"><span><span class="va">stl</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">stl</span>, TRACTCE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">TRACTCE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create cluster</span></span></span>
+<span class="r-in"><span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="qm_define.html">qm_define</a></span><span class="op">(</span><span class="fl">118600</span>, <span class="fl">119101</span>, <span class="fl">119300</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create simple cluster object</span></span></span>
+<span class="r-in"><span><span class="va">cluster_obj1</span> <span class="op">&lt;-</span> <span class="fu">qm_create</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster</span>,</span></span>
+<span class="r-in"><span>    rid <span class="op">=</span> <span class="fl">1</span>, cid <span class="op">=</span> <span class="fl">1</span>, category <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> old-style crs object detected; please recreate object with a recent sf::st_crs()</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># create cluster object with additional variables added from reference data</span></span>
-<span class="r-in"><span class="va">cluster_obj2</span> <span class="op">&lt;-</span> <span class="fu">qm_create</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster</span>,</span>
-<span class="r-in">    rid <span class="op">=</span> <span class="fl">1</span>, cid <span class="op">=</span> <span class="fl">1</span>, category <span class="op">=</span> <span class="st">"positive"</span>, <span class="va">NAME</span>, <span class="va">NAMELSAD</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create cluster object with additional variables added from reference data</span></span></span>
+<span class="r-in"><span><span class="va">cluster_obj2</span> <span class="op">&lt;-</span> <span class="fu">qm_create</span><span class="op">(</span>ref <span class="op">=</span> <span class="va">stl</span>, key <span class="op">=</span> <span class="va">TRACTCE</span>, value <span class="op">=</span> <span class="va">cluster</span>,</span></span>
+<span class="r-in"><span>    rid <span class="op">=</span> <span class="fl">1</span>, cid <span class="op">=</span> <span class="fl">1</span>, category <span class="op">=</span> <span class="st">"positive"</span>, <span class="va">NAME</span>, <span class="va">NAMELSAD</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> old-style crs object detected; please recreate object with a recent sf::st_crs()</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -130,7 +145,7 @@ creation process.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
