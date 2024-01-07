@@ -23,7 +23,3 @@ reference:
     desc: "Data sets included in package."
     contents:
     - stLouis
-  - title: "internal"
-    contents:
-    - qualmap
-
