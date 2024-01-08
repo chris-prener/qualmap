@@ -6,7 +6,7 @@
 [![R build
 status](https://github.com/chris-prener/qualmap/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/qualmap/actions)
 [![Coverage
-Status](https://img.shields.io/codecov/c/github/chris-prener/qualmap/master.svg)](https://codecov.io/github/chris-prener/qualmap?branch=main)
+Status](https://img.shields.io/codecov/c/github/chris-prener/qualmap/master.svg)](https://app.codecov.io/github/chris-prener/qualmap?branch=main)
 [![CRAN_status_badge](https://www.r-pkg.org/badges/version/qualmap)](https://cran.r-project.org/package=qualmap)
 [![cran
 checks](https://badges.cranchecks.info/worst/qualmap.svg)](https://cran.r-project.org/web/checks/check_results_qualmap.html)
@@ -53,10 +53,9 @@ in spatial statistical models.
 
 An [article describing `qualmap`’s approach to qualitative
 GIS](https://doi.org/10.3138/cart-2020-0030) has been published in
-[*Cartographica*](https://www.utpjournals.press/loi/cart). All data
-associated with the article are also available on [Open Science
-Framework](https://osf.io/pxzuc/), and the code are available via [Open
-Science Framework](https://osf.io/pxzuc/) and
+*Cartographica*. All data associated with the article are also available
+on [Open Science Framework](https://osf.io/pxzuc/), and the code are
+available via [Open Science Framework](https://osf.io/pxzuc/) and
 [GitHub](https://github.com/PrenerLab/sketch_mapping/). Please cite the
 paper if you use areal in your work!
 

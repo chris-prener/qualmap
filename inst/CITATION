@@ -1,6 +1,7 @@
 citHeader("To cite package qualmap in publications, please use:")
 
-citEntry(entry="Article",
+bibentry(
+  bibtype="Article",
   author = "Prener, Christopher",
   title = "{Digitizing and Visualizing Sketch Map Data: A Semi-Structured Approach to Qualitative GIS}",
   year = 2021,
