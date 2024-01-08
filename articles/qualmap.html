@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qualmap</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
       </span>
     </div>
 
@@ -74,7 +74,7 @@ qualmap</h1>
                         <h4 data-toc-skip class="author">Christopher
 Prener</h4>
             
-            <h4 data-toc-skip class="date">2024-01-07</h4>
+            <h4 data-toc-skip class="date">2024-01-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/chris-prener/qualmap/blob/HEAD/vignettes/qualmap.Rmd" class="external-link"><code>vignettes/qualmap.Rmd</code></a></small>
       <div class="hidden name"><code>qualmap.Rmd</code></div>
@@ -118,23 +118,16 @@ sophisticated workflow. This semi-structured approach makes integrating
 qualitative GIS with existing census and administrative data simple and
 straightforward, which in turn allows these data to be used as measures
 in spatial statistical models.</p>
-<p>More details on the package and how it fits into the broader
-ecosystem of qualitative GIS are available in a <a href="https://osf.io/preprints/socarxiv/p9qn5/" class="external-link">pre-print on
-SocArXiv</a>. All data associated with the pre-print are also available
-on <a href="https://osf.io/pxzuc/" class="external-link">Open Science Framework</a>, and the
-code are available via <a href="https://osf.io/pxzuc/" class="external-link">Open Science
-Framework</a> and <a href="https://github.com/PrenerLab/sketch_mapping/" class="external-link">GitHub</a>.</p>
 <div class="section level3">
 <h3 id="cartographica-article">
 <em>Cartographica</em> Article<a class="anchor" aria-label="anchor" href="#cartographica-article"></a>
 </h3>
 <p>An <a href="https://doi.org/10.3138/cart-2020-0030" class="external-link">article
 describing <code>qualmap</code>’s approach to qualitative GIS</a> has
-been published in <a href="https://www.utpjournals.press/loi/cart" class="external-link"><em>Cartographica</em></a>.
-All data associated with the article are also available on <a href="https://osf.io/pxzuc/" class="external-link">Open Science Framework</a>, and the code
-are available via <a href="https://osf.io/pxzuc/" class="external-link">Open Science
-Framework</a> and <a href="https://github.com/PrenerLab/sketch_mapping/" class="external-link">GitHub</a>. Please
-cite the paper if you use areal in your work!</p>
+been published in <em>Cartographica</em>. All data associated with the
+article are also available on <a href="https://osf.io/pxzuc/" class="external-link">Open
+Science Framework</a>, and the code are available via <a href="https://osf.io/pxzuc/" class="external-link">Open Science Framework</a> and <a href="https://github.com/PrenerLab/sketch_mapping/" class="external-link">GitHub</a>. Please
+cite the paper if you use <code>qualmap</code> in your work!</p>
 </div>
 </div>
 <div class="section level2">
@@ -242,14 +235,9 @@ package.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/walkerke/tigris" class="external-link">tigris</a></span><span class="op">)</span>  <span class="co"># access census tiger/line data</span></span>
 <span></span>
 <span><span class="va">stLouis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tigris/man/tracts.html" class="external-link">tracts</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"MO"</span>, county <span class="op">=</span> <span class="fl">510</span><span class="op">)</span></span>
-<span><span class="va">stLouis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">stLouis</span><span class="op">)</span></span>
 <span><span class="va">stLouis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">stLouis</span>, TRACTCE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">TRACTCE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>We download the census tract data for St. Louis, which come in
-<code>sp</code> format, using the <code><a href="https://rdrr.io/pkg/tigris/man/tracts.html" class="external-link">tracts()</a></code> function from
-<code>tigris</code>. We then use the <code>sf</code> package’s
-<code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf()</a></code> function to convert these data to a simple
-features object and convert the <code>TRACTCE</code> variable to numeric
-format.</p>
+<p>We download the census tract data for St. Louis and convert the
+<code>TRACTCE</code> variable to numeric format.</p>
 <p>If you want to use your own base data instead, you can use the
 <code><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read()</a></code> function from <code>sf</code> to bring them into
 <code>R</code>.</p>
@@ -378,16 +366,16 @@ will work with any of the spatial packages that also support
 <ul>
 <li>If you are new to <code>R</code> itself, welcome! Hadley Wickham’s
 <a href="https://r4ds.had.co.nz" class="external-link"><em>R for Data Science</em></a> is an
-excellent way to get started with data manipulation in the tidyverse,
-which <code>areal</code> is designed to integrate seamlessly with.</li>
+excellent way to get started with data manipulation in the
+tidyverse.</li>
 <li>If you are new to spatial analysis in <code>R</code>, we strongly
-encourage you check out the excellent new <a href="https://geocompr.robinlovelace.net" class="external-link"><em>Geocomputation in
-R</em></a> by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.</li>
-<li>If you have questions about using <code>areal</code>, you are
+encourage you check out the excellent new <a href="https://r.geocompx.org/" class="external-link"><em>Geocomputation in R</em></a> by Robin
+Lovelace, Jakub Nowosad, and Jannes Muenchow.</li>
+<li>If you have questions about using <code>qualmap</code>, you are
 encouraged to use the <a href="https://community.rstudio.com" class="external-link">RStudio
 Community forums</a>. Please create a <a href="https://reprex.tidyverse.org/" class="external-link"><code>reprex</code></a> before
 posting. Feel free to tag Chris (<code>@chris.prener</code>) in any
-posts about <code>areal</code>.</li>
+posts about <code>qualmap</code>.</li>
 <li>If you think you’ve found a bug, please create a <a href="https://reprex.tidyverse.org/" class="external-link"><code>reprex</code></a> and then
 open an issue on <a href="https://github.com/chris-prener/qualmap/issues/new/choose" class="external-link">GitHub</a>.</li>
 </ul>
