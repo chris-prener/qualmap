@@ -28,10 +28,8 @@ Qualitative GIS outputs are notoriously difficult to work with because individua
 
 This approach provides an alternative to either unstructured qualitative GIS data, which are difficult to work with empirically, and to digitizing respondents' annotations as rasters, which require a sophisticated workflow. This semi-structured approach makes integrating qualitative GIS with existing census and administrative data simple and straightforward, which in turn allows these data to be used as measures in spatial statistical models.
 
-More details on the package and how it fits into the broader ecosystem of qualitative GIS are available in a [pre-print on SocArXiv](https://osf.io/preprints/socarxiv/p9qn5/). All data associated with the pre-print are also available on [Open Science Framework](https://osf.io/pxzuc/), and the code are available via [Open Science Framework](https://osf.io/pxzuc/) and [GitHub](https://github.com/PrenerLab/sketch_mapping/).
-
 ### *Cartographica* Article
-An [article describing `qualmap`'s approach to qualitative GIS](https://doi.org/10.3138/cart-2020-0030) has been published in *Cartographica*. All data associated with the article are also available on [Open Science Framework](https://osf.io/pxzuc/), and the code are available via [Open Science Framework](https://osf.io/pxzuc/) and [GitHub](https://github.com/PrenerLab/sketch_mapping/). Please cite the paper if you use areal in your work!
+An [article describing `qualmap`'s approach to qualitative GIS](https://doi.org/10.3138/cart-2020-0030) has been published in *Cartographica*. All data associated with the article are also available on [Open Science Framework](https://osf.io/pxzuc/), and the code are available via [Open Science Framework](https://osf.io/pxzuc/) and [GitHub](https://github.com/PrenerLab/sketch_mapping/). Please cite the paper if you use `qualmap` in your work!
 
 ## Installation
 The easiest way to get `qualmap` is to install it from CRAN:
@@ -85,11 +83,10 @@ library(sf)      # simple features objects
 library(tigris)  # access census tiger/line data
 
 stLouis <- tracts(state = "MO", county = 510)
-stLouis <- st_as_sf(stLouis)
 stLouis <- mutate(stLouis, TRACTCE = as.numeric(TRACTCE))
 ```
 
-We download the census tract data for St. Louis, which come in `sp` format, using the `tracts()` function from `tigris`. We then use the `sf` package's `st_as_sf()` function to convert these data to a simple features object and convert the `TRACTCE` variable to numeric format.
+We download the census tract data for St. Louis and convert the `TRACTCE` variable to numeric format.
 
 If you want to use your own base data instead, you can use the `st_read()` function from `sf` to bring them into `R`.
 
@@ -196,7 +193,7 @@ ggplot() +
 Since `qualmap` output are `sf` objects, they will work with any of the spatial packages that also support `sf`.
 
 ## Getting Help
-* If you are new to `R` itself, welcome! Hadley Wickham's [*R for Data Science*](https://r4ds.had.co.nz) is an excellent way to get started with data manipulation in the tidyverse, which `areal` is designed to integrate seamlessly with.
+* If you are new to `R` itself, welcome! Hadley Wickham's [*R for Data Science*](https://r4ds.had.co.nz) is an excellent way to get started with data manipulation in the tidyverse.
 * If you are new to spatial analysis in `R`, we strongly encourage you check out the excellent new [*Geocomputation in R*](https://r.geocompx.org/) by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.
-* If you have questions about using `areal`, you are encouraged to use the [RStudio Community forums](https://community.rstudio.com). Please create a [`reprex`](https://reprex.tidyverse.org/) before posting. Feel free to tag Chris (`@chris.prener`) in any posts about `areal`.
+* If you have questions about using `qualmap`, you are encouraged to use the [RStudio Community forums](https://community.rstudio.com). Please create a [`reprex`](https://reprex.tidyverse.org/) before posting. Feel free to tag Chris (`@chris.prener`) in any posts about `qualmap`.
 * If you think you've found a bug, please create a [`reprex`](https://reprex.tidyverse.org/) and then open an issue on [GitHub](https://github.com/chris-prener/qualmap/issues/new/choose).
